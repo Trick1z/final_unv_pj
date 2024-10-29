@@ -1,0 +1,73 @@
+<!-- <div class="bg-light dark:bg-transparent min-vh-100 d-flex flex-row align-items-center">
+  <c-container breakpoint="md">
+    <c-row class="justify-content-center">
+      <c-col lg="5" xl="5">
+        <c-card-group>
+          <c-card class="p-4">
+            <c-card-body>
+              <form cForm>
+                <h1>เข้าสู่ระบบ</h1>
+                <p class="text-body-secondary">ลงชื่อเข้าสู่ระบบ</p>
+                <c-input-group class="mb-3">
+                  <span cInputGroupText>
+                    <svg cIcon name="cilUser"></svg>
+                  </span>
+                  <input autoComplete="username" cFormControl placeholder="Username" />
+                </c-input-group>
+                <c-input-group class="mb-4">
+                  <span cInputGroupText>
+                    <svg cIcon name="cilLockLocked"></svg>
+                  </span>
+                  <input
+                    autoComplete="current-password"
+                    cFormControl
+                    placeholder="Password"
+                    type="password"
+                  />
+                </c-input-group>
+                <c-row>
+                  <c-col xs="6">
+                    <button cButton class="px-4" color="primary" (click)="onTest">
+                      Login
+                    </button>
+                  </c-col>
+                </c-row>
+              </form>
+            </c-card-body>
+          </c-card>
+        </c-card-group>
+      </c-col>
+    </c-row>
+  </c-container>
+</div> -->
+
+
+ <div class="login-container">
+  <div class="card">
+    <div style="text-align: center; margin-bottom: 50px;">
+      <h4>เข้าสู่ระบบ</h4>
+    </div>
+
+
+    <dx-form [formData]="loginForm" [colCount]="1">
+      <dxi-item [colSpan]="1" dataField="username">
+        <dxo-label template="Username"></dxo-label>
+      </dxi-item>
+
+      <dxi-item [colSpan]="1" dataField="password">
+        <dxo-label template="Password"></dxo-label>
+      </dxi-item>
+    </dx-form>
+
+
+    <div class="btn-group">
+      <div class="btn" style="margin-top: 20px;" (click)="onTest()">
+        <button cButton class="text" color="info"
+          >Login</button>
+      </div>
+    </div>
+  
+
+  </div>
+</div> 
+

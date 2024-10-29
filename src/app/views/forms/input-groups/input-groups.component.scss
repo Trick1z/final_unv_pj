@@ -1,0 +1,50 @@
+.title-header {
+  background-color: white;
+  border-radius: 5px;
+  padding: 20px;
+  margin: 10px 0 20px 0;
+  box-shadow: 5px 2px rgb(212, 212, 212);
+
+  .btn {
+    margin-right: 10px;
+    display: flex;
+    justify-content: space-between;
+  }
+
+
+  .empty {
+    margin: 30px 0;
+
+  }
+
+  .data-grid {
+
+    background-color: rgb(170, 169, 169);
+  }
+
+  .json-res {
+    background-color: #fdf6e3;
+    -color: rgb(243, 198, 0);
+    color: black;
+    border-radius: 5px;
+    padding: 20px 10px;
+
+  }
+}
+
+.text .white-text {
+  color: white;
+}
+
+
+
+.flex {
+  display: flex;
+  justify-content: space-around;
+  display: flex;
+  justify-content: space-between; 
+  width: 100%;
+  margin: 20px;
+ 
+
+}

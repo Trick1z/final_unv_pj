@@ -1,0 +1,88 @@
+.title-header {
+  background-color: white;
+  border-radius: 10px;
+  margin: 20px;
+  padding-bottom: 20px;
+  box-shadow: 1px 1px rgb(228, 228, 228);
+
+  .btn {
+    margin-right: 10px;
+    display: flex;
+    justify-content: space-between;
+  }
+
+  .response {
+    background-color: rgb(255, 230, 121);
+    border-radius: 5px;
+
+    h1 {
+      margin: 10px;
+    }
+
+    pre {
+      padding: 15px;
+    }
+  }
+}
+
+.primary {
+  margin: 10px;
+}
+
+.text {
+  color: white;
+}
+
+.data-grid {
+  padding: 20px;
+}
+
+.btn-end {
+  text-align: -webkit-right;
+}
+
+.space {
+  margin: 30px 0;
+}
+
+.empty {
+  margin: 0 30px;
+}
+
+.head {
+  padding: 5px;
+  text-align: center;
+  border-top-left-radius: 10px 10px;
+  border-top-right-radius: 10px 10px;
+  background-color: #3f81aa;
+}
+
+.datagrid {
+  margin: 10px 10px;
+
+
+}
+
+.white-text {
+  color: white;
+}
+
+.green-text {
+  color: green;
+}
+
+
+// .card{
+//   padding: 20px;
+//   margin: 20px;
+//   display: flex;
+//   flex-direction: row;
+//   justify-content: space-evenly;
+// }
+
+.buttons {
+
+  margin: 20px;
+  padding-left: 5%;
+
+}
