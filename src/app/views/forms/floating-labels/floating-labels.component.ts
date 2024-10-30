@@ -86,13 +86,13 @@ import { delay } from 'rxjs';
   ],
 })
 export default class FloatingLabelsComponent implements OnInit {
-  constructor(private http: HttpClient, private route: Router) {}
+  constructor(private http: HttpClient, private route: Router) { }
 
   ngOnInit(): void {
     this.getStatus();
     this.getCategory();
   }
-  placeholder =' asdasd';
+  placeholder = ' asdasd';
 
   ProductForms: any = {};
   CategoryData: any = [];
@@ -135,9 +135,10 @@ export default class FloatingLabelsComponent implements OnInit {
     this.ProductForms.STUDENT_ID = 0
     this.ProductForms.RECORD_STATUS = "A";
     this.ProductForms.DEL_FRAG = "N";
-    this.ProductForms.CREATE_DATE = "2024-09-29T06:25:50.920Z";
-    this.ProductForms.UPDATE_DATE = "2024-09-29T06:25:50.920Z";
+    this.ProductForms.CREATE_DATE = "2024-01-01T00:00:00.920Z";
+    this.ProductForms.UPDATE_DATE = "2024-01-01T00:00:00.920Z";
     const data = this.ProductForms;
+
 
     Swal.fire({
       title: `ยืนยันการเพิ่มข้อมูล ?`,
@@ -147,9 +148,13 @@ export default class FloatingLabelsComponent implements OnInit {
     }).then((result) => {
 
       if (result.isConfirmed) {
+        
         this.http
           .post('http://127.0.0.1:8000/add_product', data)
           .subscribe((res) => {
+
+            // console.log("res",res);
+            
 
             Swal.fire({
               icon: 'success',
@@ -161,11 +166,25 @@ export default class FloatingLabelsComponent implements OnInit {
             delay(1000);
 
             return this.nevBack()
+            
+          },(error) => {
+            console.error('Error:', error);
+            Swal.fire({
+              icon: 'error',
+              title: 'เกิดข้อผิดพลาด',
+              text: 'ข้อมูลไม่ครบ',
+            });
           });
+          
       }
 
     });
   }
 
-  onCancel() {}
+  onCancel() {
+    this.ProductForms = {}
+    console.log(this.ProductForms);
+    return this.nevBack()
+
+  }
 }
