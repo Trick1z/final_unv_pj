@@ -42,6 +42,7 @@ import { DxDataGridModule, DxFormComponent, DxFormModule, DxPopupModule, DxSelec
 import { DxiColumnModule, DxiItemModule, DxoFormComponent } from 'devextreme-angular/ui/nested';
 import { NgFor, NgIf } from '@angular/common';
 import { FormsModule } from '@angular/forms';
+import Swal from 'sweetalert2';
 
 
 @Component({
@@ -154,8 +155,8 @@ export class InputGroupsComponent implements OnInit {
   ShowFindPopup = false;
   findStudentData: any = {}
   isVisible = false
-  wrong = false
-  wanning = ""
+  // wrong = false
+  // wanning = ""
 
   find() {
     this.isVisible = false;
@@ -173,22 +174,48 @@ export class InputGroupsComponent implements OnInit {
 
         if (res.status === 404) {
           this.isVisible = false
-          this.wrong = true
-          this.wanning = "ไม่พบข้อมูลในระบบ"
+          
+          // this.wrong = true
+          // this.wanning = "ไม่พบข้อมูลในระบบ"
+          this.ShowFindPopup = false
+
+          Swal.fire({
+            position: "center",
+            icon: "error",
+            title: "ไม่มีข้อมูลในระบบ",
+            showConfirmButton: false,
+            timer: 1300
+          }).then(() => {
+            this.ShowFindPopup = true;  // Hide the popup after the alert is closed
+          });
 
         } else if (res.status === 200) {
 
           this.findStudentData = res.data[0]
           this.isVisible = true
-          this.wrong = false
+          // this.wrong = false
 
           // console.log("sData :", this.findStudentData);
 
 
         } else {
+
           this.isVisible = false
-          this.wrong = true
-          this.wanning = "ข้อมูลไม่ถูกต้อง"
+          // this.wrong = true
+
+          this.ShowFindPopup = false
+          Swal.fire({
+            position: "center",
+            icon: "error",
+            title: "ข้อมูลไม่ถูกต้อง",
+            showConfirmButton: false,
+            timer: 1300
+          }).then(() => {
+            this.ShowFindPopup = true;  // Hide the popup after the alert is closed
+          });
+
+
+          // this.wanning = "ข้อมูลไม่ถูกต้อง"
 
         }
 

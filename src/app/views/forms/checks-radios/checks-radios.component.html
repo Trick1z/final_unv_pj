@@ -1,5 +1,8 @@
+<div class="header head-name">
+  <h1>รายชื่อหมวดหมู่</h1>
+</div>
 <div class="card">
-  <h1>CATEGORY LIST</h1>
+  
 
   <div class="btn float-left">
     <button cButton color="primary" (click)="OnAddCate()">เพิ่มหมวดหมู่</button>
@@ -42,7 +45,7 @@
 <!-- POPUP -->
 <!-- Add Category  -->
 
-<dx-popup [width]="420" [height]="350" [hideOnOutsideClick]="false" [showCloseButton]="false"
+<dx-popup [width]="420" [height]="360" [hideOnOutsideClick]="false" [showCloseButton]="false"
   [(visible)]="addCategoryPopup" title="เพิ่มหมวดหมู่">
 
   <div class="">
@@ -59,7 +62,7 @@
     </dx-form>
   </div>
 
-  <div class="" style="display: flex; ; justify-content: center; margin: 30px 0;">
+  <div class="" style="display: flex; ; justify-content: center; margin: 70px 0 0 0;">
     <button cButton class="white-text" color="success" style="margin: 0 20px;"
       (click)="categoryOnSubmit()">บันทึก</button>
     <button cButton class="cancle-btn white-text" color="danger" (click)="categoryOnClose()">ยกเลิก</button>
@@ -68,7 +71,7 @@
 
 <!-- Edit Category  v -->
 
-<dx-popup [width]="420" [height]="350" [hideOnOutsideClick]="false" [showCloseButton]="false"
+<dx-popup [width]="420" [height]="360" [hideOnOutsideClick]="false" [showCloseButton]="false"
   [(visible)]="editCategoryPopup" title="แก้ไขหมวดหมู่">
 
   <div class="">
@@ -85,7 +88,7 @@
     </dx-form>
   </div>
 
-  <div class="" style="display: flex; ; justify-content: center; margin: 30px 0;">
+  <div class="" style="display: flex; ; justify-content: center; margin: 70px 0 0 0;;">
     <button cButton class="white-text" color="success" style="margin: 0 20px;"
       (click)="categoryOnEditSubmit()">บันทึก</button>
     <button cButton class="cancle-btn white-text" color="danger" (click)="categoryOnEditClose()">ยกเลิก</button>
@@ -99,8 +102,12 @@
 <div class="empty"></div>
 
 <!-- status card  -->
+
+<div class="header head-name">
+  <h1>รายชื่อสถานะ</h1></div>
+
 <div class="card">
-  <h1>STATUS LIST</h1>
+  
 
   <div class="btn float-left">
     <button cButton color="primary" (click)="OnAddStatus()">เพิ่มสถานะ</button>
@@ -138,12 +145,12 @@
 <!-- POPUP -->
 <!-- Add STATUS  -->
 
-<dx-popup [width]="420" [height]="350" [hideOnOutsideClick]="false" [showCloseButton]="false"
+<dx-popup [width]="420" [height]="360" [hideOnOutsideClick]="false" [showCloseButton]="false"
   [(visible)]="addStatusPopup" title="เพิ่มสถานะ">
 
   <div class="">
     <dx-form [formData]="addStatusForm" [colCount]="4">
-
+   
       <dxi-item [colSpan]="4" dataField="STATUS_NAME">
         <dxo-label template="ชื่อ สถานะ"></dxo-label>
       </dxi-item>
@@ -155,7 +162,7 @@
     </dx-form>
   </div>
 
-  <div class="" style="display: flex; ; justify-content: center; margin: 30px 0;">
+  <div class="" style="display: flex; ; justify-content: center;     margin: 70px 0 0 0;">
     <button cButton class="white-text" color="success" style="margin: 0 20px;"
       (click)="statusOnSubmit()">บันทึก</button>
     <button cButton class="cancle-btn white-text" color="danger" (click)="statusOnClose()">ยกเลิก</button>
@@ -164,7 +171,7 @@
 
 <!-- Edit Status -->
 
-<dx-popup [width]="420" [height]="350" [hideOnOutsideClick]="false" [showCloseButton]="false"
+<dx-popup [width]="420" [height]="360" [hideOnOutsideClick]="false" [showCloseButton]="false"
 [(visible)]="EditStatusPopup" title="แก้ไขสถานะ">
 
 <div class="">
@@ -181,7 +188,7 @@
   </dx-form>
 </div>
 
-<div class="" style="display: flex; ; justify-content: center; margin: 30px 0;">
+<div class="" style="display: flex; ; justify-content: center; margin: 70px 0 0 0;">
   <button cButton class="white-text" color="success" style="margin: 0 20px;"
     (click)="EditStatusOnSubmit()">บันทึก</button>
   <button cButton class="cancle-btn white-text" color="danger" (click)="StatusOnEditClose()">ยกเลิก</button>

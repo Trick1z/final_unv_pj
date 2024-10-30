@@ -128,8 +128,8 @@ export class RangesComponent implements OnInit {
           value: res.list.count
         };
         this.counts.push(obj)
-        console.log("count :", obj);
-        console.log("count :", this.counts);
+        // console.log("count :", obj);
+        // console.log("count :", this.counts);
       })
     }
   }

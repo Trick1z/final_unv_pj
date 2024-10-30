@@ -31,8 +31,8 @@
         <!-- (click)="addProductToArr((data.component.pageIndex() * data.component.pageSize() + data.rowIndex) , 'A' ) -->
         <dxi-column dataField="LIST_ID" caption="ID" alignment="center" [width]="50"></dxi-column>
 
-        <dxi-column dataField="STUDENT_ID" caption="รหัส" alignment="center"
-          cellTemplate="cellStudentCode"></dxi-column>
+        <dxi-column dataField="STUDENT_ID" caption="รหัสนักศึกษา" alignment="center"
+          cellTemplate="cellStudentCode" [width]="120"></dxi-column>
         <div *dxTemplate="let cell of 'cellStudentCode'">
           <div class="">
             <span>{{displayStudentData((cell.data.STUDENT_ID), 'code')}}</span>
@@ -40,7 +40,7 @@
         </div>
 
         <dxi-column dataField="STUDENT_ID_1" caption="ชื่อ" alignment="center"
-          cellTemplate="cellTemplateStatus"></dxi-column>
+          cellTemplate="cellTemplateStatus" [width]="150"></dxi-column>
         <div *dxTemplate="let cell of 'cellTemplateStatus'">
           <div class="">
             <span>{{displayStudentData((cell.data.STUDENT_ID) , 'name')}}</span>
@@ -76,7 +76,13 @@
         <dxi-column dataField="CREATE_DATE" caption="วันที่ยืม" alignment="center" [width]="160"></dxi-column>
         <dxi-column dataField="UPDATE_DATE" caption="วันที่คืน" alignment="center" [width]="160"></dxi-column>
 
-        <dxo-paging [pageSize]="100"></dxo-paging>
+        <!-- <dxo-paging [pageSize]="100"></dxo-paging> -->
+
+        <dxo-paging [pageSize]="20"></dxo-paging>
+        <dxo-pager
+          [showPageSizeSelector]="true"
+          [allowedPageSizes]="[15, 20, 50]"
+        ></dxo-pager>
       </dx-data-grid>
     </div>
   </div>

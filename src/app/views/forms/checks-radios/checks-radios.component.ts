@@ -52,13 +52,15 @@ import dxPopup from 'devextreme/ui/popup';
     HttpClientModule,
     DxDataGridModule,
     DxPopupModule,
+
+    DxFormModule,
   ],
 })
 export class ChecksRadiosComponent implements OnInit {
   categoryData: any = {};
   statusData: any = {};
 
-  constructor(private http: HttpClient) {}
+  constructor(private http: HttpClient) { }
 
   // POPUPSTATUS
 
@@ -96,10 +98,10 @@ export class ChecksRadiosComponent implements OnInit {
     var data = this.addCateForm;
 
     // console.log(this.addCateForm);
-    
+
 
     this.http
-      .post('http://127.0.0.1:8000/add_category',data)
+      .post('http://127.0.0.1:8000/add_category', data)
       .subscribe((res) => {
         this.getCategoryData();
         this.categoryOnClose();
@@ -126,7 +128,7 @@ export class ChecksRadiosComponent implements OnInit {
 
     // console.log(id);
     // console.log(name);
-    
+
     Swal.fire({
       title: `ต้องการลบไอดีที่ ${id} "${name}" ใช่หรือไม่ ?`,
       showCancelButton: true,
@@ -135,7 +137,7 @@ export class ChecksRadiosComponent implements OnInit {
     }).then((result) => {
       if (result.isConfirmed) {
         this.http
-          .put(`http://127.0.0.1:8000/put_del_category/${id}`,id)
+          .put(`http://127.0.0.1:8000/put_del_category/${id}`, id)
           .subscribe((res) => {
             this.getCategoryData();
 
@@ -157,7 +159,7 @@ export class ChecksRadiosComponent implements OnInit {
 
   onCategoryEditPopup(index: number) {
     this.editCateForm = this.categoryData[index];
-    
+
     this.editCategoryPopup = true;
   }
 
@@ -200,7 +202,7 @@ export class ChecksRadiosComponent implements OnInit {
     this.addStatusForm.UPDATE_DATE = "2024-09-29T06:25:50.920Z";
     var data = this.addStatusForm;
     console.log(data);
-    
+
 
     this.http
       .post('http://127.0.0.1:8000/add_status', data)
@@ -224,21 +226,21 @@ export class ChecksRadiosComponent implements OnInit {
   }
 
 
-  EditStatusPopup =false;
-  editStatusForm :any = {};
+  EditStatusPopup = false;
+  editStatusForm: any = {};
 
-  onStatusEditPopup(index:number){
+  onStatusEditPopup(index: number) {
     this.EditStatusPopup = true;
-    this.editStatusForm =this.statusData[index]
+    this.editStatusForm = this.statusData[index]
   }
-  openStatusDelete(index:number){
+  openStatusDelete(index: number) {
     var id = this.statusData[index].STATUS_ID;
     var name = this.statusData[index].STATUS_NAME;
 
     // console.log(id);
     // console.log(name);
     // console.log("all:",this.statusData[index]) ;
-    
+
 
     Swal.fire({
       title: `ต้องการลบไอดีที่ ${id} "${name}" ใช่หรือไม่ ?`,
@@ -248,7 +250,7 @@ export class ChecksRadiosComponent implements OnInit {
     }).then((result) => {
       if (result.isConfirmed) {
         this.http
-          .put(`http://127.0.0.1:8000/put_del_status/${id}`,id)
+          .put(`http://127.0.0.1:8000/put_del_status/${id}`, id)
           .subscribe((res) => {
             this.getStatusData();
 
@@ -264,7 +266,7 @@ export class ChecksRadiosComponent implements OnInit {
     });
   }
 
-  EditStatusOnSubmit(){
+  EditStatusOnSubmit() {
     var data = this.editStatusForm;
     this.http
       .put(`http://127.0.0.1:8000/put_status/${data.STATUS_ID}`, data)
@@ -275,7 +277,7 @@ export class ChecksRadiosComponent implements OnInit {
     this.StatusOnEditClose();
   }
 
-  StatusOnEditClose(){
+  StatusOnEditClose() {
     this.editStatusForm = {}
     this.EditStatusPopup = false;
   }

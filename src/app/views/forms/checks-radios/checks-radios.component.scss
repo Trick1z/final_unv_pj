@@ -1,5 +1,6 @@
 .card {
   padding: 10px 20px;
+
   h1 {
     display: flex;
     justify-content: center;
@@ -15,6 +16,18 @@
   color: white;
 }
 
-.empty{
+.empty {
   margin: 30px;
 }
+
+
+.head-name {
+  align-items: center;
+  display: flex;
+  justify-content: center;
+  background-color: #3f81aa;
+  color: white;
+  border-radius: 10px;
+
+}
+

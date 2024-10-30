@@ -13,22 +13,22 @@
   <div class="empty"></div>
   <div class="form">
 
-    <dx-form [formData]="StudentForms" [readOnly]="true" [colCount]="7">
+    <dx-form [formData]="StudentForms" [readOnly]="true" [colCount]="6">
 
-      <dxi-item [colSpan]="3" dataField="STUDENT_NAME">
+      <dxi-item [colSpan]="2" dataField="STUDENT_NAME">
         <dxo-label template="ชื่อนักศึกษา"></dxo-label>
       </dxi-item>
-      <dxi-item [colSpan]="3" dataField="STUDENT_CODE">
+      <dxi-item [colSpan]="2" dataField="STUDENT_CODE">
         <dxo-label template="รหัสนักศึกษา"></dxo-label>
       </dxi-item>
-      <dxi-item [colSpan]="1" dataField="STUDENT_YEAR">
+      <dxi-item [colSpan]="2" dataField="STUDENT_YEAR">
         <dxo-label template="ชั้นปี"></dxo-label>
       </dxi-item>
-      <dxi-item [colSpan]="4" dataField="STUDENT_MAJOR">
-        <dxo-label template="ชื่อ"></dxo-label>
+      <dxi-item [colSpan]="3" dataField="STUDENT_MAJOR">
+        <dxo-label template="สาขา"></dxo-label>
       </dxi-item>
       <dxi-item [colSpan]="3" dataField="STUDENT_FACULITY">
-        <dxo-label template="รหัส"></dxo-label>
+        <dxo-label template="คณะ"></dxo-label>
       </dxi-item>
     </dx-form>
 
@@ -38,7 +38,7 @@
   <div class="hideproduct" *ngIf="showProduct == true">
     <div class="btn">
       <h3>เพิ่มรายการ ครุภัณฑ์</h3>
-      <button cButton color="primary" class="text" style="margin-right: 10px;" (click)="addproductBTN()">เพิ่ม</button>
+      <button cButton color="primary" class="text" style="margin-right: 10px; color: white;" (click)="addproductBTN()">เพิ่ม</button>
     </div>
 
     <div class="datagrid" style="margin-top: 10px;">
@@ -82,7 +82,7 @@
 
     </div>
     <div class="btn" style="display: flex; ; justify-content: center; margin: 30px 0;">
-      <button cButton class="white-text" color="success" style="margin: 0 20px;" (click)="onSave()">บันทึก</button>
+      <button cButton class="white-text" color="success" style="margin: 0 20px;color:white;" (click)="onSave()">บันทึก</button>
       <!-- <button cButton class="cancle-btn white-text" color="danger" (click)="onCancel()">ยกเลิก</button> -->
     </div>
 
@@ -91,7 +91,7 @@
 </div>
 
 
-<dx-popup [width]="600" [height]="450" [hideOnOutsideClick]="true" [showCloseButton]="true" [(visible)]="ShowFindPopup"
+<dx-popup [width]="600" [height]="420" [hideOnOutsideClick]="true" [showCloseButton]="true" [(visible)]="ShowFindPopup"
   title="ข้อมูล นักศึกษา">
 
   <!-- 
@@ -146,23 +146,25 @@
       </dxi-item>
     </dx-form>
 
-    <div class="btn" style="display: flex; ; justify-content: center; margin: 30px 0;">
-      <button cButton class="white-text" color="success" style="margin: 0 20px;" (click)="onSubmit()">ตกลง</button>
+    <div class="btn" style="    display: flex;
+    justify-content: center;
+    margin: 70px 0 0 0;">
+      <button cButton class="white-text" color="success" style="margin: 0 20px; color :white;" (click)="onSubmit()">ตกลง</button>
       <!-- <button cButton class="cancle-btn white-text" color="danger" (click)="onCancel()">ยกเลิก</button> -->
     </div>
 
   </div>
 
-  <div class="err" *ngIf="wrong == true">
+  <!-- <div class="err" *ngIf="wrong == true">
     <h5>{{wanning}}</h5>
-  </div>
+  </div> -->
 </dx-popup>
 
 
 
 
 
-<dx-popup [width]="1200" [height]="700" [hideOnOutsideClick]="true" [showCloseButton]="true"
+<dx-popup [width]="1200" [height]="900" [hideOnOutsideClick]="true" [showCloseButton]="true"
   [(visible)]="ShowProductPopup" title="เพิ่มรายการ ครุภัณฑ์">
 
   <!-- เลือกหมวดหมู่-->
@@ -273,7 +275,7 @@
       </dxi-column>
       <dxi-column dataField="P_EQUIPMENTNUMBER" caption="รหัสครุภัณฑ์" alignment="center" [width]="220"></dxi-column>
 
-      <dxo-paging [pageSize]="100"></dxo-paging>
+      <dxo-paging [pageSize]="10"></dxo-paging>
     </dx-data-grid>
   </div>
 

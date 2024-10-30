@@ -30,6 +30,7 @@ import {
 import {
   DxButtonModule,
   DxDataGridModule,
+  DxDateBoxModule,
   DxFileUploaderModule,
   DxFormModule,
   DxPopupModule,
@@ -82,7 +83,7 @@ import { delay } from 'rxjs';
     ListGroupItemDirective,
     FormFeedbackComponent,
     NgFor,
-    CommonModule,
+    CommonModule,DxDateBoxModule,
   ],
 })
 export default class FloatingLabelsComponent implements OnInit {
@@ -153,7 +154,7 @@ export default class FloatingLabelsComponent implements OnInit {
           .post('http://127.0.0.1:8000/add_product', data)
           .subscribe((res) => {
 
-            // console.log("res",res);
+            console.log("res",res);
             
 
             Swal.fire({
@@ -186,5 +187,10 @@ export default class FloatingLabelsComponent implements OnInit {
     console.log(this.ProductForms);
     return this.nevBack()
 
+  }
+
+  onsunmits(){
+    console.log(this.ProductForms);
+    
   }
 }

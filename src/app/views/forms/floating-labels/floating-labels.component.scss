@@ -3,7 +3,7 @@
   border-radius: 10px;
   margin: 20px;
   padding-bottom: 20px;
-  box-shadow: 1px 1px rgb(228, 228, 228);
+  box-shadow: 2px 4px rgb(228, 228, 228);
 
   .btn {
     margin-right: 10px;
@@ -58,12 +58,19 @@ margin: 0 30px;
 }
 
 .form{
-  border-radius: 20px;
-  background-color: #f1f1f1;
-  margin: 60px;
-  padding: 50px;
-  box-shadow: 3px 3px #b6b6b6;
+ 
+  padding: 2% 3% 0 ;
+ 
 }
+
+
+.text-border{
+  margin: 10px;
+  display: flex;
+  justify-content: center;
+  color: white;
+}
+
 .white-text{
   color: white;
 }

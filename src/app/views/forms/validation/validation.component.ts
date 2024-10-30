@@ -254,6 +254,8 @@ export class ValidationComponent implements OnInit {
           timer: 1000,
         });
       });
+    console.log(data);
+    
   }
 
   showmoreData: any;

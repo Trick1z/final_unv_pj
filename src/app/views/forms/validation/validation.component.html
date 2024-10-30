@@ -1,7 +1,29 @@
-<div class="title-header">
+<div class="title-header" style="
+    box-shadow: 2px 3px #d3d3d3; ">
 
-  <div class="buttons">
-    <!-- <c-row>
+  <div class="text1">
+    <h3>หมวดหมู่</h3>
+  </div>
+
+
+<div class="text2">
+  <c-row [xs]="2" [lg]="6" [gutter]="{g: 2, lg: {g: 3}}">
+    <button cButton color="info" variant="outline" size="lg" style="color:black"
+      (click)="getProductData()">ทั้งหมด</button>
+
+    <button cButton color="info" style="color:black" variant="outline" size="lg"
+      *ngFor="let item of categoryCard ; index as i" (click)="CardButton(item.value)">{{item.name}}</button>
+
+  </c-row>
+</div>
+</div>
+
+<div class="empty" style="margin: 20px;"></div>
+
+
+
+<div class="buttons">
+  <!-- <c-row>
 
       <c-col>
         <c-card [color]="'secondary'"
@@ -27,26 +49,14 @@
       </c-col>
     </c-row> -->
 
-    <!-- <button cButton color="primary" variant="outline" size="lg" *ngFor="let item of categoryCard ; index as i" >{{item.name}}</button> -->
-    <!-- <button cButton color="secondary"  *ngFor="let item of categoryCard ; index as i">Secondary</button> -->
-
-    <h3 style="padding: 20px 0 10px 0;">หมวดหมู่</h3>
-    <c-row [xs]="2" [lg]="6" [gutter]="{g: 2, lg: {g: 3}}">
-      <button cButton color="info" variant="outline" size="lg" style="color:black" (click)="getProductData()">ทั้งหมด</button>
-
-      <button cButton color="info" style="color:black" variant="outline" size="lg" *ngFor="let item of categoryCard ; index as i"
-      (click)="CardButton(item.value)">{{item.name}}</button>
-
-    </c-row>
+  <!-- <button cButton color="primary" variant="outline" size="lg" *ngFor="let item of categoryCard ; index as i" >{{item.name}}</button> -->
+  <!-- <button cButton color="secondary"  *ngFor="let item of categoryCard ; index as i">Secondary</button> -->
 
 
-
-
-  </div>
 
 
   <div class="head">
-    <h4 class="white-text">รายชื่อ ครุภัณฑ์</h4>
+    <h4 class="text-border">รายชื่อ ครุภัณฑ์</h4>
   </div>
   <div class="btn">
 
@@ -54,11 +64,11 @@
     <button cButton color="primary" class="text" style="margin-right: 10px;" (click)="nevAdd()">เพิ่ม ครุภัณฑ์</button>
   </div>
 
-  
+
 
   <div class="empty"></div>
   <!-- datagrid -->
-  <div class="datagrid">
+  <div class="datagrid" style="padding: 0 0 20px 0;">
     <div class="datagrid">
       <div class="cat-list">
         <dx-data-grid id="gridContainer" [dataSource]="ProductData" [showBorders]="true">
@@ -112,13 +122,14 @@
               class="white-text" style="margin-right: 5px;">แก้ไข</button>
 
 
-            <button cButton color="danger" (click)="openProductDelete(data.component.pageIndex() * data.component.pageSize() + data.rowIndex)"
-             class="white-text">ลบ</button>
-            
+            <button cButton color="danger"
+              (click)="openProductDelete(data.component.pageIndex() * data.component.pageSize() + data.rowIndex)"
+              class="white-text">ลบ</button>
+
           </div>
           <dxi-column [width]="130" cellTemplate="cellTemplateDelte"></dxi-column>
 
-          <dxo-paging [pageSize]="100"></dxo-paging>
+          <dxo-paging [pageSize]="20"></dxo-paging>
         </dx-data-grid>
       </div>
     </div>
@@ -134,7 +145,7 @@
 <!-- edit Product -->
 
 
-<dx-popup [width]="600" [height]="480" [hideOnOutsideClick]="false" [showCloseButton]="false"
+<dx-popup [width]="600" [height]="500" [hideOnOutsideClick]="false" [showCloseButton]="false"
   [(visible)]="ProductEditPopup" title="แก้ไข ครุภัณฑ์">
 
   <div class="">
@@ -152,7 +163,7 @@
         <dxo-label template="ยี้ห้อ"></dxo-label>
       </dxi-item>
 
-      <dxi-item [colSpan]="2" dataField="P_DOP" editorType="dxTextBox">
+      <dxi-item [colSpan]="2" dataField="P_DOP" editorType="dxDateBox">
         <dxo-label template="วันที่ซื้อ"></dxo-label>
       </dxi-item>
 
@@ -182,7 +193,7 @@
         <dxo-label template="รหัส ครุภัณฑ์"></dxo-label>
       </dxi-item>
 
-      <dxi-item [colSpan]="6" dataField="P_DESCRIPTION" [height] = "130" editorType="dxTextArea">
+      <dxi-item [colSpan]="6" dataField="P_DESCRIPTION" [height]="130" editorType="dxTextArea">
         <dxo-label template="รายละเอียด"></dxo-label>
       </dxi-item>
 
@@ -190,15 +201,16 @@
   </div>
 
   <div class="" style="display: flex; ; justify-content: center; margin: 30px 0;">
-    <button cButton class="white-text" (click) ="onSubmitEdtiPopup()" color="success" style="margin: 0 20px;">บันทึก</button>
-    <button cButton class="cancle-btn white-text" (click) ="onCancelEditPopup()" color="danger">ยกเลิก</button>
+    <button cButton class="white-text" (click)="onSubmitEdtiPopup()" color="success"
+      style="margin: 0 20px;">บันทึก</button>
+    <button cButton class="cancle-btn white-text" (click)="onCancelEditPopup()" color="danger">ยกเลิก</button>
   </div>
 </dx-popup>
 
 
 
 <!-- SHOWMORE -->
-<dx-popup [width]="600" [height]="450" [hideOnOutsideClick]="true" [showCloseButton]="true" [(visible)]="ShowmorePopup"
+<dx-popup [width]="600" [height]="400" [hideOnOutsideClick]="true" [showCloseButton]="true" [(visible)]="ShowmorePopup"
   title="ข้อมูล ครุภัณฑ์">
 
 
