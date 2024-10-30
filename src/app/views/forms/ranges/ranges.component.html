@@ -9,6 +9,18 @@
 
     <div class="empty"></div>
 
+    <div class="count-card">
+      <c-card class="mb-3" style="width: 33%" *ngFor="let item of counts; index as i">
+        <c-row class="g-0">
+
+          <c-card-body cCol [md]="8">
+            <h5 cCardTitle><span>{{displayCardsName(item.name)}}</span></h5>
+            <h1>{{item.value}}</h1>
+          </c-card-body>
+        </c-row>
+      </c-card>
+    </div>
+
     <div class="data-table">
       <dx-data-grid id="gridContainer" [dataSource]="borrowForm" [showBorders]="true">
         <dxo-search-panel [visible]="false"></dxo-search-panel>
