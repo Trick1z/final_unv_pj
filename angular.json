@@ -36,7 +36,16 @@
               "src/favicon.ico",
               "src/assets"
             ],
-            
+            // "styles": [
+            //   "node_modules/devextreme/dist/css/dx.light.css",
+            //   "node_modules/bootstrap-icons/font/bootstrap-icons.min.css",
+            //   "node_modules/bootstrap/dist/css/bootstrap.min.css",
+            //   "src/scss/styles.scss"
+            // ],
+            "styles": [
+              
+              "src/scss/styles.scss"
+            ],
             "scripts": [],
             "allowedCommonJsDependencies": [
               "sweetalert2",
@@ -114,10 +123,3 @@
     }
   }
 }
-
-/* s
-            "styles": [
-              "node_modules/devextreme/dist/css/dx.light.css",
-              "src/scss/styles.scss"
-            ],*/
-            
