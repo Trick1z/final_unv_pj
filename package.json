@@ -37,6 +37,7 @@
     "@coreui/icons": "^3.0.1",
     "@coreui/icons-angular": "~5.0.2",
     "@coreui/utils": "^2.0.2",
+    "bootstrap": "^5.3.3",
     "chart.js": "^4.4.2",
     "devextreme": "23.2.6",
     "devextreme-angular": "23.2.6",
