@@ -36,10 +36,7 @@
               "src/favicon.ico",
               "src/assets"
             ],
-            "styles": [
-              "node_modules/devextreme/dist/css/dx.light.css",
-              "src/scss/styles.scss"
-            ],
+            
             "scripts": [],
             "allowedCommonJsDependencies": [
               "sweetalert2",
@@ -67,14 +64,7 @@
               "outputHashing": "all"
             },
             "development": {
-              "optimization": {
-                "scripts": true,
-                "styles": {
-                  "minify": true,
-                  "inlineCritical": false
-                },
-                "fonts": true
-              },
+              "optimization": true,
               "extractLicenses": false,
               "sourceMap": true,
               "namedChunks": true
@@ -124,3 +114,10 @@
     }
   }
 }
+
+/* s
+            "styles": [
+              "node_modules/devextreme/dist/css/dx.light.css",
+              "src/scss/styles.scss"
+            ],*/
+            
