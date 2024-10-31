@@ -41,7 +41,15 @@
               "src/scss/styles.scss"
             ],
             "scripts": [],
-            "allowedCommonJsDependencies": []
+            "allowedCommonJsDependencies": [
+                "sweetalert2",
+                "devextreme/bundles/dx.all",
+                "devexpress-diagram",
+                "jszip",
+                "devexpress-gantt",
+                "devextreme-quill"
+
+            ]
           },
           "configurations": {
             "production": {
