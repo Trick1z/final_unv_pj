@@ -172,7 +172,7 @@ export class DefaultHeaderComponent extends HeaderComponent implements OnInit {
       this.sessionData = JSON.parse(data)
       this.profileName = this.sessionData.list.USER_NAME
     }
-    console.log(this.sessionData);
+    // console.log(this.sessionData);
     
   }
 

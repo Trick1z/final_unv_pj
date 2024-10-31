@@ -49,7 +49,7 @@ export class RangesComponent implements OnInit {
   }
 
   getBorrow() {
-    this.http.get('http://127.0.0.1:8000/get_borrow_y').subscribe((res: any) => {
+    this.http.get('https://fastapi-example-xafm.onrender.com/get_borrow_y').subscribe((res: any) => {
       this.borrowForm = res;
       // console.log("bor", this.borrowForm);
 
@@ -59,7 +59,7 @@ export class RangesComponent implements OnInit {
 
 
   getStudentData() {
-    this.http.get(`http://127.0.0.1:8000/get_student`).subscribe((res: any) => {
+    this.http.get(`https://fastapi-example-xafm.onrender.com/get_student`).subscribe((res: any) => {
       this.studentData = res;
       // console.log("xxxxxxxxxx",this.studentData);
 
@@ -69,7 +69,7 @@ export class RangesComponent implements OnInit {
 
   productData: any = {}
   getProductData() {
-    this.http.get(`http://127.0.0.1:8000/get_product`).subscribe((res: any) => {
+    this.http.get(`https://fastapi-example-xafm.onrender.com/get_product`).subscribe((res: any) => {
       this.productData = res;
 
     })
@@ -121,7 +121,7 @@ export class RangesComponent implements OnInit {
     const msg = ['all', 'returned', 'not_returned']
 
     for (let index = 0; index < msg.length; index++) {
-      this.http.get(`http://127.0.0.1:8000/count/${msg[index]}`).subscribe((res: any) => {
+      this.http.get(`https://fastapi-example-xafm.onrender.com/count/${msg[index]}`).subscribe((res: any) => {
 
         const obj: { [key: string]: string } = {
           name: msg[index],

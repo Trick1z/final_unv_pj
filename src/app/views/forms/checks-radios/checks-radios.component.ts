@@ -83,7 +83,7 @@ export class ChecksRadiosComponent implements OnInit {
 
   getCategoryData() {
     this.http
-      .get('http://127.0.0.1:8000/get_category')
+      .get('https://fastapi-example-xafm.onrender.com/get_category')
       .subscribe((res: any) => {
         this.categoryData = res;
       });
@@ -101,7 +101,7 @@ export class ChecksRadiosComponent implements OnInit {
 
 
     this.http
-      .post('http://127.0.0.1:8000/add_category', data)
+      .post('https://fastapi-example-xafm.onrender.com/add_category', data)
       .subscribe((res) => {
         this.getCategoryData();
         this.categoryOnClose();
@@ -137,7 +137,7 @@ export class ChecksRadiosComponent implements OnInit {
     }).then((result) => {
       if (result.isConfirmed) {
         this.http
-          .put(`http://127.0.0.1:8000/put_del_category/${id}`, id)
+          .put(`https://fastapi-example-xafm.onrender.com/put_del_category/${id}`, id)
           .subscribe((res) => {
             this.getCategoryData();
 
@@ -166,7 +166,7 @@ export class ChecksRadiosComponent implements OnInit {
   categoryOnEditSubmit() {
     var data = this.editCateForm;
     this.http
-      .put(`http://127.0.0.1:8000/put_catedory/${data.CATEGORY_ID}`, data)
+      .put(`https://fastapi-example-xafm.onrender.com/put_catedory/${data.CATEGORY_ID}`, data)
       .subscribe((res) => {
         this.getCategoryData();
       });
@@ -188,7 +188,7 @@ export class ChecksRadiosComponent implements OnInit {
 
   getStatusData() {
     this.http
-      .get('http://127.0.0.1:8000/get_status')
+      .get('https://fastapi-example-xafm.onrender.com/get_status')
       .subscribe((res: any) => {
         this.statusData = res;
       });
@@ -205,7 +205,7 @@ export class ChecksRadiosComponent implements OnInit {
 
 
     this.http
-      .post('http://127.0.0.1:8000/add_status', data)
+      .post('https://fastapi-example-xafm.onrender.com/add_status', data)
       .subscribe((res) => {
         this.getStatusData();
         this.statusOnClose();
@@ -250,7 +250,7 @@ export class ChecksRadiosComponent implements OnInit {
     }).then((result) => {
       if (result.isConfirmed) {
         this.http
-          .put(`http://127.0.0.1:8000/put_del_status/${id}`, id)
+          .put(`https://fastapi-example-xafm.onrender.com/put_del_status/${id}`, id)
           .subscribe((res) => {
             this.getStatusData();
 
@@ -269,7 +269,7 @@ export class ChecksRadiosComponent implements OnInit {
   EditStatusOnSubmit() {
     var data = this.editStatusForm;
     this.http
-      .put(`http://127.0.0.1:8000/put_status/${data.STATUS_ID}`, data)
+      .put(`https://fastapi-example-xafm.onrender.com/put_status/${data.STATUS_ID}`, data)
       .subscribe((res) => {
         this.getStatusData();
       });

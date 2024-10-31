@@ -169,7 +169,7 @@ export class InputGroupsComponent implements OnInit {
   onFindSubmit(code: string) {
 
     this.http
-      .get(`http://127.0.0.1:8000/get_student/${code}`)
+      .get(`https://fastapi-example-xafm.onrender.com/get_student/${code}`)
       .subscribe((res: any) => {
 
         if (res.status === 404) {
@@ -239,7 +239,7 @@ export class InputGroupsComponent implements OnInit {
 
   findProductData() {
 
-    this.http.get("http://127.0.0.1:8000/get_product/status").subscribe((res: any) => {
+    this.http.get("https://fastapi-example-xafm.onrender.com/get_product/status").subscribe((res: any) => {
       this.ProductDataID = res;
 
     });
@@ -248,7 +248,7 @@ export class InputGroupsComponent implements OnInit {
 
   CardButton(id:number){
     
-    this.http.get(`http://127.0.0.1:8000/get_product_by_Category/${id}`).subscribe((res: any) => {
+    this.http.get(`https://fastapi-example-xafm.onrender.com/get_product_by_Category/${id}`).subscribe((res: any) => {
       this.ProductDataID = res;
 
     });
@@ -258,7 +258,7 @@ export class InputGroupsComponent implements OnInit {
 
   getCategory() {
     this.http
-      .get('http://127.0.0.1:8000/get_category')
+      .get('https://fastapi-example-xafm.onrender.com/get_category')
       .subscribe((res: any) => {
         for (let i = 0; i < res.length; i++) {
           const obj: { [key: string]: string } = {
@@ -297,7 +297,7 @@ export class InputGroupsComponent implements OnInit {
     }
 
   
-    this.http.put(`http://127.0.0.1:8000/put_waitProduct/${id}`, send)
+    this.http.put(`https://fastapi-example-xafm.onrender.com/put_waitProduct/${id}`, send)
       .subscribe((res: any) => {
         this.findProductData();
         this.ShowProductPopup = false;
@@ -314,7 +314,7 @@ export class InputGroupsComponent implements OnInit {
 
    
 
-    this.http.post(`http://127.0.0.1:8000/borrow`, data)
+    this.http.post(`https://fastapi-example-xafm.onrender.com/borrow`, data)
       .subscribe((res: any) => {
         
       return this.nevBack()
@@ -325,7 +325,7 @@ export class InputGroupsComponent implements OnInit {
 
   getProductData() {
     this.http
-      .get('http://127.0.0.1:8000/get_product')
+      .get('https://fastapi-example-xafm.onrender.com/get_product')
       .subscribe((res: any) => {
         this.ProductData = res;
         // console.log(this.ProductData);
