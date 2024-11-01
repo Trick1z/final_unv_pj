@@ -129,14 +129,20 @@ export class RangesComponent implements OnInit {
         };
         this.counts.push(obj)
         // console.log("count :", obj);
-        // console.log("count :", this.counts);
+        console.log("count :", this.counts);
       })
     }
   }
 
-  displayCardsName(text:string) {
+  getValueByKey(key: string): number {
+    const found = this.counts.find((item: any) => item.name === key);
+    return found ? found.value : 0; // Return the value or 0 if not found
+  }
+
+
+  displayCardsName(text: string) {
     const msg = ['all', 'returned', 'not_returned']
-    const dp = ['ทั้งหมด','คืนแล้ว','ยังไม่คืน'] 
+    const dp = ['รายการทั้งหมด', 'คืนแล้ว', 'ยังไม่คืน']
 
     for (let index = 0; index < msg.length; index++) {
 

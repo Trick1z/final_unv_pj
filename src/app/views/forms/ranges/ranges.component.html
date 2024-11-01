@@ -1,3 +1,9 @@
+<link href="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+<!-- <script src="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js"></script>
+<script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script> -->
+<!------ Include the above in your HEAD tag ---------->
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.css" />
 <div class="holder">
   <div class="firstCard">
     <div class="txt-card">
@@ -9,7 +15,7 @@
 
     <div class="empty"></div>
 
-    <div class="count-card">
+    <!-- <div class="count-card">
       <c-card class="mb-3" style="width: 33%" *ngFor="let item of counts; index as i">
         <c-row class="g-0">
 
@@ -19,6 +25,36 @@
           </c-card-body>
         </c-row>
       </c-card>
+    </div> -->
+
+    <div class="container">
+      <div class="row">
+
+        <div class="col-md-3">
+          <div class="card-counter info">
+            <i class="fa fa-users"></i>
+            <span class="count-numbers">{{getValueByKey('all')}}</span>
+            <span class="count-name">{{displayCardsName('all')}}</span>
+          </div>
+        </div>
+
+        <div class="col-md-3">
+          <div class="card-counter success">
+            <i class="fa fa-database"></i>
+            <span class="count-numbers">{{getValueByKey('returned')}}</span>
+            <span class="count-name">{{displayCardsName('returned')}}</span>
+          </div>
+        </div>
+
+        <div class="col-md-3">
+          <div class="card-counter danger">
+            <i class="fa fa-ticket"></i>
+            <span class="count-numbers">{{getValueByKey('not_returned')}}</span>
+            <span class="count-name">{{displayCardsName('not_returned')}}</span>
+          </div>
+        </div>
+
+      </div>
     </div>
 
     <div class="data-table">
@@ -31,16 +67,16 @@
         <!-- (click)="addProductToArr((data.component.pageIndex() * data.component.pageSize() + data.rowIndex) , 'A' ) -->
         <dxi-column dataField="LIST_ID" caption="ID" alignment="center" [width]="50"></dxi-column>
 
-        <dxi-column dataField="STUDENT_ID" caption="รหัสนักศึกษา" alignment="center"
-          cellTemplate="cellStudentCode" [width]="120"></dxi-column>
+        <dxi-column dataField="STUDENT_ID" caption="รหัสนักศึกษา" alignment="center" cellTemplate="cellStudentCode"
+          [width]="120"></dxi-column>
         <div *dxTemplate="let cell of 'cellStudentCode'">
           <div class="">
             <span>{{displayStudentData((cell.data.STUDENT_ID), 'code')}}</span>
           </div>
         </div>
 
-        <dxi-column dataField="STUDENT_ID_1" caption="ชื่อ" alignment="center"
-          cellTemplate="cellTemplateStatus" [width]="150"></dxi-column>
+        <dxi-column dataField="STUDENT_ID_1" caption="ชื่อ" alignment="center" cellTemplate="cellTemplateStatus"
+          [width]="150"></dxi-column>
         <div *dxTemplate="let cell of 'cellTemplateStatus'">
           <div class="">
             <span>{{displayStudentData((cell.data.STUDENT_ID) , 'name')}}</span>
@@ -79,10 +115,7 @@
         <!-- <dxo-paging [pageSize]="100"></dxo-paging> -->
 
         <dxo-paging [pageSize]="20"></dxo-paging>
-        <dxo-pager
-          [showPageSizeSelector]="true"
-          [allowedPageSizes]="[15, 20, 50]"
-        ></dxo-pager>
+        <dxo-pager [showPageSizeSelector]="true" [allowedPageSizes]="[15, 20, 50]"></dxo-pager>
       </dx-data-grid>
     </div>
   </div>

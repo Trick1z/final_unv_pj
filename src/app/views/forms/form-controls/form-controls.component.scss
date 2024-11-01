@@ -55,6 +55,59 @@
 
 
 }
+.dp-flx{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  
+}
+.dp-strt{
+  display: flex;
+  justify-content: flex-start;
+
+}
+
+.m-l{
+  margin-left: 10px ;
+}
+.m-r{
+  margin-right: 10px;
+}
+
+
+.cards-container {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+
+  .text-group {
+      display: flex;
+      justify-content: flex-start;
+
+      
+
+  }
+}
+
+.card {
+  margin: 10px 0;
+  box-shadow: 2px 3px #d1d1d1;
+  border-radius: 5px;
+}
+
+.pd-t{
+  padding: 20px 0 0 0;
+}
+
+.bg{
+  width: 100%; /* Set width as needed */
+  height: 200px; /* Set height as needed */ /* Specify the path to your image */
+  background-size: cover; /* Scale the image to cover the div */
+  background-position: center; 
+}
+.w {
+  color: white;
+}
 
 
 // padding: 5px;

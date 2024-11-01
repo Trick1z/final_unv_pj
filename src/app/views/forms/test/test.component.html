@@ -1,24 +1,45 @@
-<div class="card" *ngFor="let item of accountData ; index as i">
+<div class="group-card">
+    <div *ngFor="let item of borrowForm; index as i">
+        <c-card class="bg" style="background-image: url('../../../../assets/images/mountains_sky_panorama.jpg');">
+            <c-card-body class="cards-container">
+                <div class="text-groups">
+                    <div class="text-group">
+                        <div class="dp-flx m-r">
+                            <h4><c-badge color="info" class="mx-2">ชื่อ</c-badge></h4>
+                            <h4 class="w">{{displayStudentData((item.STUDENT_ID), 'name')}}</h4>
+                        </div>
+                        <div class="dp-flx m-r">
+                            <h4><c-badge color="info" class="mx-2">รหัส</c-badge></h4>
+                            <h4 class="w"> {{displayStudentData((item.STUDENT_ID), 'code')}}</h4>
+                        </div>
+                    </div>
+                    <div class="dp-strt pd-t">
+                        <div class="dp-flx">
+                            <h5><c-badge color="success">ชื่อครุภัณฑ์</c-badge></h5>
+                            <h5 class="m-l w"> {{displayproduct(item.P_ID, 'name')}}</h5>
+                        </div>
+                        <div class="dp-flx m-l">
+                            <h5><c-badge color="success">SerialNumber</c-badge></h5>
+                            <h5 class="m-l w"> {{displayproduct(item.P_ID, 'serial')}}</h5>
+                        </div>
+                        <div class="dp-flx m-l">
+                            <h5><c-badge color="success">รหัสครุภัณฑ์</c-badge></h5>
+                            <h5 class="m-l w"> {{displayproduct(item.P_ID, 'qe')}}</h5>
+                        </div>
+                    </div>
 
-    <!-- <c-card>
-        <c-card-body>
-            <ul cListGroup>
-                <li cListGroupItem>User : {{item.USER_NAME}}</li>
-                <li cListGroupItem>Password : {{item.USER_PW}}</li>
-                <li cListGroupItem>Name : {{item.USER_USER}}</li>
-       
-              </ul>
-        </c-card-body>
-      </c-card> -->
-
-
-
-
-
-</div>
-
-<div class="buttons">
-    <button cButton color="primary" (click)="getAccount('account')">account</button>
-    <button cButton color="primary" (click)="getAccount('student')">student</button>
-
+                    <div class="dp-strt pd-t">
+                        <div class="dp-flx">
+                            <h3><c-badge color="warning">วันที่ยืม</c-badge></h3>
+                            <h3 class="m-l w"> {{convertTime(item.CREATE_DATE)}}</h3>
+                        </div>
+                    </div>
+                </div>
+                <div class="card-buttons">
+                    <button cButton color="danger">Danger</button>
+                </div>
+            </c-card-body>
+        </c-card>
+    </div>
+    <div class="empty" style="margin: 10px 0; padding: 10px 0;"></div>
 </div>

@@ -13,6 +13,7 @@ import {
   FormLabelDirective,
   FormControlDirective,
   ButtonDirective,
+  BadgeModule,
 } from '@coreui/angular';
 import {
   DxDataGridModule,
@@ -69,10 +70,11 @@ import { retry } from 'rxjs';
     ButtonDirective,
     HttpClientModule,
     DxSelectBoxModule,
-    DxPopupModule
+    DxPopupModule, BadgeModule
   ],
 })
 export class FormControlsComponent implements OnInit {
+  url:string ='http://127.0.0.1:8000'
   constructor(private http: HttpClient, private route: Router) { }
 
   ngOnInit(): void {
@@ -102,8 +104,6 @@ export class FormControlsComponent implements OnInit {
     this.http.get(`http://127.0.0.1:8000/get_student`).subscribe((res: any) => {
       this.studentData = res;
       // console.log("xxxxxxxxxx",this.studentData);
-
-
     })
   }
 
@@ -164,7 +164,7 @@ export class FormControlsComponent implements OnInit {
       if (id === this.productData[j].P_ID) {
 
         switch (text) {
-          case 'name': 
+          case 'name':
             return this.productData[j].P_NAME;
           case 'serial':
             return this.productData[j].P_SERIALNUMBER;
@@ -183,32 +183,19 @@ export class FormControlsComponent implements OnInit {
   //// ส่งคืน
 
 
-  toChange(index: number) {
-   
-    var show_id = this.borrowForm[index].LIST_ID
-    // var name = this.borrowForm[index].
+  toChange(item: any) {
 
-    var data = {
-      P_ID : this.borrowForm[index].P_ID,
-      LIST_ID : this.borrowForm[index].LIST_ID,
-      STUDENT_ID : this.borrowForm[index].STUDENT_ID
-    }
-    // var name = this.statusData[index].STATUS_NAME;
-
-    // console.log('data :', data);
-    // console.log(name);
-    // console.log("all:",this.statusData[index]) ;
-
+    var data = item
 
     Swal.fire({
-      title: `ต้องการคืน ${show_id} ใช่หรือไม่ ?`,
+      title: `ต้องการคืน ${data.LIST_ID} ใช่หรือไม่ ?`,
       showCancelButton: true,
       confirmButtonText: 'ยืนยัน',
       cancelButtonText: 'ยกเลิก',
     }).then((result) => {
       if (result.isConfirmed) {
         this.http
-          .put(`http://127.0.0.1:8000/put_borrow_back` ,data)
+          .put(`http://127.0.0.1:8000/put_borrow_back`, data)
           .subscribe((res) => {
             this.getBorrow();
 
@@ -225,25 +212,25 @@ export class FormControlsComponent implements OnInit {
   }
 
   ShowInfoPopup = false;
-  showInfoData: any = {}
-  getId = 0
-  triggerPopup(id: number) {
+  showInfoData: any ={}
 
 
-    const getInfo = () => {
+  triggerPopup(item:any) {
 
-      this.showInfoData = this.productData[id]
-      // console.log(this.showInfoData);
-
-    }
-    getInfo();
-
+    this.http.get(`${this.url}/get_product/${item.P_ID}`).subscribe((res:object) =>{
+      this.showInfoData = res
+    })
     return this.ShowInfoPopup = true;
-
-
   }
+  convertTime(timestamp: string) {
+    const date = new Date(timestamp);
 
+    const day = date.getDate();
+    const month = date.toLocaleString('th-TH', { month: 'long' });
+    const year = date.getFullYear();
 
-
+    const formattedDate = `${day} ${month} ${year}`;
+    return formattedDate
+  }
 }
 

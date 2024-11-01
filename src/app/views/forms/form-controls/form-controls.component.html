@@ -15,14 +15,13 @@
 
     <div class="empty"></div>
 
-    <div class="data-table">
+    <!-- <div class="data-table">
       <dx-data-grid id="gridContainer" [dataSource]="borrowForm" [showBorders]="true">
         <dxo-search-panel [visible]="false"></dxo-search-panel>
         <dxo-editing mode="row" [allowAdding]="false" [allowUpdating]="false" [allowDeleting]="false">
         </dxo-editing>
         <dxo-editing mode="row">
         </dxo-editing>
-        <!-- (click)="addProductToArr((data.component.pageIndex() * data.component.pageSize() + data.rowIndex) , 'A' ) -->
         <div style="display: flex; " *dxTemplate="let data of 'cellTemplateDelte'">
           <button (click)="triggerPopup(data.component.pageIndex() * data.component.pageSize() + data.rowIndex)" cButton color="info" style="color: white;">info</button>
         </div>
@@ -80,25 +79,60 @@
         </div>
         <dxi-column [width]="70" cellTemplate="cellchangestatus"></dxi-column>
 
-      
-
-
-        <!-- <dxi-column dataField="P_NAME" caption="ชื่อ" alignment="center" [width]="170">
-        </dxi-column>
-        <dxi-column dataField="P_BAND" caption="ยี้ห้อ" alignment="center" [width]="170">
-        </dxi-column>
-        <dxi-column dataField="P_PRICE" caption="ราคา" alignment="center" [width]="170">
-        </dxi-column>
-        <dxi-column dataField="P_DOP" caption="วันที่ซื้อ" alignment="center" [width]="170">
-        </dxi-column>
-        <dxi-column dataField="P_SERIALNUMBER" caption="ซีเรียลนัมเบอร์" alignment="center" [width]="220">
-        </dxi-column>
-        <dxi-column dataField="P_EQUIPMENTNUMBER" caption="รหัสครุภัณฑ์" alignment="center"
-          [width]="220"></dxi-column> -->
-
         <dxo-paging [pageSize]="100"></dxo-paging>
       </dx-data-grid>
-    </div>
+    </div> -->
+
+    <div class="group-card">
+      <div *ngFor="let item of borrowForm; index as i">
+          <c-card class="bg" style="background-image: url('../../../../assets/images/mountains_sky_panorama.jpg');">
+              <c-card-body class="cards-container">
+                  <div class="text-groups">
+                      <div class="text-group">
+                        <div class="dp-flx m-r">
+                          <h4><c-badge color="info" class="mx-2">ID</c-badge></h4>
+                          <h4 class="w">{{item.LIST_ID}}</h4>
+                      </div>
+                          <div class="dp-flx m-r">
+                              <h4><c-badge color="info" class="mx-2">ชื่อ</c-badge></h4>
+                              <h4 class="w">{{displayStudentData((item.STUDENT_ID), 'name')}}</h4>
+                          </div>
+                          <div class="dp-flx m-r">
+                              <h4><c-badge color="info" class="mx-2">รหัส</c-badge></h4>
+                              <h4 class="w"> {{displayStudentData((item.STUDENT_ID), 'code')}}</h4>
+                          </div>
+                      </div>
+                      <div class="dp-strt pd-t">
+                          <div class="dp-flx">
+                              <h5><c-badge color="success">ชื่อครุภัณฑ์</c-badge></h5>
+                              <h5 class="m-l w"> {{displayproduct(item.P_ID, 'name')}}</h5>
+                          </div>
+                          <div class="dp-flx m-l">
+                              <h5><c-badge color="success">SerialNumber</c-badge></h5>
+                              <h5 class="m-l w"> {{displayproduct(item.P_ID, 'serial')}}</h5>
+                          </div>
+                          <div class="dp-flx m-l">
+                              <h5><c-badge color="success">รหัสครุภัณฑ์</c-badge></h5>
+                              <h5 class="m-l w"> {{displayproduct(item.P_ID, 'qe')}}</h5>
+                          </div>
+                      </div>
+  
+                      <div class="dp-strt pd-t">
+                          <div class="dp-flx">
+                              <h3><c-badge color="warning">วันที่ยืม</c-badge></h3>
+                              <h3 class="m-l w"> {{convertTime(item.CREATE_DATE)}}</h3>
+                          </div>
+                      </div>
+                  </div>
+                  <div class="card-buttons">
+                      <button cButton color="info" class="w m-l" (click)="triggerPopup(item)">ข้อมูล</button>
+                      <button cButton color="danger" class="w m-l" (click)="toChange(item)">คืน</button>
+                  </div>
+              </c-card-body>
+          </c-card>
+      </div>
+      <div class="" style="margin: 10px 0; padding: 10px 0;"></div>
+  </div>
   </div>
 </div>
 
@@ -141,3 +175,4 @@
     </dx-form>
   </div>
 </dx-popup>
+

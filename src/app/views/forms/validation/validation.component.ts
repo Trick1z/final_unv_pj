@@ -265,7 +265,7 @@ export class ValidationComponent implements OnInit {
     this.http
       .get(`http://127.0.0.1:8000/get_product/${id}`)
       .subscribe((res: any) => {
-        this.showmoreData = res[0];
+        this.showmoreData = res;
         // console.log(this.showmoreData);
         // console.log(res);
 
@@ -287,7 +287,7 @@ export class ValidationComponent implements OnInit {
       .get(`http://127.0.0.1:8000/get_product_by_Category/${id}`)
       .subscribe((res: any) => {
         this.ProductData = res;
-        // console.log(this.ProductData);
+        console.log(this.ProductData);
       });
 
 
