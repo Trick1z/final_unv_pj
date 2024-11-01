@@ -209,11 +209,11 @@ export const navItems: INavData[] = [
     ]
   },
 
-  // {
-  //   name: 'รายชื่อ หมวดหมู่',
-  //   url: '/forms/checks-radios',
-  //   icon: 'nav-icon-bullet',
-  // },
+  {
+    name: 'ทดสอบ',
+    url: '/forms/test',
+    icon: 'nav-icon-bullet',
+  },
   // {
   //   name: 'รายชื่อ ครุภัณฑ์',
   //   url: '/forms/validation',

@@ -83,6 +83,13 @@ export const routes: Routes = [
         data: {
           title: 'Checks & Radios'
         }
+      },
+      {
+        path: 'test',
+        loadComponent: () => import('./test/test.component').then(m => m.TestComponent),
+        data: {
+          title: 'ทดสอบ'
+        }
       }
     ]
   }
