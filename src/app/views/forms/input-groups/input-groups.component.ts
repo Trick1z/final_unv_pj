@@ -248,7 +248,7 @@ export class InputGroupsComponent implements OnInit {
 
   CardButton(id:number){
     
-    this.http.get(`https://fastapi-example-xafm.onrender.com/get_product_by_Category/${id}`).subscribe((res: any) => {
+    this.http.get(`https://fastapi-example-xafm.onrender.com/get_product_by_Category_Status/${id}`).subscribe((res: any) => {
       this.ProductDataID = res;
 
     });
