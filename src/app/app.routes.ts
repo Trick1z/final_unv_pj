@@ -7,7 +7,7 @@ export const routes: Routes = [
   {
     path: '',
     // redirectTo: 'forms/validation',
-    redirectTo: 'pages/login',
+    redirectTo: '',
     pathMatch: 'full'
   },
 
@@ -55,6 +55,7 @@ export const routes: Routes = [
       title: 'Register Page'
     }
   },
+  
   { path: '**', redirectTo: 'dashboard' }
 ];
 
