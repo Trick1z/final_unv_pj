@@ -57,6 +57,8 @@ import dxPopup from 'devextreme/ui/popup';
   ],
 })
 export class ChecksRadiosComponent implements OnInit {
+   url = '${this.url'
+
   categoryData: any = {};
   statusData: any = {};
 
@@ -83,7 +85,7 @@ export class ChecksRadiosComponent implements OnInit {
 
   getCategoryData() {
     this.http
-      .get('https://fastapi-example-xafm.onrender.com/get_category')
+      .get(`${this.url}/get_category`)
       .subscribe((res: any) => {
         this.categoryData = res;
       });
@@ -101,7 +103,7 @@ export class ChecksRadiosComponent implements OnInit {
 
 
     this.http
-      .post('https://fastapi-example-xafm.onrender.com/add_category', data)
+      .post(`${this.url}/add_category`, data)
       .subscribe((res) => {
         this.getCategoryData();
         this.categoryOnClose();
@@ -137,7 +139,7 @@ export class ChecksRadiosComponent implements OnInit {
     }).then((result) => {
       if (result.isConfirmed) {
         this.http
-          .put(`https://fastapi-example-xafm.onrender.com/put_del_category/${id}`, id)
+          .put(`${this.url}/put_del_category/${id}`, id)
           .subscribe((res) => {
             this.getCategoryData();
 
@@ -166,7 +168,7 @@ export class ChecksRadiosComponent implements OnInit {
   categoryOnEditSubmit() {
     var data = this.editCateForm;
     this.http
-      .put(`https://fastapi-example-xafm.onrender.com/put_catedory/${data.CATEGORY_ID}`, data)
+      .put(`${this.url}/put_catedory/${data.CATEGORY_ID}`, data)
       .subscribe((res) => {
         this.getCategoryData();
       });
@@ -188,7 +190,7 @@ export class ChecksRadiosComponent implements OnInit {
 
   getStatusData() {
     this.http
-      .get('https://fastapi-example-xafm.onrender.com/get_status')
+      .get('${this.url/get_status')
       .subscribe((res: any) => {
         this.statusData = res;
       });
@@ -205,7 +207,7 @@ export class ChecksRadiosComponent implements OnInit {
 
 
     this.http
-      .post('https://fastapi-example-xafm.onrender.com/add_status', data)
+      .post('${this.url/add_status', data)
       .subscribe((res) => {
         this.getStatusData();
         this.statusOnClose();
@@ -250,7 +252,7 @@ export class ChecksRadiosComponent implements OnInit {
     }).then((result) => {
       if (result.isConfirmed) {
         this.http
-          .put(`https://fastapi-example-xafm.onrender.com/put_del_status/${id}`, id)
+          .put(`${this.url}/put_del_status/${id}`, id)
           .subscribe((res) => {
             this.getStatusData();
 
@@ -269,7 +271,7 @@ export class ChecksRadiosComponent implements OnInit {
   EditStatusOnSubmit() {
     var data = this.editStatusForm;
     this.http
-      .put(`https://fastapi-example-xafm.onrender.com/put_status/${data.STATUS_ID}`, data)
+      .put(`${this.url}/put_status/${data.STATUS_ID}`, data)
       .subscribe((res) => {
         this.getStatusData();
       });

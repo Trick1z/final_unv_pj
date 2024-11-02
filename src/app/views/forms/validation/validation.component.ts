@@ -97,8 +97,7 @@ export class ValidationComponent implements OnInit {
   //   { color: 'light' },
   //   { color: 'dark' }
   // ];
-
-
+url:string = 'https://fastapi-example-xafm.onrender.com'
 
 
   constructor(private route: Router, private http: HttpClient) { }
@@ -114,7 +113,7 @@ export class ValidationComponent implements OnInit {
   }
 
 
-  testAPI = 'https://fastapi-example-xafm.onrender.com/testdb';
+  // testAPI = '${this.url}/testdb';
   ProductData: any = {};
   StatusData: any = [];
   CategoryData: any = [];
@@ -126,7 +125,7 @@ export class ValidationComponent implements OnInit {
 
   getProductData() {
     this.http
-      .get('https://fastapi-example-xafm.onrender.com/get_product')
+      .get('${this.url}/get_product')
       .subscribe((res: any) => {
         this.ProductData = res;
         // console.log(this.ProductData);
@@ -135,7 +134,7 @@ export class ValidationComponent implements OnInit {
 
   getStatus() {
     this.http
-      .get('https://fastapi-example-xafm.onrender.com/get_status')
+      .get(`${this.url}/get_status`)
       .subscribe((res: any) => {
         for (let i = 0; i < res.length; i++) {
           const obj: { [key: string]: string } = {
@@ -152,7 +151,7 @@ export class ValidationComponent implements OnInit {
 
   getCategory() {
     this.http
-      .get('https://fastapi-example-xafm.onrender.com/get_category')
+      .get(`${this.url}/get_category`)
       .subscribe((res: any) => {
         for (let i = 0; i < res.length; i++) {
           const obj: { [key: string]: string } = {
@@ -210,7 +209,7 @@ export class ValidationComponent implements OnInit {
     }).then((result) => {
       if (result.isConfirmed) {
         this.http
-          .put(`https://fastapi-example-xafm.onrender.com/put_del_product/${id}`, id)
+          .put(`${this.url}/put_del_product/${id}`, id)
           .subscribe((res) => {
             this.getProductData();
 
@@ -242,7 +241,7 @@ export class ValidationComponent implements OnInit {
   onSubmitEdtiPopup() {
     const data = this.ProductEditForm;
     this.http
-      .put(`https://fastapi-example-xafm.onrender.com/put_product/${this.G_ID}`, data)
+      .put(`${this.url}/put_product/${this.G_ID}`, data)
       .subscribe((res) => {
         this.getProductData();
         this.ProductEditPopup = false;
@@ -263,7 +262,7 @@ export class ValidationComponent implements OnInit {
 
   getShowmoreData(id: number) {
     this.http
-      .get(`https://fastapi-example-xafm.onrender.com/get_product/${id}`)
+      .get(`${this.url}/get_product/${id}`)
       .subscribe((res: any) => {
         this.showmoreData = res[0];
         // console.log(this.showmoreData);
@@ -284,10 +283,10 @@ export class ValidationComponent implements OnInit {
     // console.log(`id : ${id}`);
 
     this.http
-      .get(`https://fastapi-example-xafm.onrender.com/get_product_by_Category/${id}`)
+      .get(`${this.url}/get_product_by_Category/${id}`)
       .subscribe((res: any) => {
         this.ProductData = res;
-        // console.log(this.ProductData);
+        console.log(this.ProductData);
       });
 
 

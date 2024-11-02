@@ -73,6 +73,7 @@ import { retry } from 'rxjs';
   ],
 })
 export class FormControlsComponent implements OnInit {
+  url:string ='https://fastapi-example-xafm.onrender.com';
   constructor(private http: HttpClient, private route: Router) { }
 
   ngOnInit(): void {
@@ -89,7 +90,7 @@ export class FormControlsComponent implements OnInit {
   }
 
   getBorrow() {
-    this.http.get('https://fastapi-example-xafm.onrender.com/get_borrow').subscribe((res: any) => {
+    this.http.get(`${this.url}/get_borrow`).subscribe((res: any) => {
       this.borrowForm = res;
       // console.log("bor", this.borrowForm);
 
@@ -99,7 +100,7 @@ export class FormControlsComponent implements OnInit {
 
 
   getStudentData() {
-    this.http.get(`https://fastapi-example-xafm.onrender.com/get_student`).subscribe((res: any) => {
+    this.http.get(`${this.url}/get_student`).subscribe((res: any) => {
       this.studentData = res;
       // console.log("xxxxxxxxxx",this.studentData);
 
@@ -109,7 +110,7 @@ export class FormControlsComponent implements OnInit {
 
   productData: any = {}
   getProductData() {
-    this.http.get(`https://fastapi-example-xafm.onrender.com/get_product`).subscribe((res: any) => {
+    this.http.get(`${this.url}/get_product`).subscribe((res: any) => {
       this.productData = res;
 
     })
@@ -208,7 +209,7 @@ export class FormControlsComponent implements OnInit {
     }).then((result) => {
       if (result.isConfirmed) {
         this.http
-          .put(`https://fastapi-example-xafm.onrender.com/put_borrow_back` ,data)
+          .put(`${this.url}/put_borrow_back` ,data)
           .subscribe((res) => {
             this.getBorrow();
 

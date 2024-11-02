@@ -111,6 +111,7 @@ import Swal from 'sweetalert2';
   ],
 })
 export class InputGroupsComponent implements OnInit {
+  url:string='https://fastapi-example-xafm.onrender.com';
 
 
   constructor(private http: HttpClient, private route: Router) { }
@@ -169,7 +170,7 @@ export class InputGroupsComponent implements OnInit {
   onFindSubmit(code: string) {
 
     this.http
-      .get(`https://fastapi-example-xafm.onrender.com/get_student/${code}`)
+      .get(`${this.url}/get_student/${code}`)
       .subscribe((res: any) => {
 
         if (res.status === 404) {
@@ -239,7 +240,7 @@ export class InputGroupsComponent implements OnInit {
 
   findProductData() {
 
-    this.http.get("https://fastapi-example-xafm.onrender.com/get_product/status").subscribe((res: any) => {
+    this.http.get(`${this.url}/get_product/status`).subscribe((res: any) => {
       this.ProductDataID = res;
 
     });
@@ -248,7 +249,7 @@ export class InputGroupsComponent implements OnInit {
 
   CardButton(id:number){
     
-    this.http.get(`https://fastapi-example-xafm.onrender.com/get_product_by_Category_Status/${id}`).subscribe((res: any) => {
+    this.http.get(`${this.url}/get_product_by_Category_Status/${id}`).subscribe((res: any) => {
       this.ProductDataID = res;
 
     });
@@ -258,7 +259,7 @@ export class InputGroupsComponent implements OnInit {
 
   getCategory() {
     this.http
-      .get('https://fastapi-example-xafm.onrender.com/get_category')
+      .get(`${this.url}/get_category`)
       .subscribe((res: any) => {
         for (let i = 0; i < res.length; i++) {
           const obj: { [key: string]: string } = {
@@ -297,7 +298,7 @@ export class InputGroupsComponent implements OnInit {
     }
 
   
-    this.http.put(`https://fastapi-example-xafm.onrender.com/put_waitProduct/${id}`, send)
+    this.http.put(`${this.url}/put_waitProduct/${id}`, send)
       .subscribe((res: any) => {
         this.findProductData();
         this.ShowProductPopup = false;
@@ -314,7 +315,7 @@ export class InputGroupsComponent implements OnInit {
 
    
 
-    this.http.post(`https://fastapi-example-xafm.onrender.com/borrow`, data)
+    this.http.post(`${this.url}/borrow`, data)
       .subscribe((res: any) => {
         
       return this.nevBack()
@@ -325,7 +326,7 @@ export class InputGroupsComponent implements OnInit {
 
   getProductData() {
     this.http
-      .get('https://fastapi-example-xafm.onrender.com/get_product')
+      .get(`${this.url}/get_product`)
       .subscribe((res: any) => {
         this.ProductData = res;
         // console.log(this.ProductData);

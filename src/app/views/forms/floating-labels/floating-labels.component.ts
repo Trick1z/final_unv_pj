@@ -87,6 +87,9 @@ import { delay } from 'rxjs';
   ],
 })
 export default class FloatingLabelsComponent implements OnInit {
+
+  url:string ='https://fastapi-example-xafm.onrender.com';
+
   constructor(private http: HttpClient, private route: Router) { }
 
   ngOnInit(): void {
@@ -105,7 +108,7 @@ export default class FloatingLabelsComponent implements OnInit {
 
   getStatus() {
     this.http
-      .get('https://fastapi-example-xafm.onrender.com/get_status')
+      .get(`${this.url}/get_status`)
       .subscribe((res: any) => {
         for (let i = 0; i < res.length; i++) {
           const obj: { [key: string]: string } = {
@@ -119,7 +122,7 @@ export default class FloatingLabelsComponent implements OnInit {
   }
   getCategory() {
     this.http
-      .get('https://fastapi-example-xafm.onrender.com/get_category')
+      .get(`${this.url}/get_category`)
       .subscribe((res: any) => {
         for (let i = 0; i < res.length; i++) {
           const obj: { [key: string]: string } = {
@@ -151,7 +154,7 @@ export default class FloatingLabelsComponent implements OnInit {
       if (result.isConfirmed) {
         
         this.http
-          .post('https://fastapi-example-xafm.onrender.com/add_product', data)
+          .post(`${this.url}/add_product`, data)
           .subscribe((res) => {
 
             console.log("res",res);

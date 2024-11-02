@@ -65,7 +65,7 @@ export class LoginComponent implements OnInit {
 
 
 
-  url = 'https://fastapi-example-xafm.onrender.com/account'
+  url = 'https://fastapi-example-xafm.onrender.com'
 
   loginForm: any = {}
 
@@ -75,7 +75,7 @@ export class LoginComponent implements OnInit {
       password: this.loginForm.password
     }
 
-    this.http.post(this.url, data).subscribe((res: any) => {
+    this.http.post(`${this.url}/account`, data).subscribe((res: any) => {
 
       // console.log(res.message);
 

@@ -27,6 +27,7 @@ import { forEach } from 'lodash-es';
   ]
 })
 export class RangesComponent implements OnInit {
+  url:string='https://fastapi-example-xafm.onrender.com';
 
   constructor(private route: Router, private http: HttpClient) { }
 
@@ -49,7 +50,7 @@ export class RangesComponent implements OnInit {
   }
 
   getBorrow() {
-    this.http.get('https://fastapi-example-xafm.onrender.com/get_borrow_y').subscribe((res: any) => {
+    this.http.get(`${this.url}/get_borrow_y`).subscribe((res: any) => {
       this.borrowForm = res;
       // console.log("bor", this.borrowForm);
 
@@ -59,7 +60,7 @@ export class RangesComponent implements OnInit {
 
 
   getStudentData() {
-    this.http.get(`https://fastapi-example-xafm.onrender.com/get_student`).subscribe((res: any) => {
+    this.http.get(`${this.url}/get_student`).subscribe((res: any) => {
       this.studentData = res;
       // console.log("xxxxxxxxxx",this.studentData);
 
@@ -69,7 +70,7 @@ export class RangesComponent implements OnInit {
 
   productData: any = {}
   getProductData() {
-    this.http.get(`https://fastapi-example-xafm.onrender.com/get_product`).subscribe((res: any) => {
+    this.http.get(`${this.url}/get_product`).subscribe((res: any) => {
       this.productData = res;
 
     })
@@ -121,7 +122,7 @@ export class RangesComponent implements OnInit {
     const msg = ['all', 'returned', 'not_returned']
 
     for (let index = 0; index < msg.length; index++) {
-      this.http.get(`https://fastapi-example-xafm.onrender.com/count/${msg[index]}`).subscribe((res: any) => {
+      this.http.get(`${this.url}/count/${msg[index]}`).subscribe((res: any) => {
 
         const obj: { [key: string]: string } = {
           name: msg[index],
@@ -136,7 +137,7 @@ export class RangesComponent implements OnInit {
 
   displayCardsName(text:string) {
     const msg = ['all', 'returned', 'not_returned']
-    const dp = ['ทั้งหมด','คืนแล้ว','ยังไม่คืน'] 
+    const dp = ['รายการทั้งหมด','คืนแล้ว','ยังไม่คืน'] 
 
     for (let index = 0; index < msg.length; index++) {
 
