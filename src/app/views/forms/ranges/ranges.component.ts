@@ -136,7 +136,7 @@ export class RangesComponent implements OnInit {
 
   displayCardsName(text:string) {
     const msg = ['all', 'returned', 'not_returned']
-    const dp = ['ทั้งหมด','คืนแล้ว','ยังไม่คืน'] 
+    const dp = ['รายการทั้งหมด','คืนแล้ว','ยังไม่คืน'] 
 
     for (let index = 0; index < msg.length; index++) {
 

@@ -1,3 +1,9 @@
+<link href="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+<!-- <script src="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js"></script>
+<script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script> -->
+<!------ Include the above in your HEAD tag ---------->
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.css" />
 <div class="holder">
   <div class="firstCard">
     <div class="txt-card">
@@ -8,7 +14,7 @@
   <div class="secCard">
 
     <div class="empty"></div>
-
+<!-- 
     <div class="count-card">
       <c-card class="mb-3" style="width: 33%" *ngFor="let item of counts; index as i">
         <c-row class="g-0">
@@ -19,9 +25,25 @@
           </c-card-body>
         </c-row>
       </c-card>
+    </div> -->
+
+    <div class="container">
+      <div class="row">
+      <div class="col-md-3" *ngFor="let item of counts,index as i">
+        <div class="card-counter success">
+          <i class="fa fa-database"></i>
+          <span class="count-numbers">{{item.value}}</span>
+          <span class="count-name">{{displayCardsName(item.name)}}</span>
+        </div>
+      </div>
     </div>
 
-    <div class="data-table">
+    <div class="empty" style="
+    margin: 1rem 0;
+"></div>
+
+  </div>
+   <div class="data-table">
       <dx-data-grid id="gridContainer" [dataSource]="borrowForm" [showBorders]="true">
         <dxo-search-panel [visible]="false"></dxo-search-panel>
         <dxo-editing mode="row" [allowAdding]="false" [allowUpdating]="false" [allowDeleting]="false">
