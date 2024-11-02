@@ -125,7 +125,7 @@ url:string = 'https://fastapi-example-xafm.onrender.com'
 
   getProductData() {
     this.http
-      .get('${this.url}/get_product')
+      .get(`${this.url}/get_product`)
       .subscribe((res: any) => {
         this.ProductData = res;
         // console.log(this.ProductData);

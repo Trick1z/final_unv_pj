@@ -57,7 +57,7 @@ import dxPopup from 'devextreme/ui/popup';
   ],
 })
 export class ChecksRadiosComponent implements OnInit {
-   url = '${this.url'
+   url:string = 'https://fastapi-example-xafm.onrender.com'
 
   categoryData: any = {};
   statusData: any = {};
@@ -190,7 +190,7 @@ export class ChecksRadiosComponent implements OnInit {
 
   getStatusData() {
     this.http
-      .get('${this.url/get_status')
+      .get(`${this.url}/get_status`)
       .subscribe((res: any) => {
         this.statusData = res;
       });
@@ -207,7 +207,7 @@ export class ChecksRadiosComponent implements OnInit {
 
 
     this.http
-      .post('${this.url/add_status', data)
+      .post(`${this.url}/add_status`, data)
       .subscribe((res) => {
         this.getStatusData();
         this.statusOnClose();
