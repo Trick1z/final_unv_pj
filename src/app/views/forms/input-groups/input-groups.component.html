@@ -1,3 +1,7 @@
+<!-- <link href="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css"> -->
+<!-- <script src="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js"></script>
+<script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script> -->
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.css" />
 <div class="title-header">
 
 
@@ -223,14 +227,33 @@
     </div> -->
     <div class="buttons">
   
-      <h3 style="padding: 20px 0 10px 0;">หมวดหมู่</h3>
+      <!-- <h3 style="padding: 20px 0 10px 0;">หมวดหมู่</h3>
       <c-row [xs]="2" [lg]="6" [gutter]="{g: 2, lg: {g: 3}}">
         <button cButton color="info" variant="outline" size="lg" style="color:black ; margin-right: 20px;" (click)="findProductData()">ทั้งหมด</button>
   
         <button cButton color="info" style="color:black; margin-right: 20px;" variant="outline" size="lg" *ngFor="let item of categoryCard ; index as i"
         (click)="CardButton(item.value)">{{item.name}}</button>
   
-      </c-row>
+      </c-row> -->
+
+      <div class="row">
+        <div class="col-md-3" (click)="getProductData()">
+          <div class="card-counter info">
+            <i class="fa fa-users"></i>
+            <span class="count-numbers">ทั้งหมด</span>
+            <span class="count-name">รายการทั้งหมด</span>
+          </div>
+        </div>
+      
+        <div class="col-md-3" *ngFor="let item of categoryCard ; index as i" (click)="CardButton(item.value)">
+          <div class="card-counter info">
+            <i class="fa fa-users"></i>
+            <span class="count-numbers">{{item.name}}</span>
+            <span class="count-name">{{item.name}}</span>
+          </div>
+        </div>
+      
+      </div>
   
   
   
