@@ -113,7 +113,7 @@ url:string = 'https://fastapi-example-xafm.onrender.com'
   }
 
 
-  // testAPI = '${this.url}/testdb';
+
   ProductData: any = {};
   StatusData: any = [];
   CategoryData: any = [];
@@ -128,7 +128,7 @@ url:string = 'https://fastapi-example-xafm.onrender.com'
       .get(`${this.url}/get_product`)
       .subscribe((res: any) => {
         this.ProductData = res;
-        // console.log(this.ProductData);
+        console.log("product : ",this.ProductData);
       });
   }
 
@@ -264,7 +264,7 @@ url:string = 'https://fastapi-example-xafm.onrender.com'
     this.http
       .get(`${this.url}/get_product/${id}`)
       .subscribe((res: any) => {
-        this.showmoreData = res[0];
+        this.showmoreData = res;
         // console.log(this.showmoreData);
         // console.log(res);
 

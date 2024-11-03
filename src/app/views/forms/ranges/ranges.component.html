@@ -14,7 +14,7 @@
   <div class="secCard">
 
     <div class="empty"></div>
-<!-- 
+    <!-- 
     <div class="count-card">
       <c-card class="mb-3" style="width: 33%" *ngFor="let item of counts; index as i">
         <c-row class="g-0">
@@ -29,21 +29,21 @@
 
     <div class="container">
       <div class="row">
-      <div class="col-md-3" *ngFor="let item of counts,index as i">
-        <div class="card-counter success">
-          <i class="fa fa-database"></i>
-          <span class="count-numbers">{{item.value}}</span>
-          <span class="count-name">{{displayCardsName(item.name)}}</span>
+        <div class="col-md-3" *ngFor="let item of counts,index as i">
+          <div class="card-counter success" style="box-shadow: 5px 5px #a9a9a9;">
+            <i class="fa fa-database"></i>
+            <span class="count-numbers">{{item.value}}</span>
+            <span class="count-name">{{displayCardsName(item.name)}}</span>
+          </div>
         </div>
       </div>
-    </div>
 
-    <div class="empty" style="
+      <div class="empty" style="
     margin: 1rem 0;
 "></div>
 
-  </div>
-   <div class="data-table">
+    </div>
+    <div class="data-table">
       <dx-data-grid id="gridContainer" [dataSource]="borrowForm" [showBorders]="true">
         <dxo-search-panel [visible]="false"></dxo-search-panel>
         <dxo-editing mode="row" [allowAdding]="false" [allowUpdating]="false" [allowDeleting]="false">
@@ -53,16 +53,16 @@
         <!-- (click)="addProductToArr((data.component.pageIndex() * data.component.pageSize() + data.rowIndex) , 'A' ) -->
         <dxi-column dataField="LIST_ID" caption="ID" alignment="center" [width]="50"></dxi-column>
 
-        <dxi-column dataField="STUDENT_ID" caption="รหัสนักศึกษา" alignment="center"
-          cellTemplate="cellStudentCode" [width]="120"></dxi-column>
+        <dxi-column dataField="STUDENT_ID" caption="รหัสนักศึกษา" alignment="center" cellTemplate="cellStudentCode"
+          [width]="120"></dxi-column>
         <div *dxTemplate="let cell of 'cellStudentCode'">
           <div class="">
             <span>{{displayStudentData((cell.data.STUDENT_ID), 'code')}}</span>
           </div>
         </div>
 
-        <dxi-column dataField="STUDENT_ID_1" caption="ชื่อ" alignment="center"
-          cellTemplate="cellTemplateStatus" [width]="150"></dxi-column>
+        <dxi-column dataField="STUDENT_ID_1" caption="ชื่อ" alignment="center" cellTemplate="cellTemplateStatus"
+          [width]="150"></dxi-column>
         <div *dxTemplate="let cell of 'cellTemplateStatus'">
           <div class="">
             <span>{{displayStudentData((cell.data.STUDENT_ID) , 'name')}}</span>
@@ -94,17 +94,31 @@
           </div>
         </div>
 
+        <dxi-column dataField="CREATE_DATE" caption="วันที่ยืม" alignment="center"
+          cellTemplate="cellCreate_date"></dxi-column>
+        <div *dxTemplate="let cell of 'cellCreate_date'">
+          <div class="">
+            <span>{{convertTime(cell.data.CREATE_DATE)}}</span>
+          </div>
+        </div>
+        <dxi-column dataField="UPDATE_DATE" caption="วันที่คืน" alignment="center"
+          cellTemplate="cellUpdate_date"></dxi-column>
+        <div *dxTemplate="let cell of 'cellUpdate_date'">
+          <div class="">
+            <span>{{convertTime(cell.data.UPDATE_DATE)}}</span>
+          </div>
+        </div>
 
-        <dxi-column dataField="CREATE_DATE" caption="วันที่ยืม" alignment="center" [width]="160"></dxi-column>
-        <dxi-column dataField="UPDATE_DATE" caption="วันที่คืน" alignment="center" [width]="160"></dxi-column>
+       
+
+
+        <!-- <dxi-column dataField="CREATE_DATE" caption="วันที่ยืม" alignment="center" [width]="160"></dxi-column>
+        <dxi-column dataField="UPDATE_DATE" caption="วันที่คืน" alignment="center" [width]="160"></dxi-column> -->
 
         <!-- <dxo-paging [pageSize]="100"></dxo-paging> -->
 
         <dxo-paging [pageSize]="20"></dxo-paging>
-        <dxo-pager
-          [showPageSizeSelector]="true"
-          [allowedPageSizes]="[15, 20, 50]"
-        ></dxo-pager>
+        <dxo-pager [showPageSizeSelector]="true" [allowedPageSizes]="[15, 20, 50]"></dxo-pager>
       </dx-data-grid>
     </div>
   </div>
