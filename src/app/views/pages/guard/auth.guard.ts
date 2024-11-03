@@ -4,17 +4,17 @@ import {FormControlsComponent} from '../../forms/form-controls/form-controls.com
 export const authGuard: CanActivateFn = (route, state) => {
 
 
-  // const router = inject(Router)
-  // const getData = sessionStorage.getItem("status")
+  const router = inject(Router)
+  const getData = sessionStorage.getItem("status")
 
-  // if (getData != null) {
+  if (getData != null) {
 
-  //   return true;
-  // } else {
-  //   router.navigateByUrl('login');
+    return true;
+  } else {
+    router.navigateByUrl('login');
 
-  //   return false;
-  // }
+    return false;
+  }
 
   return true
 };
