@@ -24,7 +24,8 @@
         </dxo-editing>
         <!-- (click)="addProductToArr((data.component.pageIndex() * data.component.pageSize() + data.rowIndex) , 'A' ) -->
         <div style="display: flex; " *dxTemplate="let data of 'cellTemplateDelte'">
-          <button (click)="triggerPopup(data.component.pageIndex() * data.component.pageSize() + data.rowIndex)" cButton color="info" style="color: white;">info</button>
+          <button (click)="triggerPopup(data.component.pageIndex() * data.component.pageSize() + data.rowIndex)" cButton
+            color="info" style="color: white;">info</button>
         </div>
         <dxi-column [width]="70" cellTemplate="cellTemplateDelte"></dxi-column>
         <dxi-column dataField="LIST_ID" caption="ID" alignment="center" [width]="50"></dxi-column>
@@ -70,17 +71,24 @@
           </div>
         </div>
 
+        <dxi-column dataField="CREATE_DATE" caption="วันที่ยืม" alignment="center" [width]="200"
+          cellTemplate="cellCreate_date"></dxi-column>
+        <div *dxTemplate="let cell of 'cellCreate_date'">
+          <div class="">
+            {{convertTime(cell.data.CREATE_DATE)}}
+          </div>
+        </div>
 
-        <dxi-column dataField="CREATE_DATE" caption="วันที่ยืม" alignment="center" [width]="200"></dxi-column>
+
+        <!-- <dxi-column dataField="CREATE_DATE" caption="วันที่ยืม" alignment="center" [width]="200"></dxi-column> -->
 
         <div style="display: flex; " *dxTemplate="let data of 'cellchangestatus'">
-          <button
-          (click)="toChange((data.component.pageIndex() * data.component.pageSize() + data.rowIndex) )"
-           cButton color="danger" style="color: white;">คืน</button>
+          <button (click)="toChange((data.component.pageIndex() * data.component.pageSize() + data.rowIndex) )" cButton
+            color="danger" style="color: white;">คืน</button>
         </div>
         <dxi-column [width]="70" cellTemplate="cellchangestatus"></dxi-column>
 
-      
+
 
 
         <!-- <dxi-column dataField="P_NAME" caption="ชื่อ" alignment="center" [width]="170">
@@ -124,7 +132,24 @@
 
       <dxi-item [colSpan]="2" dataField="P_DOP">
         <dxo-label template="วันที่ซื้อ"></dxo-label>
+        <!-- <div class="convertTime">
+          <span>{{convertTime(showInfoData.P_DOP)}}</span>
+        </div> -->
       </dxi-item>
+
+
+      <!-- <dxi-column dataField="CREATE_DATE" caption="วันที่ยืม" alignment="center" [width]="200"
+          cellTemplate="cellCreate_date"></dxi-column>
+        <div *dxTemplate="let cell of 'cellCreate_date'">
+          <div class="">
+            {{convertTime(cell.data.CREATE_DATE)}}
+          </div>
+        </div> -->
+
+
+
+
+
       <dxi-item [colSpan]="2" dataField="P_PRICE">
         <dxo-label template="ราคา"></dxo-label>
       </dxi-item>
