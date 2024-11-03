@@ -249,7 +249,7 @@ export class InputGroupsComponent implements OnInit {
 
   CardButton(id:number){
     
-    this.http.get(`${this.url}/get_product_by_Category_Status/${id}`).subscribe((res: any) => {
+    this.http.get(`http://127.0.0.1:8000/get_product_by_Category_Status/${id}`).subscribe((res: any) => {
       this.ProductDataID = res;
 
     });
@@ -326,9 +326,9 @@ export class InputGroupsComponent implements OnInit {
 
   getProductData() {
     this.http
-      .get(`${this.url}/get_product`)
+      .get('http://127.0.0.1:8000/get_product/status')
       .subscribe((res: any) => {
-        this.ProductData = res;
+        this.ProductDataID = res;
         // console.log(this.ProductData);
       });
   }
