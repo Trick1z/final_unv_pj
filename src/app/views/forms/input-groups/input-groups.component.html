@@ -42,9 +42,11 @@
   <div class="hideproduct" *ngIf="showProduct == true">
     <div class="btn">
       <h3>เพิ่มรายการ ครุภัณฑ์</h3>
-      <button cButton color="primary" class="text" style="margin-right: 10px; color: white;" (click)="addproductBTN()">เพิ่ม</button>
+      
     </div>
 
+    <button cButton color="primary" class="text" style="margin-right: 10px; color: white;" (click)="addproductBTN()">เพิ่ม</button>
+    
     <div class="datagrid" style="margin-top: 10px;">
       <div class="cat-list">
         <dx-data-grid id="gridContainer" [dataSource]="ProductData" [showBorders]="true">
