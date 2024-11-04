@@ -27,8 +27,8 @@ import { forEach } from 'lodash-es';
   ]
 })
 export class RangesComponent implements OnInit {
-  // url:string='http://127.0.0.1:8000';
-  url:string='https://fastapi-example-xafm.onrender.com';
+  url:string='http://127.0.0.1:8000';
+  // url:string='https://fastapi-example-xafm.onrender.com';
 
 
   constructor(private route: Router, private http: HttpClient) { }

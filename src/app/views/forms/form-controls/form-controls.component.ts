@@ -73,8 +73,8 @@ import { retry } from 'rxjs';
   ],
 })
 export class FormControlsComponent implements OnInit {
-  // url: string = 'http://127.0.0.1:8000';
-  url:string ='https://fastapi-example-xafm.onrender.com';
+  url: string = 'http://127.0.0.1:8000';
+  // url:string ='https://fastapi-example-xafm.onrender.com';
   constructor(private http: HttpClient, private route: Router) { }
 
   ngOnInit(): void {
