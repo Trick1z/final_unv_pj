@@ -57,8 +57,8 @@ import dxPopup from 'devextreme/ui/popup';
   ],
 })
 export class ChecksRadiosComponent implements OnInit {
-  //  url:string = 'https://fastapi-example-xafm.onrender.com'
-   url:string = 'http://127.0.0.1:8000'
+   url:string = 'https://fastapi-example-xafm.onrender.com'
+  //  url:string = 'http://127.0.0.1:8000'
 
   categoryData: any = {};
   statusData: any = {};

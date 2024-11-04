@@ -98,8 +98,8 @@ export class ValidationComponent implements OnInit {
   //   { color: 'light' },
   //   { color: 'dark' }
   // ];
-  url: string = 'http://127.0.0.1:8000'
-  // url:string = 'https://fastapi-example-xafm.onrender.com'
+  // url: string = 'http://127.0.0.1:8000'
+  url:string = 'https://fastapi-example-xafm.onrender.com'
 
 
 
