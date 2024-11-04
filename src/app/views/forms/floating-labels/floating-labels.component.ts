@@ -152,51 +152,51 @@ export default class FloatingLabelsComponent implements OnInit {
     this.ProductForms.DEL_FRAG = "N";
     this.ProductForms.CREATE_DATE = "2024-01-01T00:00:00.920Z";
     this.ProductForms.UPDATE_DATE = "2024-01-01T00:00:00.920Z";
-    this.ProductForms.IMG = this.file!.name
+    this.ProductForms.IMG = this.imageUrl
 
     const data = this.ProductForms;
 
     // console.log(data);
-    console.log(this.imageUrl);
+    // console.log(this.imageUrl);
     
 
 
-    // Swal.fire({
-    //   title: `ยืนยันการเพิ่มข้อมูล ?`,
-    //   showCancelButton: true,
-    //   confirmButtonText: 'ยืนยัน',
-    //   cancelButtonText: 'ยกเลิก',
-    // }).then((result) => {
+    Swal.fire({
+      title: `ยืนยันการเพิ่มข้อมูล ?`,
+      showCancelButton: true,
+      confirmButtonText: 'ยืนยัน',
+      cancelButtonText: 'ยกเลิก',
+    }).then((result) => {
 
-    //   if (result.isConfirmed) {
+      if (result.isConfirmed) {
 
-    //     this.http
-    //       .post(`${this.url}/add_product`, data)
-    //       .subscribe((res) => {
-    //         // console.log("res", res);
-    //         Swal.fire({
-    //           icon: 'success',
-    //           title: 'เพิ่มข้อมูลแล้ว',
-    //           showConfirmButton: false,
-    //           timer: 500,
-    //         });
+        this.http
+          .post(`${this.url}/add_product`, data)
+          .subscribe((res) => {
+            // console.log("res", res);
+            Swal.fire({
+              icon: 'success',
+              title: 'เพิ่มข้อมูลแล้ว',
+              showConfirmButton: false,
+              timer: 500,
+            });
 
-    //         delay(1000);
+            delay(1000);
 
-    //         return this.nevBack()
+            return this.nevBack()
 
-    //       }, (error) => {
-    //         console.error('Error:', error);
-    //         Swal.fire({
-    //           icon: 'error',
-    //           title: 'เกิดข้อผิดพลาด',
-    //           text: 'ข้อมูลไม่ครบ',
-    //         });
-    //       });
+          }, (error) => {
+            console.error('Error:', error);
+            Swal.fire({
+              icon: 'error',
+              title: 'เกิดข้อผิดพลาด',
+              text: 'ข้อมูลไม่ครบ',
+            });
+          });
 
-    //   }
+      }
 
-    // });
+    });
   }
 
   onCancel() {
