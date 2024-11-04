@@ -113,7 +113,7 @@
 
 <!-- popupinfo -->
 
-<dx-popup [width]="650" [height]="380" [hideOnOutsideClick]="true" [showCloseButton]="true" [(visible)]="ShowInfoPopup"
+<dx-popup [width]="650" [height]="600" [hideOnOutsideClick]="true" [showCloseButton]="true" [(visible)]="ShowInfoPopup"
   title="ข้อมูล ครุภัณฑ์">
 
 
@@ -165,4 +165,19 @@
       </dxi-item>
     </dx-form>
   </div>
+
+  <div class="empty" ></div>
+  <div class="img-group" style="display: flex;
+  justify-content: space-around;
+  align-items: center;
+">
+    <div class="img" *ngIf="imgData; else noImage">
+      <img style="width: 400px" [src]="imgData" alt="Image" />
+    </div>
+    <ng-template #noImage>
+      <p>No image available.</p>
+    </ng-template>
+  </div>
+
+
 </dx-popup>

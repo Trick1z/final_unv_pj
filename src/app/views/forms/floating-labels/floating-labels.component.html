@@ -58,6 +58,21 @@
 
     </dx-form>
 
+    <div class="mb-3" style="margin-top: 20px;">
+      <label cLabel for="formFile">เลือกไฟล์ภาพ</label>
+      <input cFormControl id="formFile" type="file" (change)="onFileChange($event)" />
+    </div>
+
+    <!-- <div class="mb-3">
+      <label for="formFile">Upload Image</label>
+      <input id="formFile" type="file" (change)="onFileChange($event)" accept="image/*" />
+    </div> -->
+    
+    <div class="show-pic" *ngIf="imageUrl">
+      <img [src]="imageUrl" alt="Uploaded Image" style="max-width: 50%; height: auto;" />
+    </div>
+
+
     <div class="" style="display: flex;
   justify-content: center;
   margin: 70px 0 0;">

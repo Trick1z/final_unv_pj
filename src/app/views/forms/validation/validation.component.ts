@@ -36,7 +36,8 @@ import { HttpClient, HttpClientModule } from '@angular/common/http';
 import Swal from 'sweetalert2';
 import { Router } from '@angular/router';
 import { style } from '@angular/animations';
-import { NgFor } from '@angular/common';
+import { NgFor, NgIf } from '@angular/common';
+import { Observable } from 'rxjs';
 
 @Component({
   selector: 'app-validation',
@@ -79,7 +80,7 @@ import { NgFor } from '@angular/common';
     CardHeaderComponent,
     ColComponent,
     RowComponent,
-    TextColorDirective, NgFor,GridModule
+    TextColorDirective, NgFor, GridModule, NgIf
   ],
 })
 export class ValidationComponent implements OnInit {
@@ -97,10 +98,13 @@ export class ValidationComponent implements OnInit {
   //   { color: 'light' },
   //   { color: 'dark' }
   // ];
-url:string = 'https://fastapi-example-xafm.onrender.com'
+  url: string = 'http://127.0.0.1:8000'
+  // url:string = 'https://fastapi-example-xafm.onrender.com'
 
 
-  constructor(private route: Router, private http: HttpClient) { }
+
+  constructor(private route: Router, private http: HttpClient,) {
+  }
   ngOnInit(): void {
     this.getProductData();
     this.getStatus();
@@ -128,7 +132,7 @@ url:string = 'https://fastapi-example-xafm.onrender.com'
       .get(`${this.url}/get_product`)
       .subscribe((res: any) => {
         this.ProductData = res;
-        console.log("product : ",this.ProductData);
+        console.log("product : ", this.ProductData);
       });
   }
 
@@ -254,7 +258,7 @@ url:string = 'https://fastapi-example-xafm.onrender.com'
         });
       });
     console.log(data);
-    
+
   }
 
   showmoreData: any;
@@ -271,13 +275,34 @@ url:string = 'https://fastapi-example-xafm.onrender.com'
       });
   }
 
+  temp: any;
 
   onShowMorePopup(getID: number) {
     var id = this.ProductData[getID].P_ID;
     this.ShowmorePopup = true;
     this.getShowmoreData(id)
+    this.temp = this.getImage(id)
+
+    // console.log(this.temp);
+
 
   }
+  // : Observable<Blob>
+  imgData: any;
+  getImage(id: number): void {
+    this.http.get(`${this.url}/get_img/${id}`)
+      .subscribe(
+        (response:any) => {
+          this.imgData = response.IMG_NAME;
+          // console.log(this.imgData);  // แสดงผลข้อมูลที่ได้
+        },
+        error => {
+          console.error('Error fetching image:', error);
+        }
+      );
+  }
+
+
 
   CardButton(id: number) {
     // console.log(`id : ${id}`);
@@ -288,8 +313,5 @@ url:string = 'https://fastapi-example-xafm.onrender.com'
         this.ProductData = res;
         console.log(this.ProductData);
       });
-
-
-
   }
 }

@@ -40,7 +40,7 @@ import {
 import { HttpClient, HttpClientModule } from '@angular/common/http';
 import { Router } from '@angular/router';
 import Swal from 'sweetalert2';
-import { delay } from 'rxjs';
+import { delay, Observable } from 'rxjs';
 
 @Component({
   selector: 'app-floating-labels',
@@ -83,12 +83,22 @@ import { delay } from 'rxjs';
     ListGroupItemDirective,
     FormFeedbackComponent,
     NgFor,
-    CommonModule,DxDateBoxModule,
+    CommonModule, DxDateBoxModule,
   ],
 })
 export default class FloatingLabelsComponent implements OnInit {
 
-  url:string ='https://fastapi-example-xafm.onrender.com';
+  url: string = 'http://127.0.0.1:8000';
+  // url:string ='https://fastapi-example-xafm.onrender.com';
+ 
+  ////
+
+ 
+  
+
+
+
+  ////
 
   constructor(private http: HttpClient, private route: Router) { }
 
@@ -135,54 +145,58 @@ export default class FloatingLabelsComponent implements OnInit {
       });
   }
 
+
   async onSubmit() {
     this.ProductForms.STUDENT_ID = 0
     this.ProductForms.RECORD_STATUS = "A";
     this.ProductForms.DEL_FRAG = "N";
     this.ProductForms.CREATE_DATE = "2024-01-01T00:00:00.920Z";
     this.ProductForms.UPDATE_DATE = "2024-01-01T00:00:00.920Z";
+    this.ProductForms.IMG = this.file!.name
+
     const data = this.ProductForms;
 
+    // console.log(data);
+    console.log(this.imageUrl);
+    
 
-    Swal.fire({
-      title: `ยืนยันการเพิ่มข้อมูล ?`,
-      showCancelButton: true,
-      confirmButtonText: 'ยืนยัน',
-      cancelButtonText: 'ยกเลิก',
-    }).then((result) => {
 
-      if (result.isConfirmed) {
-        
-        this.http
-          .post(`${this.url}/add_product`, data)
-          .subscribe((res) => {
+    // Swal.fire({
+    //   title: `ยืนยันการเพิ่มข้อมูล ?`,
+    //   showCancelButton: true,
+    //   confirmButtonText: 'ยืนยัน',
+    //   cancelButtonText: 'ยกเลิก',
+    // }).then((result) => {
 
-            console.log("res",res);
-            
+    //   if (result.isConfirmed) {
 
-            Swal.fire({
-              icon: 'success',
-              title: 'เพิ่มข้อมูลแล้ว',
-              showConfirmButton: false,
-              timer: 500,
-            }) ;
+    //     this.http
+    //       .post(`${this.url}/add_product`, data)
+    //       .subscribe((res) => {
+    //         // console.log("res", res);
+    //         Swal.fire({
+    //           icon: 'success',
+    //           title: 'เพิ่มข้อมูลแล้ว',
+    //           showConfirmButton: false,
+    //           timer: 500,
+    //         });
 
-            delay(1000);
+    //         delay(1000);
 
-            return this.nevBack()
-            
-          },(error) => {
-            console.error('Error:', error);
-            Swal.fire({
-              icon: 'error',
-              title: 'เกิดข้อผิดพลาด',
-              text: 'ข้อมูลไม่ครบ',
-            });
-          });
-          
-      }
+    //         return this.nevBack()
 
-    });
+    //       }, (error) => {
+    //         console.error('Error:', error);
+    //         Swal.fire({
+    //           icon: 'error',
+    //           title: 'เกิดข้อผิดพลาด',
+    //           text: 'ข้อมูลไม่ครบ',
+    //         });
+    //       });
+
+    //   }
+
+    // });
   }
 
   onCancel() {
@@ -192,8 +206,28 @@ export default class FloatingLabelsComponent implements OnInit {
 
   }
 
-  // onsunmits(){
-  //   console.log(this.ProductForms);
-    
-  // }
+  file: File | null = null;
+  imageUrl: string | null = null; // ตัวแปรเพื่อเก็บ URL ของรูปภาพ
+
+  onFileChange(event: any) {
+    const selectedFile = event.target.files[0];
+
+    if (selectedFile) {
+      this.file = selectedFile;
+
+      const reader = new FileReader();
+      reader.onload = (e: any) => {
+        this.imageUrl = e.target.result; // เก็บ URL ของรูปภาพที่อ่านได้
+      };
+      reader.readAsDataURL(this.file!); // อ่านไฟล์เป็น Data URL
+    } else {
+      this.file = null;
+      this.imageUrl = null;
+    }
+  }
+
+
+  
+  
+
 }

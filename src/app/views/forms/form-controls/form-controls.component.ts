@@ -73,7 +73,8 @@ import { retry } from 'rxjs';
   ],
 })
 export class FormControlsComponent implements OnInit {
-  url:string ='https://fastapi-example-xafm.onrender.com';
+  url: string = 'http://127.0.0.1:8000';
+  // url:string ='https://fastapi-example-xafm.onrender.com';
   constructor(private http: HttpClient, private route: Router) { }
 
   ngOnInit(): void {
@@ -110,7 +111,7 @@ export class FormControlsComponent implements OnInit {
 
   productData: any = {}
   getProductData() {
-    this.http.get(`${this.url}/get_product`).subscribe((res: any) => {
+    this.http.get(`${this.url}/get_product/status/7`).subscribe((res: any) => {
       this.productData = res;
 
     })
@@ -165,7 +166,7 @@ export class FormControlsComponent implements OnInit {
       if (id === this.productData[j].P_ID) {
 
         switch (text) {
-          case 'name': 
+          case 'name':
             return this.productData[j].P_NAME;
           case 'serial':
             return this.productData[j].P_SERIALNUMBER;
@@ -185,14 +186,14 @@ export class FormControlsComponent implements OnInit {
 
 
   toChange(index: number) {
-   
+
     var show_id = this.borrowForm[index].LIST_ID
     // var name = this.borrowForm[index].
 
     var data = {
-      P_ID : this.borrowForm[index].P_ID,
-      LIST_ID : this.borrowForm[index].LIST_ID,
-      STUDENT_ID : this.borrowForm[index].STUDENT_ID
+      P_ID: this.borrowForm[index].P_ID,
+      LIST_ID: this.borrowForm[index].LIST_ID,
+      STUDENT_ID: this.borrowForm[index].STUDENT_ID
     }
     // var name = this.statusData[index].STATUS_NAME;
 
@@ -209,7 +210,7 @@ export class FormControlsComponent implements OnInit {
     }).then((result) => {
       if (result.isConfirmed) {
         this.http
-          .put(`${this.url}/put_borrow_back` ,data)
+          .put(`${this.url}/put_borrow_back`, data)
           .subscribe((res) => {
             this.getBorrow();
 
@@ -228,16 +229,29 @@ export class FormControlsComponent implements OnInit {
   ShowInfoPopup = false;
   showInfoData: any = {}
   getId = 0
-  triggerPopup(id: number) {
-
-
+  imgData: any;
+  triggerPopup(getid: number) {
     const getInfo = () => {
-
-      this.showInfoData = this.productData[id]
-      // console.log(this.showInfoData);
+      this.showInfoData = this.productData[getid]
 
     }
+
+    const getImage = () => {
+      this.http.get(`${this.url}/get_img/${this.productData[getid].P_ID}`)
+        .subscribe(
+          (response: any) => {
+            this.imgData = response.IMG_NAME;
+            // console.log(this.imgData);  // แสดงผลข้อมูลที่ได้
+          },
+          error => {
+            console.error('Error fetching image:', error);
+          }
+        );
+    }
+
+
     getInfo();
+    getImage();
 
     return this.ShowInfoPopup = true;
 
@@ -254,6 +268,8 @@ export class FormControlsComponent implements OnInit {
     const formattedDate = `${day} ${month} ${year}`;
     return formattedDate
   }
+
+
 
 
 
