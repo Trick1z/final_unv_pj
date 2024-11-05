@@ -236,7 +236,7 @@
 
 
 <!-- SHOWMORE -->
-<dx-popup [width]="600" [height]="600" [hideOnOutsideClick]="true" [showCloseButton]="true" [(visible)]="ShowmorePopup"
+<dx-popup [width]="700" [height]="800" [hideOnOutsideClick]="true" [showCloseButton]="true" [(visible)]="ShowmorePopup"
   title="ข้อมูล ครุภัณฑ์">
 
 
@@ -277,7 +277,7 @@
   align-items: center;
 ">
     <div class="img" *ngIf="imgData; else noImage">
-      <img style="width: 400px" [src]="imgData" alt="Image" />
+      <img style="width: auto ;height:auto" [src]="imgData" alt="Image" />
     </div>
     <ng-template  #noImage>
       <p>No image available.</p>
