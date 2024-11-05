@@ -90,8 +90,8 @@ export class ChecksRadiosComponent implements OnInit {
       .get(`${this.url}/get_category`)
       .subscribe((res: any) => {
         this.categoryData = res;
-        console.log("res:",res);
-        console.log("category :",this.categoryData);
+        // console.log("res:",res);
+        // console.log("category :",this.categoryData);
         
       });
   }
@@ -208,7 +208,7 @@ export class ChecksRadiosComponent implements OnInit {
     this.addStatusForm.CREATE_DATE = "2024-09-29T06:25:50.920Z";
     this.addStatusForm.UPDATE_DATE = "2024-09-29T06:25:50.920Z";
     var data = this.addStatusForm;
-    console.log(data);
+    // console.log(data);
 
 
     this.http

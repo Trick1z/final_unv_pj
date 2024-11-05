@@ -132,7 +132,7 @@ export class ValidationComponent implements OnInit {
       .get(`${this.url}/get_product`)
       .subscribe((res: any) => {
         this.ProductData = res;
-        console.log("product : ", this.ProductData);
+        // console.log("product : ", this.ProductData);
       });
   }
 
@@ -257,7 +257,7 @@ export class ValidationComponent implements OnInit {
           timer: 1000,
         });
       });
-    console.log(data);
+    // console.log(data);
 
   }
 
@@ -311,7 +311,7 @@ export class ValidationComponent implements OnInit {
       .get(`${this.url}/get_product_by_Category/${id}`)
       .subscribe((res: any) => {
         this.ProductData = res;
-        console.log(this.ProductData);
+        // console.log(this.ProductData);
       });
   }
 }

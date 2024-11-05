@@ -281,7 +281,7 @@ export class LayoutComponent {
       .post('http://localhost:52169/api/NewAdd/Main', this.temp)
       .subscribe((data) => console.log('seend main', data));
 
-    console.log(this.temp);
+    // console.log(this.temp);
 
     this.titleData = {
       title: '',
