@@ -277,7 +277,7 @@
   align-items: center;
 ">
     <div class="img" *ngIf="imgData; else noImage">
-      <img style="width: auto ;height:auto" [src]="imgData" alt="Image" />
+      <img style="width: auto ;height:auto ;max-width: 500px" [src]="imgData" alt="Image" />
     </div>
     <ng-template  #noImage>
       <p>No image available.</p>
