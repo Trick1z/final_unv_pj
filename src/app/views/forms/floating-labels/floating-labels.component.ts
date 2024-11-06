@@ -105,7 +105,7 @@ export default class FloatingLabelsComponent implements OnInit {
 
   getStatus() {
     this.http
-      .get('http://127.0.0.1:8000/get_status')
+      .get('https://fastapi-example-xafm.onrender.com/get_status')
       .subscribe((res: any) => {
         for (let i = 0; i < res.length; i++) {
           const obj: { [key: string]: string } = {
@@ -119,7 +119,7 @@ export default class FloatingLabelsComponent implements OnInit {
   }
   getCategory() {
     this.http
-      .get('http://127.0.0.1:8000/get_category')
+      .get('https://fastapi-example-xafm.onrender.com/get_category')
       .subscribe((res: any) => {
         for (let i = 0; i < res.length; i++) {
           const obj: { [key: string]: string } = {
@@ -151,7 +151,7 @@ export default class FloatingLabelsComponent implements OnInit {
       if (result.isConfirmed) {
         
         this.http
-          .post('http://127.0.0.1:8000/add_product', data)
+          .post('https://fastapi-example-xafm.onrender.com/add_product', data)
           .subscribe((res) => {
 
             console.log("res",res);

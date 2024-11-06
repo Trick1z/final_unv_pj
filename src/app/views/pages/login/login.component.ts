@@ -65,7 +65,7 @@ export class LoginComponent implements OnInit {
 
 
 
-  url = 'http://127.0.0.1:8000/account'
+  url = 'https://fastapi-example-xafm.onrender.com/account'
 
   loginForm: any = {}
 
