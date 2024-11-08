@@ -98,7 +98,7 @@
 
 </div>
 
-<div class="scanner">
+<div class="scanner" *ngIf="activeScanner === true">
   <div>
     <!-- [device]="currentDevice"  -->
     <zxing-scanner [device]="currentDevice" (scanSuccess)="onScanSuccess($event)" (scanError)="onScanError($event)"
@@ -115,8 +115,8 @@
 </div>
 
 
-<dx-popup [width]="600" [height]="420" [hideOnOutsideClick]="true" [showCloseButton]="true" [(visible)]="ShowFindPopup"
-  title="ข้อมูล นักศึกษา">
+<dx-popup [width]="600" [height]="420" [hideOnOutsideClick]="false" [showCloseButton]="false"
+  [(visible)]="ShowFindPopup" title="ข้อมูล นักศึกษา">
 
 
   <!-- 
@@ -136,14 +136,22 @@
     </div>
 
   </div> -->
+  <div style="display: flex;
+    flex-direction: row-reverse;">
+    <button cButton class="" color="success" style="    margin: -10px 0 10px 0;;color:white;" (click)="onClosePopup()">ยกเลิก</button>
+  </div>
 
   <c-input-group class="mb-3">
+
     <input [(ngModel)]="sCode" aria-describedby="button-addon2" aria-label="รหัสนักศึกษา" cFormControl
       placeholder="รหัสนักศึกษา" />
     <button cButton color="secondary" id="button-addon2" type="button" variant="outline" (click)="onFindSubmit(sCode)">
       ค้นหา
     </button>
+
   </c-input-group>
+
+
 
 
 
@@ -173,7 +181,7 @@
 
     <div class="btn" style="    display: flex;
     justify-content: center;
-    margin: 70px 0 0 0;">
+    margin: 40px 0 0 0;">
       <button cButton class="white-text" color="success" style="margin: 0 20px; color :white;"
         (click)="onSubmit()">ตกลง</button>
       <!-- <button cButton class="cancle-btn white-text" color="danger" (click)="onCancel()">ยกเลิก</button> -->

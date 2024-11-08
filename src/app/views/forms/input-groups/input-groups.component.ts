@@ -100,20 +100,20 @@ import { Result } from '@zxing/library';  // Import Result from @zxing/library
     DxFormModule,
     DxSelectBoxModule,
     DxPopupModule,
-    NgIf,NgFor, FormsModule,CardModule
+    NgIf, NgFor, FormsModule, CardModule
 
-    ,ButtonDirective,
+    , ButtonDirective,
     CardBodyComponent,
     CardComponent,
     CardHeaderComponent,
     ColComponent,
     RowComponent,
-    TextColorDirective,GridModule,ZXingScannerModule
-  
+    TextColorDirective, GridModule, ZXingScannerModule
+
   ],
 })
 export class InputGroupsComponent implements OnInit {
-  url:string='http://127.0.0.1:8000';
+  url: string = 'http://127.0.0.1:8000';
   // url:string='https://fastapi-example-xafm.onrender.com';
 
 
@@ -121,10 +121,16 @@ export class InputGroupsComponent implements OnInit {
 
   ngOnInit(): void {
     this.getCategory();
+
+    // setTimeout(() => {
+    //   console.log('delay 3s');
+    // }, 3000); 
+
+
   }
 
 
-   colors = [
+  colors = [
     { color: 'primary', textColor: 'primary' },
     { color: 'secondary', textColor: 'secondary' },
     { color: 'success', textColor: 'success' },
@@ -167,18 +173,20 @@ export class InputGroupsComponent implements OnInit {
     this.findStudentData = {};
     this.sCode = '';
     this.ShowFindPopup = true;
+    this.activeScanner = true;
   }
+
+  activeScanner: boolean = false;
 
   sCode = ''
   onFindSubmit(code: string) {
-
     this.http
       .get(`${this.url}/get_student/${code}`)
       .subscribe((res: any) => {
 
         if (res.status === 404) {
           this.isVisible = false
-          
+
           // this.wrong = true
           // this.wanning = "ไม่พบข้อมูลในระบบ"
           this.ShowFindPopup = false
@@ -190,6 +198,9 @@ export class InputGroupsComponent implements OnInit {
             showConfirmButton: false,
             timer: 1300
           }).then(() => {
+            // setTimeout(() => {
+            //   console.log('delay 2s');
+            // }, 2000);
             this.ShowFindPopup = true;  // Hide the popup after the alert is closed
           });
 
@@ -250,15 +261,15 @@ export class InputGroupsComponent implements OnInit {
 
   }
 
-  CardButton(id:number){
-    
+  CardButton(id: number) {
+
     this.http.get(`${this.url}/get_product_by_Category_Status/${id}`).subscribe((res: any) => {
       this.ProductDataID = res;
 
     });
   }
 
-  categoryCard:any =[]
+  categoryCard: any = []
 
   getCategory() {
     this.http
@@ -271,7 +282,7 @@ export class InputGroupsComponent implements OnInit {
           };
           this.categoryCard.push(obj);
           // console.log(this.categoryCard);
-          
+
         }
 
 
@@ -280,7 +291,7 @@ export class InputGroupsComponent implements OnInit {
 
   addProductToArr(getid: number, status: string) {
     var id;
-    var data  = {}
+    var data = {}
     var send = {
       text: status
     }
@@ -289,18 +300,18 @@ export class InputGroupsComponent implements OnInit {
     if (status == 'N') {
       id = this.ProductDataID[getid].P_ID;
       data = this.ProductDataID[getid];
-      
+
       this.ProductData.push(data);
       this.ShowProductPopup = false;
 
-    }else if(status == 'A'){
+    } else if (status == 'A') {
       id = this.ProductData[getid].P_ID;
       data = this.ProductData[getid];
-      this.ProductData.splice(getid,1);
-      
+      this.ProductData.splice(getid, 1);
+
     }
 
-  
+
     this.http.put(`${this.url}/put_waitProduct/${id}`, send)
       .subscribe((res: any) => {
         this.findProductData();
@@ -309,20 +320,20 @@ export class InputGroupsComponent implements OnInit {
 
   }
 
-  onSave(){
-    
+  onSave() {
+
     const data = {
-      STUDENT_INFO : this.StudentForms,
-      PRODUCT_INFO : this.ProductData,
+      STUDENT_INFO: this.StudentForms,
+      PRODUCT_INFO: this.ProductData,
     }
 
-   
+
 
     this.http.post(`${this.url}/borrow`, data)
       .subscribe((res: any) => {
-        
-      return this.nevBack()
-    });
+
+        return this.nevBack()
+      });
   }
 
 
@@ -351,7 +362,7 @@ export class InputGroupsComponent implements OnInit {
 
   currentDevice: MediaDeviceInfo | undefined = undefined;  // The current selected camera device
   devices: MediaDeviceInfo[] = [];  // Available camera devices
-  scannedResult: any ;  // Store the scanned QR code result
+  scannedResult: any;  // Store the scanned QR code result
 
 
   // Called when devices (cameras) are found
@@ -364,18 +375,28 @@ export class InputGroupsComponent implements OnInit {
 
   // Handle successful QR code scan
   onScanSuccess(result: any): void {
-    this.scannedResult = result; 
-    this.sCode =this.scannedResult;
+    this.scannedResult = result;
+    this.sCode = this.scannedResult;
 
     this.onFindSubmit(this.sCode);
     console.log('Scanned QR Code:', this.scannedResult);
 
   }
+ 
+
+
+
+
 
   // Handle QR scan errors
   onScanError(error: any): void {
     console.error('QR Scan Error:', error);
   }
- 
+
+  onClosePopup(){
+    this.ShowFindPopup = false;
+    this.activeScanner = false;
+  }
+
 
 }
