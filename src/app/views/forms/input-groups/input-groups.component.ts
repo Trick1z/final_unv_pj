@@ -2,6 +2,7 @@ import { Component, NgModule, OnInit } from '@angular/core';
 import { ReactiveFormsModule } from '@angular/forms';
 import { Route, Router, RouterLink } from '@angular/router';
 import { DocsExampleComponent } from '@docs-components/public-api';
+
 import {
   RowComponent,
   ColComponent,
@@ -43,7 +44,8 @@ import { DxiColumnModule, DxiItemModule, DxoFormComponent } from 'devextreme-ang
 import { NgFor, NgIf } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import Swal from 'sweetalert2';
-
+import { ZXingScannerModule } from '@zxing/ngx-scanner';
+import { Result } from '@zxing/library';  // Import Result from @zxing/library
 
 @Component({
   selector: 'app-input-groups',
@@ -106,7 +108,7 @@ import Swal from 'sweetalert2';
     CardHeaderComponent,
     ColComponent,
     RowComponent,
-    TextColorDirective,GridModule
+    TextColorDirective,GridModule,ZXingScannerModule
   
   ],
 })
@@ -333,4 +335,47 @@ export class InputGroupsComponent implements OnInit {
         // console.log(this.ProductData);
       });
   }
+
+  // scannedResult:string =''
+
+  // onScanSuccess(result: string) {
+  //   this.scannedResult = result; // Display the scanned result
+  // }
+
+  // // Method to handle errors during the scan
+  // onScanError(error: any) {
+  //   console.log('Scan error: ', error);
+  // }
+
+
+
+  currentDevice: MediaDeviceInfo | undefined = undefined;  // The current selected camera device
+  devices: MediaDeviceInfo[] = [];  // Available camera devices
+  scannedResult: any ;  // Store the scanned QR code result
+
+
+  // Called when devices (cameras) are found
+  onDevicesFound(devices: MediaDeviceInfo[]): void {
+    this.devices = devices;
+    if (devices.length > 0) {
+      this.currentDevice = devices[0];  // Default to the first available camera
+    }
+  }
+
+  // Handle successful QR code scan
+  onScanSuccess(result: any): void {
+    this.scannedResult = result; 
+    this.sCode =this.scannedResult;
+
+    this.onFindSubmit(this.sCode);
+    console.log('Scanned QR Code:', this.scannedResult);
+
+  }
+
+  // Handle QR scan errors
+  onScanError(error: any): void {
+    console.error('QR Scan Error:', error);
+  }
+ 
+
 }
