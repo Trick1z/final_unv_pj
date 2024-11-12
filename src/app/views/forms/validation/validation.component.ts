@@ -1,7 +1,10 @@
-import { IconDirective } from '@coreui/icons-angular';
+import { IconDirective, IconModule } from '@coreui/icons-angular';
 import { Component, OnInit } from '@angular/core';
 import { ReactiveFormsModule, FormsModule } from '@angular/forms';
 import { DocsExampleComponent } from '@docs-components/public-api';
+import { WidgetModule } from '@coreui/angular';
+
+
 import {
   RowComponent,
   ColComponent,
@@ -24,6 +27,10 @@ import {
   ListGroupItemDirective,
   CardModule,
   GridModule,
+  DropdownModule,
+  ProgressModule,
+  SharedModule,
+  
 } from '@coreui/angular';
 import {
   DxButtonModule,
@@ -38,6 +45,7 @@ import { Router } from '@angular/router';
 import { style } from '@angular/animations';
 import { NgFor, NgIf } from '@angular/common';
 import { Observable } from 'rxjs';
+import { ChartjsModule } from '@coreui/angular-chartjs';
 
 @Component({
   selector: 'app-validation',
@@ -80,7 +88,13 @@ import { Observable } from 'rxjs';
     CardHeaderComponent,
     ColComponent,
     RowComponent,
-    TextColorDirective, NgFor, GridModule, NgIf
+    TextColorDirective, NgFor, GridModule, NgIf,
+    DropdownModule,
+    ProgressModule,
+    SharedModule,
+    WidgetModule,
+    IconModule,
+    ChartjsModule
   ],
 })
 export class ValidationComponent implements OnInit {

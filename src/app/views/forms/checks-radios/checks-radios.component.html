@@ -1,45 +1,35 @@
-<div class="header head-name">
-  <h1>รายชื่อหมวดหมู่</h1>
-</div>
-<div class="card">
-  
-
-  <div class="btn float-left">
-    <button cButton color="primary" (click)="OnAddCate()">เพิ่มหมวดหมู่</button>
+<div class="category-card">
+  <div class="header head-name">
+    <h1>รายชื่อหมวดหมู่</h1>
   </div>
-
-
-  <!-- datagrid -->
-  <div class="cat-list">
-    <dx-data-grid id="gridContainer" [dataSource]="categoryData" [showBorders]="true">
-      <dxo-editing mode="row" [allowAdding]="false" [allowUpdating]="false" [allowDeleting]="false">
-      </dxo-editing>
-      <dxo-editing mode="row">
-      </dxo-editing>
-      <dxi-column dataField="CATEGORY_ID" [width]="100">
-      </dxi-column>
-      <dxi-column dataField="CATEGORY_NAME" [width]="160"></dxi-column>
-      <dxi-column dataField="CATEGORY_DESCRIPTION"></dxi-column>
-
-      <div *dxTemplate="let data of 'cellTemplateDelte'">
-        <button cButton color="secondary"
-          (click)="onCategoryEditPopup(data.component.pageIndex() * data.component.pageSize() + data.rowIndex)"
-          class="white-text" style="margin-right: 10px;">แก้ไข</button>
-
-        <button cButton color="danger"
-          (click)="openCategoryDelete(data.component.pageIndex() * data.component.pageSize() + data.rowIndex)"
-          class="white-text" >ลบ</button>
-
-      </div>
-      <dxi-column [width]="130" cellTemplate="cellTemplateDelte"></dxi-column>
-
-
-      <dxo-paging [pageSize]="100"></dxo-paging>
-
-
-    </dx-data-grid>
+  <div class="card">
+    <div class="btn float-left">
+      <button cButton color="primary" (click)="OnAddCate()">เพิ่มหมวดหมู่</button>
+    </div>
+    <!-- datagrid -->
+    <div class="cat-list">
+      <dx-data-grid id="gridContainer" [dataSource]="categoryData" [showBorders]="true">
+        <dxo-editing mode="row" [allowAdding]="false" [allowUpdating]="false" [allowDeleting]="false">
+        </dxo-editing>
+        <dxo-editing mode="row">
+        </dxo-editing>
+        <dxi-column dataField="CATEGORY_ID" [width]="100">
+        </dxi-column>
+        <dxi-column dataField="CATEGORY_NAME" [width]="160"></dxi-column>
+        <dxi-column dataField="CATEGORY_DESCRIPTION"></dxi-column>
+        <div *dxTemplate="let data of 'cellTemplateDelte'">
+          <button cButton color="secondary"
+            (click)="onCategoryEditPopup(data.component.pageIndex() * data.component.pageSize() + data.rowIndex)"
+            class="white-text" style="margin-right: 10px;">แก้ไข</button>
+          <button cButton color="danger"
+            (click)="openCategoryDelete(data.component.pageIndex() * data.component.pageSize() + data.rowIndex)"
+            class="white-text" >ลบ</button>
+        </div>
+        <dxi-column [width]="130" cellTemplate="cellTemplateDelte"></dxi-column>
+        <dxo-paging [pageSize]="100"></dxo-paging>
+     </dx-data-grid>
+    </div>
   </div>
-
 </div>
 
 <!-- POPUP -->
@@ -102,66 +92,55 @@
 <div class="empty"></div>
 
 <!-- status card  -->
-
-<div class="header head-name">
-  <h1>รายชื่อสถานะ</h1></div>
-
-<div class="card">
-  
-
-  <div class="btn float-left">
-    <button cButton color="primary" (click)="OnAddStatus()">เพิ่มสถานะ</button>
+<div class="status-card">
+  <div class="header head-name">
+    <h1>รายชื่อสถานะ</h1></div>
+  <div class="card">
+    <div class="btn float-left">
+      <button cButton color="primary" (click)="OnAddStatus()">เพิ่มสถานะ</button>
+    </div>
+    <!-- datagrid -->
+    <div class="cat-list">
+      <dx-data-grid  id="gridContainer" [dataSource]="statusData" [showBorders]="true">
+        <dxo-editing mode="row" [allowAdding]="false" [allowUpdating]="false" [allowDeleting]="false">
+        </dxo-editing>
+        <dxo-editing mode="row">
+        </dxo-editing>
+        <dxi-column dataField="STATUS_ID" [width]="100">
+        </dxi-column>
+        <dxi-column dataField="STATUS_NAME" [width]="160"></dxi-column>
+        <dxi-column dataField="STATUS_DESCRIPTION"></dxi-column>
+        <div *dxTemplate="let data of 'cellTemplateDelte'">
+          <button cButton color="secondary"
+            (click)="onStatusEditPopup(data.component.pageIndex() * data.component.pageSize() + data.rowIndex)"
+            class="white-text" style="margin-right: 10px;">แก้ไข</button>
+          <button cButton color="danger"
+            (click)="openStatusDelete(data.component.pageIndex() * data.component.pageSize() + data.rowIndex)"
+            class="white-text" >ลบ</button>
+        </div>
+        <dxi-column [width]="130" cellTemplate="cellTemplateDelte"></dxi-column>
+        <dxo-paging [pageSize]="100"></dxo-paging>
+      </dx-data-grid>
+    </div>
   </div>
-
-
-  <!-- datagrid -->
-  <div class="cat-list">
-    <dx-data-grid  id="gridContainer" [dataSource]="statusData" [showBorders]="true">
-      <dxo-editing mode="row" [allowAdding]="false" [allowUpdating]="false" [allowDeleting]="false">
-      </dxo-editing>
-      <dxo-editing mode="row">
-      </dxo-editing>
-      <dxi-column dataField="STATUS_ID" [width]="100">
-      </dxi-column>
-      <dxi-column dataField="STATUS_NAME" [width]="160"></dxi-column>
-      <dxi-column dataField="STATUS_DESCRIPTION"></dxi-column>
-      <div *dxTemplate="let data of 'cellTemplateDelte'">
-        <button cButton color="secondary"
-          (click)="onStatusEditPopup(data.component.pageIndex() * data.component.pageSize() + data.rowIndex)"
-          class="white-text" style="margin-right: 10px;">แก้ไข</button>
-
-        <button cButton color="danger"
-          (click)="openStatusDelete(data.component.pageIndex() * data.component.pageSize() + data.rowIndex)"
-          class="white-text" >ลบ</button>
-      </div>
-      <dxi-column [width]="130" cellTemplate="cellTemplateDelte"></dxi-column>
-
-      <dxo-paging [pageSize]="100"></dxo-paging>
-    </dx-data-grid>
-  </div>
-
 </div>
+
 
 <!-- POPUP -->
 <!-- Add STATUS  -->
 
 <dx-popup [width]="420" [height]="360" [hideOnOutsideClick]="false" [showCloseButton]="false"
   [(visible)]="addStatusPopup" title="เพิ่มสถานะ">
-
   <div class="">
     <dx-form [formData]="addStatusForm" [colCount]="4">
-   
       <dxi-item [colSpan]="4" dataField="STATUS_NAME">
         <dxo-label template="ชื่อ สถานะ"></dxo-label>
       </dxi-item>
-
       <dxi-item [colSpan]="4" editorType="dxTextArea" dataField="STATUS_DESCRIPTION">
         <dxo-label template="คำอธิบาย สถานะ"></dxo-label>
       </dxi-item>
-
     </dx-form>
   </div>
-
   <div class="" style="display: flex; ; justify-content: center;     margin: 70px 0 0 0;">
     <button cButton class="white-text" color="success" style="margin: 0 20px;"
       (click)="statusOnSubmit()">บันทึก</button>
@@ -173,21 +152,16 @@
 
 <dx-popup [width]="420" [height]="360" [hideOnOutsideClick]="false" [showCloseButton]="false"
 [(visible)]="EditStatusPopup" title="แก้ไขสถานะ">
-
 <div class="">
   <dx-form [formData]="editStatusForm" [colCount]="4">
-
     <dxi-item [colSpan]="4" dataField="STATUS_NAME">
       <dxo-label template="STATUS Name"></dxo-label>
     </dxi-item>
-
     <dxi-item [colSpan]="4" editorType="dxTextArea" dataField="STATUS_DESCRIPTION">
       <dxo-label template="STATUS Description"></dxo-label>
     </dxi-item>
-
   </dx-form>
 </div>
-
 <div class="" style="display: flex; ; justify-content: center; margin: 70px 0 0 0;">
   <button cButton class="white-text" color="success" style="margin: 0 20px;"
     (click)="EditStatusOnSubmit()">บันทึก</button>
