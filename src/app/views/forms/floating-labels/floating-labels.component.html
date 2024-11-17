@@ -13,7 +13,7 @@
   <div class="form">
     <dx-form [formData]="ProductForms" [colCount]="6">
 
-      <dxi-item [colSpan]="2" dataField="P_NAME">
+      <dxi-item [colSpan]="2" dataField="PRODUCT_NAME">
         <dxo-label template="ชื่อ"></dxo-label>
       </dxi-item>
 
@@ -29,21 +29,21 @@
         <dxo-label template="สถานะ"></dxo-label>
       </dxi-item>
 
-      <dxi-item [colSpan]="2" dataField="P_PRICE" editorType="dxNumberBox" [width]="300" [height]="50">
+      <dxi-item [colSpan]="2" dataField="PRODUCT_PRICE" editorType="dxNumberBox" [width]="300" [height]="50">
         <dxo-label template="ราคา"></dxo-label>
       </dxi-item>
-      <dxi-item [colSpan]="2" dataField="P_DOP" editorType="dxDateBox" >
+      <dxi-item [colSpan]="2" dataField="PRODUCT_DOP" editorType="dxDateBox" >
         <dxo-label template="วันที่ซื้อ"></dxo-label>
       </dxi-item>
-      <dxi-item [colSpan]="2" dataField="P_BAND">
+      <dxi-item [colSpan]="2" dataField="PRODUCT_BAND">
         <dxo-label template="ยี้ห้อ"></dxo-label>
       </dxi-item>
 
 
-      <dxi-item [colSpan]="3" dataField="P_SERIALNUMBER">
+      <dxi-item [colSpan]="3" dataField="PRODUCT_SERIALNUMBER">
         <dxo-label template="Serial Number"></dxo-label>
       </dxi-item>
-      <dxi-item [colSpan]="3" dataField="P_EQUIPMENTNUMBER">
+      <dxi-item [colSpan]="3" dataField="PRODUCT_EQUIPMENTNUMBER">
         <dxo-label template="รหัส ครุภัณฑ์"></dxo-label>
       </dxi-item>
 
@@ -52,7 +52,7 @@
 
 
 
-      <dxi-item [colSpan]="6" dataField="P_DESCRIPTION" [height]="130" editorType="dxTextArea">
+      <dxi-item [colSpan]="6" dataField="PRODUCT_DESCRIPTION" [height]="130" editorType="dxTextArea">
         <dxo-label template="รายละเอียด"></dxo-label>
       </dxi-item>
 

@@ -30,7 +30,7 @@ import {
   DropdownModule,
   ProgressModule,
   SharedModule,
-  
+
 } from '@coreui/angular';
 import {
   DxButtonModule,
@@ -143,38 +143,38 @@ export class ValidationComponent implements OnInit {
 
   getProductData() {
     this.http
-      .get(`${this.url}/get_product`)
+      .get(`${this.url}/get.product`)
       .subscribe((res: any) => {
-        this.ProductData = res;
+        this.ProductData = res.data;
         // console.log("product : ", this.ProductData);
       });
   }
 
   getStatus() {
     this.http
-      .get(`${this.url}/get_status`)
+      .get(`${this.url}/get.status`)
       .subscribe((res: any) => {
-        for (let i = 0; i < res.length; i++) {
+        for (let i = 0; i < res.data.length; i++) {
           const obj: { [key: string]: string } = {
-            name: res[i].STATUS_NAME,
-            value: res[i].STATUS_ID,
+            name: res.data[i].STATUS_NAME,
+            value: res.data[i].STATUS_ID,
           };
 
           this.StatusData.push(obj);
         }
         // console.log(this.StatusData);
-        // console.log("get status :" ,res);
+        // console.log(this.StatusData);
       });
   }
 
   getCategory() {
     this.http
-      .get(`${this.url}/get_category`)
+      .get(`${this.url}/get.category`)
       .subscribe((res: any) => {
-        for (let i = 0; i < res.length; i++) {
+        for (let i = 0; i < res.data.length; i++) {
           const obj: { [key: string]: string } = {
-            name: res[i].CATEGORY_NAME,
-            value: res[i].CATEGORY_ID,
+            name: res.data[i].CATEGORY_NAME,
+            value: res.data[i].CATEGORY_ID,
           };
           this.categoryCard.push(obj);
           this.CategoryData.push(obj);
@@ -207,28 +207,28 @@ export class ValidationComponent implements OnInit {
   ProductEditForm: any = {};
 
 
+  // 11
+  GlobalID: number = 0;
+  onProductEditPopup(data: any) {
 
-  onProductEditPopup(getID: number) {
-    this.G_ID = this.ProductData[getID].P_ID;
+    this.http.get(`${this.url}/get.product/${data[1]}`).subscribe((res: any) => {
+      this.ProductEditForm = res.data
+
+    })
     this.ProductEditPopup = true;
-    this.ProductEditForm = this.ProductData[getID];
-
   }
 
-  openProductDelete(getID: number) {
-    var id = this.ProductData[getID].P_ID;
-    var name = this.ProductData[getID].P_NAME;
-
+  openProductDelete(data: any) {
     Swal.fire({
-      title: `ต้องการลบ ${name} ID ที่ ${id}`,
+      title: `ต้องการลบ "${data[2]}" ID ที่ ${data[1]}`,
       showCancelButton: true,
       confirmButtonText: 'ยืนยัน',
       cancelButtonText: 'ยกเลิก',
     }).then((result) => {
       if (result.isConfirmed) {
         this.http
-          .put(`${this.url}/put_del_product/${id}`, id)
-          .subscribe((res) => {
+          .put(`${this.url}/delete.product/${data[1]}`, data[1])
+          .subscribe((res: any) => {
             this.getProductData();
 
             return Swal.fire({
@@ -257,9 +257,13 @@ export class ValidationComponent implements OnInit {
   }
 
   onSubmitEdtiPopup() {
+
     const data = this.ProductEditForm;
+
+    // console.log("data:",data);
+    
     this.http
-      .put(`${this.url}/put_product/${this.G_ID}`, data)
+      .put(`${this.url}/put.product/${data.PRODUCT_ID}`, data)
       .subscribe((res) => {
         this.getProductData();
         this.ProductEditPopup = false;
@@ -271,44 +275,45 @@ export class ValidationComponent implements OnInit {
           timer: 1000,
         });
       });
-    // console.log(data);
 
   }
 
   showmoreData: any;
 
 
-  getShowmoreData(id: number) {
-    this.http
-      .get(`${this.url}/get_product/${id}`)
-      .subscribe((res: any) => {
-        this.showmoreData = res;
-        // console.log(this.showmoreData);
-        // console.log(res);
+  // getShowmoreData(id: number) {
+  //   this.http
+  //     .get(`${this.url}/get.product/${id}`)
+  //     .subscribe((res: any) => {
+  //       this.showmoreData = res.data;
+  //       // console.log(this.showmoreData);
+  //       // console.log(res);
 
-      });
-  }
+  //     });
+  // }
 
   temp: any;
 
-  onShowMorePopup(getID: number) {
-    var id = this.ProductData[getID].P_ID;
+  onShowMorePopup(data: any) {
+    var id = data[1];
+
+    this.http.get(`${this.url}/get.product/${id}`).subscribe((res: any) => {
+      this.showmoreData = res.data
+    })
+
     this.ShowmorePopup = true;
-    this.getShowmoreData(id)
     this.temp = this.getImage(id)
-
-    // console.log(this.temp);
-
 
   }
   // : Observable<Blob>
   imgData: any;
   getImage(id: number): void {
-    this.http.get(`${this.url}/get_img/${id}`)
+    this.http.get(`${this.url}/get.img/${id}`)
       .subscribe(
-        (response:any) => {
-          this.imgData = response.IMG_NAME;
-          // console.log(this.imgData);  // แสดงผลข้อมูลที่ได้
+        (response: any) => {
+          // console.log(response);
+
+          this.imgData = response.data.IMG_NAME;
         },
         error => {
           console.error('Error fetching image:', error);
@@ -322,9 +327,9 @@ export class ValidationComponent implements OnInit {
     // console.log(`id : ${id}`);
 
     this.http
-      .get(`${this.url}/get_product_by_Category/${id}`)
+      .get(`${this.url}/get.product.category/${id}`)
       .subscribe((res: any) => {
-        this.ProductData = res;
+        this.ProductData = res.data;
         // console.log(this.ProductData);
       });
   }

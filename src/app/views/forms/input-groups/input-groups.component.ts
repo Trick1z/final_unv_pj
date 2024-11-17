@@ -46,6 +46,7 @@ import { FormsModule } from '@angular/forms';
 import Swal from 'sweetalert2';
 import { ZXingScannerModule } from '@zxing/ngx-scanner';
 import { Result } from '@zxing/library';  // Import Result from @zxing/library
+import { subscribeOn } from 'rxjs';
 
 @Component({
   selector: 'app-input-groups',
@@ -122,9 +123,6 @@ export class InputGroupsComponent implements OnInit {
   ngOnInit(): void {
     this.getCategory();
 
-    // setTimeout(() => {
-    //   console.log('delay 3s');
-    // }, 3000); 
 
 
   }
@@ -181,7 +179,7 @@ export class InputGroupsComponent implements OnInit {
   sCode = ''
   onFindSubmit(code: string) {
     this.http
-      .get(`${this.url}/get_student/${code}`)
+      .get(`${this.url}/get.student/${code}`)
       .subscribe((res: any) => {
 
         if (res.status === 404) {
@@ -199,18 +197,16 @@ export class InputGroupsComponent implements OnInit {
             timer: 1300
           }).then(() => {
             // setTimeout(() => {
-            //   console.log('delay 2s');
             // }, 2000);
             this.ShowFindPopup = true;  // Hide the popup after the alert is closed
           });
 
-        } else if (res.status === 200) {
+        } else if (res.message === 200) {
 
-          this.findStudentData = res.data[0]
+          this.findStudentData = res.data
           this.isVisible = true
           // this.wrong = false
 
-          // console.log("sData :", this.findStudentData);
 
 
         } else {
@@ -254,8 +250,8 @@ export class InputGroupsComponent implements OnInit {
 
   findProductData() {
 
-    this.http.get(`${this.url}/get_product/status`).subscribe((res: any) => {
-      this.ProductDataID = res;
+    this.http.get(`${this.url}/get.product.status/6`).subscribe((res: any) => {
+      this.ProductDataID = res.data;
 
     });
 
@@ -263,8 +259,8 @@ export class InputGroupsComponent implements OnInit {
 
   CardButton(id: number) {
 
-    this.http.get(`${this.url}/get_product_by_Category_Status/${id}`).subscribe((res: any) => {
-      this.ProductDataID = res;
+    this.http.get(`${this.url}/get.product.category.status/${id}`).subscribe((res: any) => {
+      this.ProductDataID = res.data;
 
     });
   }
@@ -273,15 +269,14 @@ export class InputGroupsComponent implements OnInit {
 
   getCategory() {
     this.http
-      .get(`${this.url}/get_category`)
+      .get(`${this.url}/get.category`)
       .subscribe((res: any) => {
-        for (let i = 0; i < res.length; i++) {
+        for (let i = 0; i < res.data.length; i++) {
           const obj: { [key: string]: string } = {
-            name: res[i].CATEGORY_NAME,
-            value: res[i].CATEGORY_ID,
+            name: res.data[i].CATEGORY_NAME,
+            value: res.data[i].CATEGORY_ID,
           };
           this.categoryCard.push(obj);
-          // console.log(this.categoryCard);
 
         }
 
@@ -289,47 +284,49 @@ export class InputGroupsComponent implements OnInit {
       });
   }
 
-  addProductToArr(getid: number, status: string) {
-    var id;
-    var data = {}
-    var send = {
-      text: status
+  addProductToArr(data: any, index: any, status: string) {
+
+    const onGet = () => {
+      this.http.get(`${this.url}/get.product/${data[1]}`).subscribe((res: any) => {
+        return this.ProductData.push(res.data) 
+      })
     }
 
-
-    if (status == 'N') {
-      id = this.ProductDataID[getid].P_ID;
-      data = this.ProductDataID[getid];
-
-      this.ProductData.push(data);
+    const onChange = () => {
+      this.http.put(`${this.url}/put.onHold.Product.${status}/${data[1]}`, data[1])
+        .subscribe((res: any) => {
+          this.findProductData();
+          return this.ShowProductPopup = false;
+        });
+    }
+    if (status == 'Y') {
+      onGet()
+      onChange();
       this.ShowProductPopup = false;
 
-    } else if (status == 'A') {
-      id = this.ProductData[getid].P_ID;
-      data = this.ProductData[getid];
-      this.ProductData.splice(getid, 1);
+    } else if (status == 'N') {
+      this.ProductData.splice(index, 1);
+      onChange();
 
     }
 
 
-    this.http.put(`${this.url}/put_waitProduct/${id}`, send)
-      .subscribe((res: any) => {
-        this.findProductData();
-        this.ShowProductPopup = false;
-      });
+
 
   }
 
   onSave() {
 
     const data = {
-      STUDENT_INFO: this.StudentForms,
+      STUDENT_ID: this.StudentForms.STUDENT_ID,
       PRODUCT_INFO: this.ProductData,
     }
+    console.log(data);
+    
 
 
 
-    this.http.post(`${this.url}/borrow`, data)
+    this.http.post(`${this.url}/post.borrow`, data)
       .subscribe((res: any) => {
 
         return this.nevBack()
@@ -340,10 +337,9 @@ export class InputGroupsComponent implements OnInit {
 
   getProductData() {
     this.http
-      .get(`${this.url}/get_product/status`)
+      .get(`${this.url}/get.product.status/6`)
       .subscribe((res: any) => {
-        this.ProductDataID = res;
-        // console.log(this.ProductData);
+        this.ProductDataID = res.data;
       });
   }
 
@@ -355,7 +351,6 @@ export class InputGroupsComponent implements OnInit {
 
   // // Method to handle errors during the scan
   // onScanError(error: any) {
-  //   console.log('Scan error: ', error);
   // }
 
 
@@ -382,7 +377,7 @@ export class InputGroupsComponent implements OnInit {
     console.log('Scanned QR Code:', this.scannedResult);
 
   }
- 
+
 
 
 
@@ -393,7 +388,7 @@ export class InputGroupsComponent implements OnInit {
     console.error('QR Scan Error:', error);
   }
 
-  onClosePopup(){
+  onClosePopup() {
     this.ShowFindPopup = false;
     this.activeScanner = false;
   }

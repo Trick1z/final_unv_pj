@@ -91,8 +91,8 @@ export class FormControlsComponent implements OnInit {
   }
 
   getBorrow() {
-    this.http.get(`${this.url}/get_borrow`).subscribe((res: any) => {
-      this.borrowForm = res;
+    this.http.get(`${this.url}/get.borrow/N`).subscribe((res: any) => {
+      this.borrowForm = res.data;
       // console.log("bor", this.borrowForm);
 
     })
@@ -101,8 +101,8 @@ export class FormControlsComponent implements OnInit {
 
 
   getStudentData() {
-    this.http.get(`${this.url}/get_student`).subscribe((res: any) => {
-      this.studentData = res;
+    this.http.get(`${this.url}/get.student`).subscribe((res: any) => {
+      this.studentData = res.data;
       // console.log("xxxxxxxxxx",this.studentData);
 
 
@@ -111,12 +111,14 @@ export class FormControlsComponent implements OnInit {
 
   productData: any = {}
   getProductData() {
-    this.http.get(`${this.url}/get_product/status/7`).subscribe((res: any) => {
-      this.productData = res;
+    this.http.get(`${this.url}/get.product`).subscribe((res: any) => {
+      this.productData = res.data;
+      console.log(`ppp: ${this.productData}`);
+      
 
     })
   }
-
+// 11111
   displayStudentData(id: number, text: string) {
     for (let i = 0; i < this.studentData.length; i++) {
       if (id === this.studentData[i].STUDENT_ID) {
@@ -135,43 +137,18 @@ export class FormControlsComponent implements OnInit {
   }
 
 
-  // displayProductData(id: number) {
-  //   for (let j = 0; j < this.productData.length; j++) {
-  //     if (id === this.productData[j].P_ID) {
-  //       return this.productData[j].P_NAME;
-  //     }
-  //   }
-  //   return "ไม่มีในระบบ ผิดผลาด"
-  // }
-
-  // displaySerialProductData(id: number) {
-  //   for (let j = 0; j < this.productData.length; j++) {
-  //     if (id === this.productData[j].P_ID) {
-  //       return this.productData[j].P_SERIALNUMBER;
-  //     }
-  //   }
-  //   return "ไม่มีในระบบ ผิดผลาด"
-  // }
-  // displayeqProductData(id: number) {
-  //   for (let j = 0; j < this.productData.length; j++) {
-  //     if (id === this.productData[j].P_ID) {
-  //       return this.productData[j].P_EQUIPMENTNUMBER;
-  //     }
-  //   }
-  //   return "ไม่มีในระบบ ผิดผลาด"
-  // }
 
   displayproduct(id: number, text: string) {
     for (let j = 0; j < this.productData.length; j++) {
-      if (id === this.productData[j].P_ID) {
+      if (id === this.productData[j].PRODUCT_ID) {
 
         switch (text) {
           case 'name':
-            return this.productData[j].P_NAME;
+            return this.productData[j].PRODUCT_NAME;
           case 'serial':
-            return this.productData[j].P_SERIALNUMBER;
+            return this.productData[j].PRODUCT_SERIALNUMBER;
           case 'qe':
-            return this.productData[j].P_EQUIPMENTNUMBER;
+            return this.productData[j].PRODUCT_EQUIPMENTNUMBER;
 
           default:
             return "ไม่มีในระบบ ผิดผลาด"
@@ -179,38 +156,33 @@ export class FormControlsComponent implements OnInit {
       }
     }
     return "ผิดผลาด"
+    
   }
 
 
   //// ส่งคืน
 
 
-  toChange(index: number) {
+  toChange(datas:any) {
 
-    var show_id = this.borrowForm[index].LIST_ID
-    // var name = this.borrowForm[index].
+    // var show_id = this.borrowForm[index].LIST_ID
+
 
     var data = {
-      P_ID: this.borrowForm[index].P_ID,
-      LIST_ID: this.borrowForm[index].LIST_ID,
-      STUDENT_ID: this.borrowForm[index].STUDENT_ID
+      PRODUCT_ID: datas[4],
+      LIST_ID:  datas[1]
+     
     }
-    // var name = this.statusData[index].STATUS_NAME;
-
-    // console.log('data :', data);
-    // console.log(name);
-    // console.log("all:",this.statusData[index]) ;
-
 
     Swal.fire({
-      title: `ต้องการคืน ${show_id} ใช่หรือไม่ ?`,
+      title: `ต้องการคืน ID "${datas[1]}" ใช่หรือไม่ ?`,
       showCancelButton: true,
       confirmButtonText: 'ยืนยัน',
       cancelButtonText: 'ยกเลิก',
     }).then((result) => {
       if (result.isConfirmed) {
         this.http
-          .put(`${this.url}/put_borrow_back`, data)
+          .put(`${this.url}/put.borrow.back`, data)
           .subscribe((res) => {
             this.getBorrow();
 
@@ -230,17 +202,24 @@ export class FormControlsComponent implements OnInit {
   showInfoData: any = {}
   getId = 0
   imgData: any;
-  triggerPopup(getid: number) {
+
+  triggerPopup(data:any) {
+    
     const getInfo = () => {
-      this.showInfoData = this.productData[getid]
+      this.http.get(`${this.url}/get.product/${data[4]}`).subscribe((res:any) => {
+       this.showInfoData = res.data;
+       console.log("info",this.showInfoData);
+       
+      })
+      
 
     }
 
     const getImage = () => {
-      this.http.get(`${this.url}/get_img/${this.productData[getid].P_ID}`)
+      this.http.get(`${this.url}/get.img/${data[4]}`)
         .subscribe(
-          (response: any) => {
-            this.imgData = response.IMG_NAME;
+          (response: any) => {            
+            this.imgData = response.data.IMG_NAME;
             // console.log(this.imgData);  // แสดงผลข้อมูลที่ได้
           },
           error => {

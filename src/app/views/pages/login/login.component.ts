@@ -76,9 +76,10 @@ export class LoginComponent implements OnInit {
       password: this.loginForm.password
     }
 
-    this.http.post(`${this.url}/account`, data).subscribe((res: any) => {
+    // console.log(data);
+    
 
-      // console.log(res.message);
+    this.http.post(`${this.url}/post.account`, data).subscribe((res: any) => {
 
       if (res.message == 200) {
 
@@ -103,8 +104,6 @@ export class LoginComponent implements OnInit {
           timer: 1500
         });
       }
-
-      // return res
     });
 
 

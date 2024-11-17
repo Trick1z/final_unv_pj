@@ -57,29 +57,31 @@
           <dxo-editing mode="row">
           </dxo-editing>
 
-          <!-- <dxi-column dataField="P_ID" caption="ID" alignment="center" [width]="50">
+          <!-- <dxi-column dataField="PRODUCT_ID" caption="ID" alignment="center" [width]="50">
           </dxi-column> -->
 
           <div style="display: flex; " *dxTemplate="let data of 'cellTemplateDelte'">
             <button cButton color="danger"
-              (click)="addProductToArr((data.component.pageIndex() * data.component.pageSize() + data.rowIndex) , 'A' )"
+              (click)="addProductToArr(data.values, data.rowIndex ,'N' )"
               class="" style="color: white;">x</button>
           </div>
           <dxi-column [width]="50" cellTemplate="cellTemplateDelte"></dxi-column>
 
 
 
-          <dxi-column dataField="P_NAME" caption="ชื่อ" alignment="center" [width]="170">
+          <dxi-column dataField="PRODUCT_ID" caption="ID" alignment="center" [width]="50">
           </dxi-column>
-          <dxi-column dataField="P_BAND" caption="ยี้ห้อ" alignment="center" [width]="170">
+          <dxi-column dataField="PRODUCT_NAME" caption="ชื่อ" alignment="center" [width]="170">
           </dxi-column>
-          <dxi-column dataField="P_PRICE" caption="ราคา" alignment="center" [width]="170">
+          <dxi-column dataField="PRODUCT_BAND" caption="ยี้ห้อ" alignment="center" [width]="170">
           </dxi-column>
-          <dxi-column dataField="P_DOP" caption="วันที่ซื้อ" alignment="center" [width]="170">
+          <dxi-column dataField="PRODUCT_PRICE" caption="ราคา" alignment="center" [width]="170">
           </dxi-column>
-          <dxi-column dataField="P_SERIALNUMBER" caption="ซีเรียลนัมเบอร์" alignment="center" [width]="220">
+          <dxi-column dataField="PRODUCT_DOP" caption="วันที่ซื้อ" alignment="center" [width]="170">
           </dxi-column>
-          <dxi-column dataField="P_EQUIPMENTNUMBER" caption="รหัสครุภัณฑ์" alignment="center"
+          <dxi-column dataField="PRODUCT_SERIALNUMBER" caption="ซีเรียลนัมเบอร์" alignment="center" [width]="220">
+          </dxi-column>
+          <dxi-column dataField="PRODUCT_EQUIPMENTNUMBER" caption="รหัสครุภัณฑ์" alignment="center"
             [width]="220"></dxi-column>
 
           <dxo-paging [pageSize]="100"></dxo-paging>
@@ -304,29 +306,31 @@
       <dxo-editing mode="row">
       </dxo-editing>
 
-      <!-- <dxi-column dataField="P_ID" caption="ID" alignment="center" [width]="50">
+      <!-- <dxi-column dataField="PRODUCT_ID" caption="ID" alignment="center" [width]="50">
     </dxi-column> -->
 
 
       <div style="display: flex; " *dxTemplate="let data of 'cellTemplateDelte'">
         <button cButton color="success"
-          (click)="addProductToArr((data.component.pageIndex() * data.component.pageSize() + data.rowIndex) , 'N' )"
+          (click)="addProductToArr(data.values,data.rowIndex , 'Y' )"
           class="" style="color: white;">+</button>
       </div>
       <dxi-column [width]="50" cellTemplate="cellTemplateDelte"></dxi-column>
 
 
-      <dxi-column dataField="P_NAME" caption="ชื่อ" alignment="center" [width]="170">
+      <dxi-column dataField="PRODUCT_ID" caption="ID" alignment="center" [width]="50">
       </dxi-column>
-      <dxi-column dataField="P_BAND" caption="ยี้ห้อ" alignment="center" [width]="170">
+      <dxi-column dataField="PRODUCT_NAME" caption="ชื่อ" alignment="center" [width]="170">
       </dxi-column>
-      <dxi-column dataField="P_PRICE" caption="ราคา" alignment="center" [width]="170">
+      <dxi-column dataField="PRODUCT_BAND" caption="ยี้ห้อ" alignment="center" [width]="170">
       </dxi-column>
-      <dxi-column dataField="P_DOP" caption="วันที่ซื้อ" alignment="center" [width]="170">
+      <dxi-column dataField="PRODUCT_PRICE" caption="ราคา" alignment="center" [width]="170">
       </dxi-column>
-      <dxi-column dataField="P_SERIALNUMBER" caption="ซีเรียลนัมเบอร์" alignment="center" [width]="220">
+      <dxi-column dataField="PRODUCT_DOP" caption="วันที่ซื้อ" alignment="center" [width]="170">
       </dxi-column>
-      <dxi-column dataField="P_EQUIPMENTNUMBER" caption="รหัสครุภัณฑ์" alignment="center" [width]="220"></dxi-column>
+      <dxi-column dataField="PRODUCT_SERIALNUMBER" caption="ซีเรียลนัมเบอร์" alignment="center" [width]="220">
+      </dxi-column>
+      <dxi-column dataField="PRODUCT_EQUIPMENTNUMBER" caption="รหัสครุภัณฑ์" alignment="center" [width]="220"></dxi-column>
 
       <dxo-paging [pageSize]="10"></dxo-paging>
     </dx-data-grid>

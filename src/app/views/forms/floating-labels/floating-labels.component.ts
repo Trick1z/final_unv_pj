@@ -118,12 +118,12 @@ export default class FloatingLabelsComponent implements OnInit {
 
   getStatus() {
     this.http
-      .get(`${this.url}/get_status`)
+      .get(`${this.url}/get.status`)
       .subscribe((res: any) => {
-        for (let i = 0; i < res.length; i++) {
+        for (let i = 0; i < res.data.length; i++) {
           const obj: { [key: string]: string } = {
-            name: res[i].STATUS_NAME,
-            value: res[i].STATUS_ID,
+            name: res.data[i].STATUS_NAME,
+            value: res.data[i].STATUS_ID,
           };
 
           this.StatusData.push(obj);
@@ -132,12 +132,12 @@ export default class FloatingLabelsComponent implements OnInit {
   }
   getCategory() {
     this.http
-      .get(`${this.url}/get_category`)
+      .get(`${this.url}/get.category`)
       .subscribe((res: any) => {
-        for (let i = 0; i < res.length; i++) {
+        for (let i = 0; i < res.data.length; i++) {
           const obj: { [key: string]: string } = {
-            name: res[i].CATEGORY_NAME,
-            value: res[i].CATEGORY_ID,
+            name: res.data[i].CATEGORY_NAME,
+            value: res.data[i].CATEGORY_ID,
           };
 
           this.CategoryData.push(obj);
@@ -147,19 +147,8 @@ export default class FloatingLabelsComponent implements OnInit {
 
 
   async onSubmit() {
-    this.ProductForms.STUDENT_ID = 0
-    this.ProductForms.RECORD_STATUS = "A";
-    this.ProductForms.DEL_FRAG = "N";
-    this.ProductForms.CREATE_DATE = "2024-01-01T00:00:00.920Z";
-    this.ProductForms.UPDATE_DATE = "2024-01-01T00:00:00.920Z";
     this.ProductForms.IMG = this.imageUrl
-
     const data = this.ProductForms;
-
-    // console.log(data);
-    // console.log(this.imageUrl);
-    
-
 
     Swal.fire({
       title: `ยืนยันการเพิ่มข้อมูล ?`,
@@ -171,9 +160,8 @@ export default class FloatingLabelsComponent implements OnInit {
       if (result.isConfirmed) {
 
         this.http
-          .post(`${this.url}/add_product`, data)
+          .post(`${this.url}/post.product`, data)
           .subscribe((res) => {
-            // console.log("res", res);
             Swal.fire({
               icon: 'success',
               title: 'เพิ่มข้อมูลแล้ว',

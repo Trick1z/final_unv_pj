@@ -52,8 +52,8 @@ export class RangesComponent implements OnInit {
   }
 
   getBorrow() {
-    this.http.get(`${this.url}/get_borrow_y`).subscribe((res: any) => {
-      this.borrowForm = res;
+    this.http.get(`${this.url}/get.borrow/Y`).subscribe((res: any) => {
+      this.borrowForm = res.data;
       // console.log("bor", this.borrowForm);
 
     })
@@ -62,8 +62,8 @@ export class RangesComponent implements OnInit {
 
 
   getStudentData() {
-    this.http.get(`${this.url}/get_student`).subscribe((res: any) => {
-      this.studentData = res;
+    this.http.get(`${this.url}/get.student`).subscribe((res: any) => {
+      this.studentData = res.data;
       // console.log("xxxxxxxxxx",this.studentData);
 
 
@@ -72,8 +72,8 @@ export class RangesComponent implements OnInit {
 
   productData: any = {}
   getProductData() {
-    this.http.get(`${this.url}/get_product`).subscribe((res: any) => {
-      this.productData = res;
+    this.http.get(`${this.url}/get.product`).subscribe((res: any) => {
+      this.productData = res.data;
 
     })
   }
@@ -95,26 +95,25 @@ export class RangesComponent implements OnInit {
     }
   }
 
-
-
   displayproduct(id: number, text: string) {
     for (let j = 0; j < this.productData.length; j++) {
-      if (id === this.productData[j].P_ID) {
+      if (id === this.productData[j].PRODUCT_ID) {
 
         switch (text) {
           case 'name':
-            return this.productData[j].P_NAME;
+            return this.productData[j].PRODUCT_NAME;
           case 'serial':
-            return this.productData[j].P_SERIALNUMBER;
+            return this.productData[j].PRODUCT_SERIALNUMBER;
           case 'qe':
-            return this.productData[j].P_EQUIPMENTNUMBER;
+            return this.productData[j].PRODUCT_EQUIPMENTNUMBER;
 
           default:
-            return "ไม่มีในระบบ "
+            return "ไม่มีในระบบ ผิดผลาด"
         }
       }
     }
     return "ผิดผลาด"
+    
   }
 
 
@@ -124,7 +123,7 @@ export class RangesComponent implements OnInit {
     const msg = ['all', 'returned', 'not_returned']
 
     for (let index = 0; index < msg.length; index++) {
-      this.http.get(`${this.url}/count/${msg[index]}`).subscribe((res: any) => {
+      this.http.get(`${this.url}/count.${msg[index]}`).subscribe((res: any) => {
 
         const obj: { [key: string]: string } = {
           name: msg[index],

@@ -22,9 +22,8 @@
         </dxo-editing>
         <dxo-editing mode="row">
         </dxo-editing>
-        <!-- (click)="addProductToArr((data.component.pageIndex() * data.component.pageSize() + data.rowIndex) , 'A' ) -->
         <div style="display: flex; " *dxTemplate="let data of 'cellTemplateDelte'">
-          <button (click)="triggerPopup(data.component.pageIndex() * data.component.pageSize() + data.rowIndex)" cButton
+          <button (click)="triggerPopup(data.values)" cButton
             color="info" style="color: white;">info</button>
         </div>
         <dxi-column [width]="70" cellTemplate="cellTemplateDelte"></dxi-column>
@@ -46,28 +45,28 @@
           </div>
         </div>
 
-        <dxi-column dataField="P_ID" caption="ชื่อ ครภ" alignment="center"
+        <dxi-column dataField="PRODUCT_ID" caption="ชื่อ ครภ" alignment="center"
           cellTemplate="cellProductStatus"></dxi-column>
         <div *dxTemplate="let cell of 'cellProductStatus'">
           <div class="">
-            <span>{{displayproduct((cell.data.P_ID),'name')}}</span>
+            <span>{{displayproduct((cell.data.PRODUCT_ID),'name')}}</span>
           </div>
         </div>
 
 
-        <dxi-column dataField="P_ID_1" caption="Serial Number" alignment="center"
+        <dxi-column dataField="PRODUCT_ID_1" caption="Serial Number" alignment="center"
           cellTemplate="cellSerialProductStatus"></dxi-column>
         <div *dxTemplate="let cell of 'cellSerialProductStatus'">
           <div class="">
-            <span>{{displayproduct((cell.data.P_ID) ,'serial' )}}</span>
+            <span>{{displayproduct((cell.data.PRODUCT_ID) ,'serial' )}}</span>
           </div>
         </div>
 
-        <dxi-column dataField="P_ID_2" caption="รหัส ครภ" alignment="center"
+        <dxi-column dataField="PRODUCT_ID_2" caption="รหัส ครภ" alignment="center"
           cellTemplate="celleqProductStatus"></dxi-column>
         <div *dxTemplate="let cell of 'celleqProductStatus'">
           <div class="">
-            <span>{{displayproduct((cell.data.P_ID) , 'qe')}}</span>
+            <span>{{displayproduct((cell.data.PRODUCT_ID) , 'qe')}}</span>
           </div>
         </div>
 
@@ -78,32 +77,11 @@
             {{convertTime(cell.data.CREATE_DATE)}}
           </div>
         </div>
-
-
-        <!-- <dxi-column dataField="CREATE_DATE" caption="วันที่ยืม" alignment="center" [width]="200"></dxi-column> -->
-
         <div style="display: flex; " *dxTemplate="let data of 'cellchangestatus'">
-          <button (click)="toChange((data.component.pageIndex() * data.component.pageSize() + data.rowIndex) )" cButton
+          <button (click)="toChange(data.values)" cButton
             color="danger" style="color: white;">คืน</button>
         </div>
         <dxi-column [width]="70" cellTemplate="cellchangestatus"></dxi-column>
-
-
-
-
-        <!-- <dxi-column dataField="P_NAME" caption="ชื่อ" alignment="center" [width]="170">
-        </dxi-column>
-        <dxi-column dataField="P_BAND" caption="ยี้ห้อ" alignment="center" [width]="170">
-        </dxi-column>
-        <dxi-column dataField="P_PRICE" caption="ราคา" alignment="center" [width]="170">
-        </dxi-column>
-        <dxi-column dataField="P_DOP" caption="วันที่ซื้อ" alignment="center" [width]="170">
-        </dxi-column>
-        <dxi-column dataField="P_SERIALNUMBER" caption="ซีเรียลนัมเบอร์" alignment="center" [width]="220">
-        </dxi-column>
-        <dxi-column dataField="P_EQUIPMENTNUMBER" caption="รหัสครุภัณฑ์" alignment="center"
-          [width]="220"></dxi-column> -->
-
         <dxo-paging [pageSize]="100"></dxo-paging>
       </dx-data-grid>
     </div>
@@ -123,44 +101,29 @@
   <div class="">
     <dx-form [formData]="showInfoData" [readOnly]="true" [colCount]="6">
 
-      <dxi-item [colSpan]="3" dataField="P_NAME">
+      <dxi-item [colSpan]="3" dataField="PRODUCT_NAME">
         <dxo-label template="ชื่อ ครุภัณฑ์"></dxo-label>
       </dxi-item>
-      <dxi-item [colSpan]="3" dataField="P_DESCRIPTION">
+      <dxi-item [colSpan]="3" dataField="PRODUCT_DESCRIPTION">
         <dxo-label template="คำอธิบาย"></dxo-label>
       </dxi-item>
 
-      <dxi-item [colSpan]="2" dataField="P_DOP">
+      <dxi-item [colSpan]="2" dataField="PRODUCT_DOP">
         <dxo-label template="วันที่ซื้อ"></dxo-label>
-        <!-- <div class="convertTime">
-          <span>{{convertTime(showInfoData.P_DOP)}}</span>
-        </div> -->
+
       </dxi-item>
 
-
-      <!-- <dxi-column dataField="CREATE_DATE" caption="วันที่ยืม" alignment="center" [width]="200"
-          cellTemplate="cellCreate_date"></dxi-column>
-        <div *dxTemplate="let cell of 'cellCreate_date'">
-          <div class="">
-            {{convertTime(cell.data.CREATE_DATE)}}
-          </div>
-        </div> -->
-
-
-
-
-
-      <dxi-item [colSpan]="2" dataField="P_PRICE">
+      <dxi-item [colSpan]="2" dataField="PRODUCT_PRICE">
         <dxo-label template="ราคา"></dxo-label>
       </dxi-item>
-      <dxi-item [colSpan]="2" dataField="P_BAND">
+      <dxi-item [colSpan]="2" dataField="PRODUCT_BAND">
         <dxo-label template="ยี้ห้อ"></dxo-label>
       </dxi-item>
 
-      <dxi-item [colSpan]="3" dataField="P_SERIALNUMBER">
+      <dxi-item [colSpan]="3" dataField="PRODUCT_SERIALNUMBER">
         <dxo-label template="ซีเรียลนัมเบอร์"></dxo-label>
       </dxi-item>
-      <dxi-item [colSpan]="3" dataField="P_EQUIPMENTNUMBER">
+      <dxi-item [colSpan]="3" dataField="PRODUCT_EQUIPMENTNUMBER">
         <dxo-label template="เลขครุภัณฑ์"></dxo-label>
       </dxi-item>
     </dx-form>

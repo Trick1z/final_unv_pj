@@ -20,10 +20,13 @@
         <dxi-column dataField="CATEGORY_DESCRIPTION"></dxi-column>
         <div *dxTemplate="let data of 'cellTemplateDelte'">
           <button cButton color="secondary"
-            (click)="onCategoryEditPopup(data.component.pageIndex() * data.component.pageSize() + data.rowIndex)"
+            (click)="onCategoryEditPopup(data.values)"
             class="white-text" style="margin-right: 10px;">แก้ไข</button>
+          <!-- <button cButton color="secondary"
+            (click)="onCategoryEditPopup(data.component.pageIndex() * data.component.pageSize() + data.rowIndex)"
+            class="white-text" style="margin-right: 10px;">แก้ไข</button> -->
           <button cButton color="danger"
-            (click)="openCategoryDelete(data.component.pageIndex() * data.component.pageSize() + data.rowIndex)"
+            (click)="openCategoryDelete(data.values)"
             class="white-text" >ลบ</button>
         </div>
         <dxi-column [width]="130" cellTemplate="cellTemplateDelte"></dxi-column>
@@ -114,10 +117,11 @@
         <dxi-column dataField="STATUS_DESCRIPTION"></dxi-column>
         <div *dxTemplate="let data of 'cellTemplateDelte'">
           <button cButton color="secondary"
-            (click)="onStatusEditPopup(data.component.pageIndex() * data.component.pageSize() + data.rowIndex)"
+            (click)="onStatusEditPopup(data.values)"
             class="white-text" style="margin-right: 10px;">แก้ไข</button>
+          
           <button cButton color="danger"
-            (click)="openStatusDelete(data.component.pageIndex() * data.component.pageSize() + data.rowIndex)"
+            (click)="openStatusDelete(data.values)"
             class="white-text" >ลบ</button>
         </div>
         <dxi-column [width]="130" cellTemplate="cellTemplateDelte"></dxi-column>

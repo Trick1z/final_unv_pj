@@ -25,24 +25,32 @@
 </div> -->
 
   <div class="row">
-    <div  class="col-md-3" (click)="getProductData()">
-      <div class="card-counter info" style="box-shadow: 2px 2px 2px #b2b2b2; border-radius: 10px;">
+    <div class="col-md-3" (click)="getProductData()">
+      <div
+        class="card-counter info"
+        style="box-shadow: 2px 2px 2px #b2b2b2; border-radius: 10px"
+      >
         <i class="fa fa-users"></i>
         <span class="count-numbers">ทั้งหมด</span>
         <span class="count-name">รายการทั้งหมด</span>
       </div>
     </div>
 
-    <div  class="col-md-3" *ngFor="let item of categoryCard ; index as i" (click)="CardButton(item.value)">
-      <div class="card-counter info" style="box-shadow: 2px 2px 2px #b2b2b2; border-radius: 10px;">
+    <div
+      class="col-md-3"
+      *ngFor="let item of categoryCard; index as i"
+      (click)="CardButton(item.value)"
+    >
+      <div
+        class="card-counter info"
+        style="box-shadow: 2px 2px 2px #b2b2b2; border-radius: 10px"
+      >
         <i class="fa fa-users"></i>
-        <span class="count-numbers">{{item.name}}</span>
-        <span class="count-name">{{item.name}}</span>
+        <span class="count-numbers">{{ item.name }}</span>
+        <span class="count-name">{{ item.name }}</span>
       </div>
     </div>
-
   </div>
-
 </div>
 
 <div class="empty" style="margin: 20px"></div>
@@ -120,48 +128,45 @@
             <button
               cButton
               color="info"
-              (click)="
-                onShowMorePopup(
-                  data.component.pageIndex() * data.component.pageSize() +
-                    data.rowIndex
-                )
-              "
+              (click)="onShowMorePopup(data.values)"
               class="white-text"
               style="margin-right: 5px"
             >
               ข้อมูล
             </button>
+            <!-- data.component.pageIndex() * data.component.pageSize() +
+                    data.rowIndex -->
           </div>
           <dxi-column [width]="80" cellTemplate="cellTemplateShow"></dxi-column>
 
           <dxi-column
-            dataField="P_ID"
+            dataField="PRODUCT_ID"
             caption="ID"
             alignment="center"
             [width]="50"
           >
           </dxi-column>
           <dxi-column
-            dataField="P_NAME"
+            dataField="PRODUCT_NAME"
             caption="ชื่อ"
             alignment="center"
             [width]="170"
           >
           </dxi-column>
-          <!-- <dxi-column dataField="P_DESCRIPTION" caption="คำอธิบาย" [width]="70"></dxi-column>
-          <dxi-column dataField="P_DOP" caption="วันที่ซี้อ" [width]="70"></dxi-column>
-          <dxi-column dataField=" P_PRICE" caption="ราคา" [width]="70"></dxi-column> -->
+          <!-- <dxi-column dataField="PRODUCT_DESCRIPTION" caption="คำอธิบาย" [width]="70"></dxi-column>
+          <dxi-column dataField="PRODUCT_DOP" caption="วันที่ซี้อ" [width]="70"></dxi-column>
+          <dxi-column dataField=" PRODUCT_PRICE" caption="ราคา" [width]="70"></dxi-column> -->
           <dxi-column
-            dataField="P_SERIALNUMBER"
+            dataField="PRODUCT_SERIALNUMBER"
             caption="รหัส"
             alignment="center"
           ></dxi-column>
           <dxi-column
-            dataField="P_EQUIPMENTNUMBER"
+            dataField="PRODUCT_EQUIPMENTNUMBER"
             caption="รหัส 2"
             alignment="center"
           ></dxi-column>
-          <!-- <dxi-column dataField="P_BAND" caption="ยี้ห้อ" [width]="70"></dxi-column> -->
+          <!-- <dxi-column dataField="PRODUCT_BAND" caption="ยี้ห้อ" [width]="70"></dxi-column> -->
 
           <dxi-column
             dataField="STATUS_ID"
@@ -198,8 +203,7 @@
               color="secondary"
               (click)="
                 onProductEditPopup(
-                  data.component.pageIndex() * data.component.pageSize() +
-                    data.rowIndex
+                  data.values
                 )
               "
               class="white-text"
@@ -212,11 +216,7 @@
               cButton
               color="danger"
               (click)="
-                openProductDelete(
-                  data.component.pageIndex() * data.component.pageSize() +
-                    data.rowIndex
-                )
-              "
+                openProductDelete(data.values)"
               class="white-text"
             >
               ลบ
@@ -248,19 +248,19 @@
 >
   <div class="">
     <dx-form [formData]="ProductEditForm" [colCount]="6">
-      <dxi-item [colSpan]="2" dataField="P_NAME">
+      <dxi-item [colSpan]="2" dataField="PRODUCT_NAME">
         <dxo-label template="ชื่อ ครุภัณฑ์"></dxo-label>
       </dxi-item>
 
-      <dxi-item [colSpan]="2" dataField="P_PRICE">
+      <dxi-item [colSpan]="2" dataField="PRODUCT_PRICE">
         <dxo-label template="ราคา"></dxo-label>
       </dxi-item>
 
-      <dxi-item [colSpan]="2" dataField="P_BAND">
+      <dxi-item [colSpan]="2" dataField="PRODUCT_BAND">
         <dxo-label template="ยี้ห้อ"></dxo-label>
       </dxi-item>
 
-      <dxi-item [colSpan]="2" dataField="P_DOP" editorType="dxDateBox">
+      <dxi-item [colSpan]="2" dataField="PRODUCT_DOP" editorType="dxDateBox">
         <dxo-label template="วันที่ซื้อ"></dxo-label>
       </dxi-item>
 
@@ -288,16 +288,16 @@
         ></dx-select-box>
       </dxi-item>
 
-      <dxi-item [colSpan]="3" dataField="P_SERIALNUMBER">
+      <dxi-item [colSpan]="3" dataField="PRODUCT_SERIALNUMBER">
         <dxo-label template="Serial Number"></dxo-label>
       </dxi-item>
-      <dxi-item [colSpan]="3" dataField="P_EQUIPMENTNUMBER">
+      <dxi-item [colSpan]="3" dataField="PRODUCT_EQUIPMENTNUMBER">
         <dxo-label template="รหัส ครุภัณฑ์"></dxo-label>
       </dxi-item>
 
       <dxi-item
         [colSpan]="6"
-        dataField="P_DESCRIPTION"
+        dataField="PRODUCT_DESCRIPTION"
         [height]="130"
         editorType="dxTextArea"
       >
@@ -340,27 +340,27 @@
 
   <div class="">
     <dx-form [formData]="showmoreData" [readOnly]="true" [colCount]="6">
-      <dxi-item [colSpan]="3" dataField="P_NAME">
+      <dxi-item [colSpan]="3" dataField="PRODUCT_NAME">
         <dxo-label template="ชื่อ ครุภัณฑ์"></dxo-label>
       </dxi-item>
-      <dxi-item [colSpan]="3" dataField="P_DESCRIPTION">
+      <dxi-item [colSpan]="3" dataField="PRODUCT_DESCRIPTION">
         <dxo-label template="คำอธิบาย"></dxo-label>
       </dxi-item>
 
-      <dxi-item [colSpan]="2" dataField="P_DOP">
+      <dxi-item [colSpan]="2" dataField="PRODUCT_DOP">
         <dxo-label template="วันที่ซื้อ"></dxo-label>
       </dxi-item>
-      <dxi-item [colSpan]="2" dataField="P_PRICE">
+      <dxi-item [colSpan]="2" dataField="PRODUCT_PRICE">
         <dxo-label template="ราคา"></dxo-label>
       </dxi-item>
-      <dxi-item [colSpan]="2" dataField="P_BAND">
+      <dxi-item [colSpan]="2" dataField="PRODUCT_BAND">
         <dxo-label template="ยี้ห้อ"></dxo-label>
       </dxi-item>
 
-      <dxi-item [colSpan]="3" dataField="P_SERIALNUMBER">
+      <dxi-item [colSpan]="3" dataField="PRODUCT_SERIALNUMBER">
         <dxo-label template="ซีเรียลนัมเบอร์"></dxo-label>
       </dxi-item>
-      <dxi-item [colSpan]="3" dataField="P_EQUIPMENTNUMBER">
+      <dxi-item [colSpan]="3" dataField="PRODUCT_EQUIPMENTNUMBER">
         <dxo-label template="เลขครุภัณฑ์"></dxo-label>
       </dxi-item>
     </dx-form>

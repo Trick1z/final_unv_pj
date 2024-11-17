@@ -71,28 +71,28 @@
           </div>
         </div>
 
-        <dxi-column dataField="P_ID" caption="ชื่อ ครภ" alignment="center"
+        <dxi-column dataField="PRODUCT_ID" caption="ชื่อ ครภ" alignment="center"
           cellTemplate="cellProductStatus"></dxi-column>
         <div *dxTemplate="let cell of 'cellProductStatus'">
           <div class="">
-            <span>{{displayproduct((cell.data.P_ID),'name')}}</span>
+            <span>{{displayproduct((cell.data.PRODUCT_ID),'name')}}</span>
           </div>
         </div>
 
 
-        <dxi-column dataField="P_ID_1" caption="Serial Number" alignment="center"
+        <dxi-column dataField="PRODUCT_ID_1" caption="Serial Number" alignment="center"
           cellTemplate="cellSerialProductStatus"></dxi-column>
         <div *dxTemplate="let cell of 'cellSerialProductStatus'">
           <div class="">
-            <span>{{displayproduct((cell.data.P_ID) ,'serial' )}}</span>
+            <span>{{displayproduct((cell.data.PRODUCT_ID) ,'serial' )}}</span>
           </div>
         </div>
 
-        <dxi-column dataField="P_ID_3" caption="รหัส ครภ" alignment="center"
+        <dxi-column dataField="PRODUCT_ID_3" caption="รหัส ครภ" alignment="center"
           cellTemplate="celleqProductStatus"></dxi-column>
         <div *dxTemplate="let cell of 'celleqProductStatus'">
           <div class="">
-            <span>{{displayproduct((cell.data.P_ID) , 'qe')}}</span>
+            <span>{{displayproduct((cell.data.PRODUCT_ID) , 'qe')}}</span>
           </div>
         </div>
 
