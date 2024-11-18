@@ -80,12 +80,11 @@ export class LoginComponent implements OnInit {
     
 
     this.http.post(`${this.url}/post.account`, data).subscribe((res: any) => {
+      console.log(res);
+      
 
       if (res.message == 200) {
-
-
-
-        sessionStorage.setItem("status", JSON.stringify(res))
+        sessionStorage.setItem("status", JSON.stringify(res.data[0]))
         this.route.navigateByUrl('forms/form-control');
         return Swal.fire({
           position: "center",
@@ -94,7 +93,6 @@ export class LoginComponent implements OnInit {
           showConfirmButton: false,
           timer: 1000
         });
-
       } else {
         return  Swal.fire({
           position: "center",

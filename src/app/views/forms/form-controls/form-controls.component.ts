@@ -93,7 +93,7 @@ export class FormControlsComponent implements OnInit {
   getBorrow() {
     this.http.get(`${this.url}/get.borrow/N`).subscribe((res: any) => {
       this.borrowForm = res.data;
-      // console.log("bor", this.borrowForm);
+      console.log("bor", this.borrowForm);
 
     })
   }
@@ -102,7 +102,7 @@ export class FormControlsComponent implements OnInit {
 
   getStudentData() {
     this.http.get(`${this.url}/get.student`).subscribe((res: any) => {
-      this.studentData = res.data;
+      this.studentData = res;
       // console.log("xxxxxxxxxx",this.studentData);
 
 
@@ -112,7 +112,7 @@ export class FormControlsComponent implements OnInit {
   productData: any = {}
   getProductData() {
     this.http.get(`${this.url}/get.product`).subscribe((res: any) => {
-      this.productData = res.data;
+      this.productData = res;
       console.log(`ppp: ${this.productData}`);
       
 
@@ -207,7 +207,7 @@ export class FormControlsComponent implements OnInit {
     
     const getInfo = () => {
       this.http.get(`${this.url}/get.product/${data[4]}`).subscribe((res:any) => {
-       this.showInfoData = res.data;
+       this.showInfoData = res.data[0];
        console.log("info",this.showInfoData);
        
       })
@@ -219,7 +219,7 @@ export class FormControlsComponent implements OnInit {
       this.http.get(`${this.url}/get.img/${data[4]}`)
         .subscribe(
           (response: any) => {            
-            this.imgData = response.data.IMG_NAME;
+            this.imgData = response.data[0].IMG_NAME;
             // console.log(this.imgData);  // แสดงผลข้อมูลที่ได้
           },
           error => {

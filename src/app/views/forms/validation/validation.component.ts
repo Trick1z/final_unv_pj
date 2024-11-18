@@ -145,7 +145,7 @@ export class ValidationComponent implements OnInit {
     this.http
       .get(`${this.url}/get.product`)
       .subscribe((res: any) => {
-        this.ProductData = res.data;
+        this.ProductData = res;
         // console.log("product : ", this.ProductData);
       });
   }
@@ -154,10 +154,10 @@ export class ValidationComponent implements OnInit {
     this.http
       .get(`${this.url}/get.status`)
       .subscribe((res: any) => {
-        for (let i = 0; i < res.data.length; i++) {
+        for (let i = 0; i < res.length; i++) {
           const obj: { [key: string]: string } = {
-            name: res.data[i].STATUS_NAME,
-            value: res.data[i].STATUS_ID,
+            name: res[i].STATUS_NAME,
+            value: res[i].STATUS_ID,
           };
 
           this.StatusData.push(obj);
@@ -171,10 +171,10 @@ export class ValidationComponent implements OnInit {
     this.http
       .get(`${this.url}/get.category`)
       .subscribe((res: any) => {
-        for (let i = 0; i < res.data.length; i++) {
+        for (let i = 0; i < res.length; i++) {
           const obj: { [key: string]: string } = {
-            name: res.data[i].CATEGORY_NAME,
-            value: res.data[i].CATEGORY_ID,
+            name: res[i].CATEGORY_NAME,
+            value: res[i].CATEGORY_ID,
           };
           this.categoryCard.push(obj);
           this.CategoryData.push(obj);
@@ -212,7 +212,7 @@ export class ValidationComponent implements OnInit {
   onProductEditPopup(data: any) {
 
     this.http.get(`${this.url}/get.product/${data[1]}`).subscribe((res: any) => {
-      this.ProductEditForm = res.data
+      this.ProductEditForm = res.data[0]
 
     })
     this.ProductEditPopup = true;
@@ -298,7 +298,8 @@ export class ValidationComponent implements OnInit {
     var id = data[1];
 
     this.http.get(`${this.url}/get.product/${id}`).subscribe((res: any) => {
-      this.showmoreData = res.data
+      
+      this.showmoreData = res.data[0]
     })
 
     this.ShowmorePopup = true;
@@ -313,7 +314,7 @@ export class ValidationComponent implements OnInit {
         (response: any) => {
           // console.log(response);
 
-          this.imgData = response.data.IMG_NAME;
+          this.imgData = response.data[0].IMG_NAME;
         },
         error => {
           console.error('Error fetching image:', error);

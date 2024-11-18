@@ -89,8 +89,8 @@ export class ChecksRadiosComponent implements OnInit {
     this.http
       .get(`${this.url}/get.category`)
       .subscribe((res: any) => {
-        this.categoryData = res.data;
-        // console.log("res:",res);
+        this.categoryData = res;
+        console.log("res:",res);
         // console.log("category :",this.categoryData);
 
       });
@@ -187,7 +187,7 @@ export class ChecksRadiosComponent implements OnInit {
     this.http
       .get(`${this.url}/get.status`)
       .subscribe((res: any) => {
-        this.statusData = res.data;
+        this.statusData = res;
       });
   }
 

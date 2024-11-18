@@ -8,6 +8,7 @@ import { HttpClient, HttpClientModule } from '@angular/common/http';
 import { NgFor } from '@angular/common';
 import { forEach } from 'lodash-es';
 import { count } from 'rxjs';
+import { int } from '@zxing/library/esm/customTypings';
 
 @Component({
   selector: 'app-ranges',
@@ -55,7 +56,7 @@ export class RangesComponent implements OnInit {
   getBorrow() {
     this.http.get(`${this.url}/get.borrow/Y`).subscribe((res: any) => {
       this.borrowForm = res.data;
-      // console.log("bor", this.borrowForm);
+      console.log("bor", this.borrowForm);
 
     })
   }
@@ -64,7 +65,7 @@ export class RangesComponent implements OnInit {
 
   getStudentData() {
     this.http.get(`${this.url}/get.student`).subscribe((res: any) => {
-      this.studentData = res.data;
+      this.studentData = res;
       // console.log("xxxxxxxxxx",this.studentData);
 
 
@@ -74,7 +75,7 @@ export class RangesComponent implements OnInit {
   productData: any = {}
   getProductData() {
     this.http.get(`${this.url}/get.product`).subscribe((res: any) => {
-      this.productData = res.data;
+      this.productData = res;
 
     })
   }
@@ -118,11 +119,14 @@ export class RangesComponent implements OnInit {
   }
 
 
-  counts: any = {};
-
+  counts: { key: string, value: any }[] = [];
+  
   get_count() {
     this.http.get(`${this.url}/count.borrow`).subscribe((res:any) => {
-      this.counts = res.data
+      // this.counts = res.data[0]
+
+      this.counts = Object.entries(res.data[0]).map(([key, value]) => ({ key, value }));
+
       console.log("count" , this.counts);
       
     })

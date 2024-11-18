@@ -181,7 +181,7 @@ export class InputGroupsComponent implements OnInit {
     this.http
       .get(`${this.url}/get.student/${code}`)
       .subscribe((res: any) => {
-
+        
         if (res.status === 404) {
           this.isVisible = false
 
@@ -203,7 +203,7 @@ export class InputGroupsComponent implements OnInit {
 
         } else if (res.message === 200) {
 
-          this.findStudentData = res.data
+          this.findStudentData = res.data[0]
           this.isVisible = true
           // this.wrong = false
 
@@ -251,6 +251,8 @@ export class InputGroupsComponent implements OnInit {
   findProductData() {
 
     this.http.get(`${this.url}/get.product.status/6`).subscribe((res: any) => {
+      // console.log(res);
+      
       this.ProductDataID = res.data;
 
     });
@@ -260,6 +262,8 @@ export class InputGroupsComponent implements OnInit {
   CardButton(id: number) {
 
     this.http.get(`${this.url}/get.product.category.status/${id}`).subscribe((res: any) => {
+      console.log(res);
+      
       this.ProductDataID = res.data;
 
     });
@@ -271,10 +275,10 @@ export class InputGroupsComponent implements OnInit {
     this.http
       .get(`${this.url}/get.category`)
       .subscribe((res: any) => {
-        for (let i = 0; i < res.data.length; i++) {
+        for (let i = 0; i < res.length; i++) {
           const obj: { [key: string]: string } = {
-            name: res.data[i].CATEGORY_NAME,
-            value: res.data[i].CATEGORY_ID,
+            name: res[i].CATEGORY_NAME,
+            value: res[i].CATEGORY_ID,
           };
           this.categoryCard.push(obj);
 
@@ -288,13 +292,16 @@ export class InputGroupsComponent implements OnInit {
 
     const onGet = () => {
       this.http.get(`${this.url}/get.product/${data[1]}`).subscribe((res: any) => {
-        return this.ProductData.push(res.data) 
+        console.log(res);
+        
+        return this.ProductData.push(res.data[0]) 
       })
     }
 
     const onChange = () => {
       this.http.put(`${this.url}/put.onHold.Product.${status}/${data[1]}`, data[1])
         .subscribe((res: any) => {
+          
           this.findProductData();
           return this.ShowProductPopup = false;
         });
@@ -303,16 +310,10 @@ export class InputGroupsComponent implements OnInit {
       onGet()
       onChange();
       this.ShowProductPopup = false;
-
     } else if (status == 'N') {
       this.ProductData.splice(index, 1);
       onChange();
-
     }
-
-
-
-
   }
 
   onSave() {

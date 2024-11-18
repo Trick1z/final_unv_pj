@@ -120,10 +120,10 @@ export default class FloatingLabelsComponent implements OnInit {
     this.http
       .get(`${this.url}/get.status`)
       .subscribe((res: any) => {
-        for (let i = 0; i < res.data.length; i++) {
+        for (let i = 0; i < res.length; i++) {
           const obj: { [key: string]: string } = {
-            name: res.data[i].STATUS_NAME,
-            value: res.data[i].STATUS_ID,
+            name: res[i].STATUS_NAME,
+            value: res[i].STATUS_ID,
           };
 
           this.StatusData.push(obj);
@@ -134,10 +134,10 @@ export default class FloatingLabelsComponent implements OnInit {
     this.http
       .get(`${this.url}/get.category`)
       .subscribe((res: any) => {
-        for (let i = 0; i < res.data.length; i++) {
+        for (let i = 0; i < res.length; i++) {
           const obj: { [key: string]: string } = {
-            name: res.data[i].CATEGORY_NAME,
-            value: res.data[i].CATEGORY_ID,
+            name: res[i].CATEGORY_NAME,
+            value: res[i].CATEGORY_ID,
           };
 
           this.CategoryData.push(obj);
