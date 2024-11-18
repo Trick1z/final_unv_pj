@@ -202,7 +202,6 @@ export class LayoutComponent {
   //     Detail : this._popupDataDetailArr
   //   }
 
-  //   console.log('sendWork : ' , JSON.stringify(this.temp));
 
   //   return localStorage.setItem('api' , JSON.stringify(this.temp));
 
@@ -232,39 +231,7 @@ export class LayoutComponent {
     this._popupDataDetailArr = [];
   }
 
-  // sendData() {
-  //   Swal.fire({
-  //     title: 'ส่งข้อมูลหรือไม่ ?',
-  //     showDenyButton: false,
-  //     showCancelButton: true,
-  //     confirmButtonText: 'ส่งข้อมูล',
-  //     cancelButtonText: 'ยกเลิก',
-  //   }).then((result) => {
-  //     if (result.isConfirmed) {
-  //       this.temp = {
-  //         Title: this.titleData,
-  //         ParameterDetail: this._popupDataArr,
-  //         Detail: this._popupDataDetailArr,
-  //         Json: {
-  //           JSON: this.JsonData.body,
-  //         },
-  //       };
 
-  //       console.log('temp :', this.temp);
-
-  //       // console.log('sendWork : ', JSON.stringify(this.temp));
-
-  //       // localStorage.setItem('api', JSON.stringify(this.temp));
-  //       this.http
-  //         .post('http://localhost:52169/api/AddData', this.temp)
-  //         .subscribe((res) => console.log(res));
-
-  //       return this.clearForm(), Swal.fire('เสร็จสิ้น', '', 'success');
-  //     }
-
-  //     return;
-  //   });
-  // }
 
   sendData() {
     this.temp = {
@@ -276,24 +243,6 @@ export class LayoutComponent {
       //   JSON: this.JsonData.body,
       // },
     };
-
-    this.http
-      .post('http://localhost:52169/api/NewAdd/Main', this.temp)
-      .subscribe((data) => console.log('seend main', data));
-
-    // console.log(this.temp);
-
-    this.titleData = {
-      title: '',
-      title_description: '',
-      category_id: 0,
-    };
-    this._popupDataSubTitleDataArr = [];
-
-
-
-
-
 
     }
 

@@ -90,8 +90,6 @@ export class ChecksRadiosComponent implements OnInit {
       .get(`${this.url}/get.category`)
       .subscribe((res: any) => {
         this.categoryData = res;
-        console.log("res:",res);
-        // console.log("category :",this.categoryData);
 
       });
   }
@@ -99,7 +97,6 @@ export class ChecksRadiosComponent implements OnInit {
   // CatePopupForm
   categoryOnSubmit() {
     var data = this.addCateForm;
-    // console.log(this.addCateForm);
     this.http
       .post(`${this.url}/post.category`, data)
       .subscribe((res) => {

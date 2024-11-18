@@ -146,7 +146,6 @@ export class ValidationComponent implements OnInit {
       .get(`${this.url}/get.product`)
       .subscribe((res: any) => {
         this.ProductData = res;
-        // console.log("product : ", this.ProductData);
       });
   }
 
@@ -162,8 +161,6 @@ export class ValidationComponent implements OnInit {
 
           this.StatusData.push(obj);
         }
-        // console.log(this.StatusData);
-        // console.log(this.StatusData);
       });
   }
 
@@ -179,8 +176,6 @@ export class ValidationComponent implements OnInit {
           this.categoryCard.push(obj);
           this.CategoryData.push(obj);
         }
-        // console.log(this.CategoryData);
-        // console.log("get cate :", res);
       });
   }
 
@@ -260,7 +255,6 @@ export class ValidationComponent implements OnInit {
 
     const data = this.ProductEditForm;
 
-    // console.log("data:",data);
     
     this.http
       .put(`${this.url}/put.product/${data.PRODUCT_ID}`, data)
@@ -286,8 +280,6 @@ export class ValidationComponent implements OnInit {
   //     .get(`${this.url}/get.product/${id}`)
   //     .subscribe((res: any) => {
   //       this.showmoreData = res.data;
-  //       // console.log(this.showmoreData);
-  //       // console.log(res);
 
   //     });
   // }
@@ -312,7 +304,6 @@ export class ValidationComponent implements OnInit {
     this.http.get(`${this.url}/get.img/${id}`)
       .subscribe(
         (response: any) => {
-          // console.log(response);
 
           this.imgData = response.data[0].IMG_NAME;
         },
@@ -325,13 +316,11 @@ export class ValidationComponent implements OnInit {
 
 
   CardButton(id: number) {
-    // console.log(`id : ${id}`);
 
     this.http
       .get(`${this.url}/get.product.category/${id}`)
       .subscribe((res: any) => {
         this.ProductData = res.data;
-        // console.log(this.ProductData);
       });
   }
 }

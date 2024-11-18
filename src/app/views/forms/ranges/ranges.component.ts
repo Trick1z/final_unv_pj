@@ -56,7 +56,6 @@ export class RangesComponent implements OnInit {
   getBorrow() {
     this.http.get(`${this.url}/get.borrow/Y`).subscribe((res: any) => {
       this.borrowForm = res.data;
-      console.log("bor", this.borrowForm);
 
     })
   }
@@ -66,7 +65,6 @@ export class RangesComponent implements OnInit {
   getStudentData() {
     this.http.get(`${this.url}/get.student`).subscribe((res: any) => {
       this.studentData = res;
-      // console.log("xxxxxxxxxx",this.studentData);
 
 
     })
@@ -127,7 +125,6 @@ export class RangesComponent implements OnInit {
 
       this.counts = Object.entries(res.data[0]).map(([key, value]) => ({ key, value }));
 
-      console.log("count" , this.counts);
       
     })
   }
@@ -142,8 +139,6 @@ export class RangesComponent implements OnInit {
   //         value: res.list.count
   //       };
   //       this.counts.push(obj)
-  //       // console.log("count :", obj);
-  //       // console.log("count :", this.counts);
   //     })
   //   }
   // }

@@ -251,7 +251,6 @@ export class InputGroupsComponent implements OnInit {
   findProductData() {
 
     this.http.get(`${this.url}/get.product.status/6`).subscribe((res: any) => {
-      // console.log(res);
       
       this.ProductDataID = res.data;
 
@@ -262,7 +261,6 @@ export class InputGroupsComponent implements OnInit {
   CardButton(id: number) {
 
     this.http.get(`${this.url}/get.product.category.status/${id}`).subscribe((res: any) => {
-      console.log(res);
       
       this.ProductDataID = res.data;
 
@@ -292,7 +290,6 @@ export class InputGroupsComponent implements OnInit {
 
     const onGet = () => {
       this.http.get(`${this.url}/get.product/${data[1]}`).subscribe((res: any) => {
-        console.log(res);
         
         return this.ProductData.push(res.data[0]) 
       })
@@ -322,7 +319,6 @@ export class InputGroupsComponent implements OnInit {
       STUDENT_ID: this.StudentForms.STUDENT_ID,
       PRODUCT_INFO: this.ProductData,
     }
-    console.log(data);
     
 
 

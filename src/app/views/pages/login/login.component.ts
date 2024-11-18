@@ -76,11 +76,9 @@ export class LoginComponent implements OnInit {
       password: this.loginForm.password
     }
 
-    // console.log(data);
     
 
     this.http.post(`${this.url}/post.account`, data).subscribe((res: any) => {
-      console.log(res);
       
 
       if (res.message == 200) {

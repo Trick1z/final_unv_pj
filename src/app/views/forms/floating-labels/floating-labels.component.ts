@@ -189,7 +189,6 @@ export default class FloatingLabelsComponent implements OnInit {
 
   onCancel() {
     this.ProductForms = {}
-    // console.log(this.ProductForms);
     return this.nevBack()
 
   }
