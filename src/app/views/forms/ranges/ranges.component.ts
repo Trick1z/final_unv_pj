@@ -7,6 +7,7 @@ import { DxDataGridModule } from 'devextreme-angular';
 import { HttpClient, HttpClientModule } from '@angular/common/http';
 import { NgFor } from '@angular/common';
 import { forEach } from 'lodash-es';
+import { count } from 'rxjs';
 
 @Component({
   selector: 'app-ranges',
@@ -117,37 +118,44 @@ export class RangesComponent implements OnInit {
   }
 
 
-  counts: any = [];
+  counts: any = {};
 
   get_count() {
-    const msg = ['all', 'returned', 'not_returned']
-
-    for (let index = 0; index < msg.length; index++) {
-      this.http.get(`${this.url}/count.${msg[index]}`).subscribe((res: any) => {
-
-        const obj: { [key: string]: string } = {
-          name: msg[index],
-          value: res.list.count
-        };
-        this.counts.push(obj)
-        // console.log("count :", obj);
-        // console.log("count :", this.counts);
-      })
-    }
+    this.http.get(`${this.url}/count.borrow`).subscribe((res:any) => {
+      this.counts = res.data
+      console.log("count" , this.counts);
+      
+    })
   }
+  // get_count() {
+  //   const msg = ['all', 'returned', 'not_returned']
 
-  displayCardsName(text:string) {
-    const msg = ['all', 'returned', 'not_returned']
-    const dp = ['รายการทั้งหมด','คืนแล้ว','ยังไม่คืน'] 
+  //   for (let index = 0; index < msg.length; index++) {
+  //     this.http.get(`${this.url}/count.${msg[index]}`).subscribe((res: any) => {
 
-    for (let index = 0; index < msg.length; index++) {
+  //       const obj: { [key: string]: string } = {
+  //         name: msg[index],
+  //         value: res.list.count
+  //       };
+  //       this.counts.push(obj)
+  //       // console.log("count :", obj);
+  //       // console.log("count :", this.counts);
+  //     })
+  //   }
+  // }
 
-      if (text === msg[index]) {
-        return dp[index]
-      }
-    }
-    return 'ผิดพลาด'
-  }
+  // displayCardsName(text:string) {
+  //   const msg = ['all', 'returned', 'not_return']
+  //   const dp = ['รายการทั้งหมด','คืนแล้ว','ยังไม่คืน'] 
+
+  //   for (let index = 0; index < msg.length; index++) {
+
+  //     if (text === msg[index]) {
+  //       return dp[index]
+  //     }
+  //   }
+  //   return 'ผิดพลาด'
+  // }
 
   convertTime(timestamp: string) {
     const date = new Date(timestamp);
