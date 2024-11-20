@@ -181,7 +181,7 @@ export class InputGroupsComponent implements OnInit {
     this.http
       .get(`${this.url}/get.student/${code}`)
       .subscribe((res: any) => {
-        
+
         if (res.status === 404) {
           this.isVisible = false
 
@@ -246,12 +246,12 @@ export class InputGroupsComponent implements OnInit {
   }
 
 
-  ProductDataID: any = {}
+  ProductDataID: any = []
 
   findProductData() {
 
     this.http.get(`${this.url}/get.product.status/6`).subscribe((res: any) => {
-      
+
       this.ProductDataID = res.data;
 
     });
@@ -261,7 +261,7 @@ export class InputGroupsComponent implements OnInit {
   CardButton(id: number) {
 
     this.http.get(`${this.url}/get.product.category.status/${id}`).subscribe((res: any) => {
-      
+
       this.ProductDataID = res.data;
 
     });
@@ -290,15 +290,15 @@ export class InputGroupsComponent implements OnInit {
 
     const onGet = () => {
       this.http.get(`${this.url}/get.product/${data[1]}`).subscribe((res: any) => {
-        
-        return this.ProductData.push(res.data[0]) 
+
+        return this.ProductData.push(res.data[0])
       })
     }
 
     const onChange = () => {
       this.http.put(`${this.url}/put.onHold.Product.${status}/${data[1]}`, data[1])
         .subscribe((res: any) => {
-          
+
           this.findProductData();
           return this.ShowProductPopup = false;
         });
@@ -314,11 +314,20 @@ export class InputGroupsComponent implements OnInit {
   }
 
   onSave() {
+    var arr= []
+
+    for (let id = 0; id < this.ProductData.length; id++) {
+      var temp = {
+        PRODUCT_ID: this.ProductData[id].PRODUCT_ID
+      }
+      arr.push(temp)  
+    }
 
     const data = {
       STUDENT_ID: this.StudentForms.STUDENT_ID,
-      PRODUCT_INFO: this.ProductData,
+      PRODUCT_INFO: arr,
     }
+    
     
 
 
@@ -390,5 +399,19 @@ export class InputGroupsComponent implements OnInit {
     this.activeScanner = false;
   }
 
+
+  clearOnHold(state: string) {
+    var word = state
+
+    this.http.put(`${this.url}/put.on_hold/${state}`, word).subscribe((res: any) => {
+      return Swal.fire({
+        position: "center",
+        icon: "success",
+        title: "ล้างสถานะ เรียบร้อย",
+        showConfirmButton: false,
+        timer: 500
+      });
+    })
+  }
 
 }
