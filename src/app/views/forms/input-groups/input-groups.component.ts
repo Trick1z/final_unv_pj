@@ -119,11 +119,21 @@ export class InputGroupsComponent implements OnInit {
 
 
   constructor(private http: HttpClient, private route: Router) { }
+  availableDevices: MediaDeviceInfo[] = [];
 
   ngOnInit(): void {
     this.getCategory();
+// active camera
+    navigator.mediaDevices.enumerateDevices().then((devices) => {
+      this.availableDevices = devices.filter(
+        (device) => device.kind === 'videoinput'
+      );
 
-
+      // Select the first available device as the current device
+      if (this.availableDevices.length > 0) {
+        this.currentDevice = this.availableDevices[0];
+      }
+    });
 
   }
 

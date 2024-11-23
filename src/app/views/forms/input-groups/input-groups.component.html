@@ -58,25 +58,25 @@
       <h3>เพิ่มรายการ ครุภัณฑ์</h3>
     </div>
 
-    <div style="display: flex;justify-content: space-between;">
+    <div style="display: flex; justify-content: space-between">
       <button
-      cButton
-      color="primary"
-      class="text"
-      style="margin-right: 10px; color: white"
-      (click)="addproductBTN()"
-    >
-      เพิ่ม
-    </button>
-    <button
-      cButton
-      color="primary"
-      class="text"
-      style="margin-right: 10px; color: white"
-      (click)="clearOnHold('Y')"
-    >
-      Clear On Hold
-    </button>
+        cButton
+        color="primary"
+        class="text"
+        style="margin-right: 10px; color: white"
+        (click)="addproductBTN()"
+      >
+        เพิ่ม
+      </button>
+      <button
+        cButton
+        color="primary"
+        class="text"
+        style="margin-right: 10px; color: white"
+        (click)="clearOnHold('Y')"
+      >
+        Clear On Hold
+      </button>
     </div>
 
     <div class="datagrid" style="margin-top: 10px">
@@ -190,32 +190,40 @@
   </div>
 </div>
 
+<!-- camera notactive -->
+<!-- 
 <div class="scanner" *ngIf="activeScanner === true">
   <div>
-    <!-- [device]="currentDevice"  -->
     <zxing-scanner
+    
       [device]="currentDevice"
       (scanSuccess)="onScanSuccess($event)"
       (scanError)="onScanError($event)"
-      [class.hide-video]="true"
     >
     </zxing-scanner>
   </div>
-
-  <!-- <div *ngIf="scannedResult">
-  <h3>Scanned QR Code Result:</h3>
-  <p>{{ scannedResult }}</p>
 </div> -->
-</div>
 
 <dx-popup
   [width]="600"
-  [height]="420"
+  [height]="1000"
   [hideOnOutsideClick]="false"
   [showCloseButton]="false"
   [(visible)]="ShowFindPopup"
   title="ข้อมูล นักศึกษา"
 >
+  <div class="scanner" *ngIf="activeScanner === true">
+    <div style="margin-bottom: 10rem;">
+      <!-- [device]="currentDevice"  -->
+      <zxing-scanner
+        [device]="currentDevice"
+        (scanSuccess)="onScanSuccess($event)"
+        (scanError)="onScanError($event)"
+        [class.hide-video]="false"
+      >
+      </zxing-scanner>
+    </div>
+  </div>
   <!-- 
   <div class="flex" style="align-items: center;">
     <div class="" id="">
