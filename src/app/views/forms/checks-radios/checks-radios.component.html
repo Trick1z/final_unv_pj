@@ -14,9 +14,9 @@
         </dxo-editing>
         <dxo-editing mode="row">
         </dxo-editing>
-        <dxi-column dataField="CATEGORY_ID" [width]="100">
+        <dxi-column dataField="CATEGORY_ID" [width]="100" [caption]="'ID'">
         </dxi-column>
-        <dxi-column dataField="CATEGORY_NAME" [width]="160"></dxi-column>
+        <dxi-column dataField="CATEGORY_NAME" [width]="160" [caption]="'ชื่อ'"></dxi-column>
         <dxi-column dataField="CATEGORY_DESCRIPTION"></dxi-column>
         <div *dxTemplate="let data of 'cellTemplateDelte'">
           <button cButton color="secondary"
@@ -112,9 +112,9 @@
         </dxo-editing>
         <dxo-editing mode="row">
         </dxo-editing>
-        <dxi-column dataField="STATUS_ID" [width]="100">
+        <dxi-column dataField="STATUS_ID" [width]="100" [caption]="'ID'">
         </dxi-column>
-        <dxi-column dataField="STATUS_NAME" [width]="160"></dxi-column>
+        <dxi-column dataField="STATUS_NAME" [width]="160" [caption]="'ชื่อ'"></dxi-column>
         <dxi-column dataField="STATUS_DESCRIPTION"></dxi-column>
         <div *dxTemplate="let data of 'cellTemplateDelte'">
           <button cButton color="secondary"

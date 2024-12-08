@@ -1,10 +1,10 @@
 .login-container {
-
   display: flex;
   justify-content: center;
 
   margin: 15% 25%;
-    .card {
+
+  .card {
     padding: 50px;
     width: 350px;
     height: 360px;
@@ -12,15 +12,22 @@
   }
 
   .register-text {
-
     p {
       text-align: center;
     }
   }
-
-
 }
 
 .text {
   color: white;
+}
+
+@media screen and (max-width: 420px) {
+  .card {
+    padding: 20px;
+    width: 350px;
+    height: 360px;
+    box-shadow: 4px 3px 4px rgb(228, 228, 228);
+    margin: -30px;
+  }
 }
