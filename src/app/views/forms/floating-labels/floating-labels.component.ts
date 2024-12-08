@@ -89,7 +89,7 @@ import { delay, Observable } from 'rxjs';
 export default class FloatingLabelsComponent implements OnInit {
 
   // url: string = 'http://127.0.0.1:8000';
-  url:string='https://vue-api.onrender.com/';
+  url:string='https://vue-api.onrender.com';
 
   // url:string ='https://fastapi-example-xafm.onrender.com';
  
