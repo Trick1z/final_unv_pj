@@ -1,3 +1,6 @@
+@import "node_modules/devextreme/dist/css/dx.light.css";
+; // Import DevExtreme styles if not done already
+
 .card {
   padding: 10px 20px;
 
@@ -41,3 +44,11 @@
   box-shadow: 4px 4px 4px #b2b2b2;
   border-radius: 10px;
 }
+
+
+// For mobile (small screens)
+// @media screen and (max-width: 412px) {
+//   .dx-datagrid {
+//     font-size: 12px;
+//   }
+// }

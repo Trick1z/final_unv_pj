@@ -203,19 +203,21 @@
     </zxing-scanner>
   </div>
 </div> -->
-
+<!-- [width]="600"
+[height]="600" -->
 <dx-popup
-  [width]="600"
-  [height]="1000"
+ 
+  class="custom-popup"
   [hideOnOutsideClick]="false"
   [showCloseButton]="false"
   [(visible)]="ShowFindPopup"
   title="ข้อมูล นักศึกษา"
 >
   <div class="scanner" *ngIf="activeScanner === true">
-    <div style="margin-bottom: 10rem;">
+    <div style="margin-bottom: 1rem;">
       <!-- [device]="currentDevice"  -->
       <zxing-scanner
+      class="custom-video"
         [device]="currentDevice"
         (scanSuccess)="onScanSuccess($event)"
         (scanError)="onScanError($event)"
