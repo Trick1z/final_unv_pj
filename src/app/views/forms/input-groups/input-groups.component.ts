@@ -114,8 +114,9 @@ import { subscribeOn } from 'rxjs';
   ],
 })
 export class InputGroupsComponent implements OnInit {
-  url: string = 'http://127.0.0.1:8000';
+  // url: string = 'http://127.0.0.1:8000';
   // url:string='https://fastapi-example-xafm.onrender.com';
+  url:string='https://vue-api.onrender.com/';
 
 
   constructor(private http: HttpClient, private route: Router) { }
