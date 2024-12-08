@@ -1,4 +1,4 @@
-import { Component, NgModule, OnInit } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { JsonPipe, NgStyle } from '@angular/common';
 import { IconDirective } from '@coreui/icons-angular';
 import { FormControlsComponent } from '../../forms/form-controls/form-controls.component'
@@ -17,12 +17,13 @@ import {
   ButtonDirective,
   FormModule,
 } from '@coreui/angular';
-import { DxFormModule, DxPopupModule } from 'devextreme-angular';
+import { DxFormModule, DxPopupModule, DxTemplateModule, DxTextBoxModule } from 'devextreme-angular';
 import { HttpClient, HttpClientModule } from '@angular/common/http';
 import Swal from 'sweetalert2';
 import { BrowserModule } from '@angular/platform-browser';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
+import dxTextBox from 'devextreme/ui/text_box';
 
 
 @Component({
@@ -48,7 +49,7 @@ import { Router } from '@angular/router';
     ButtonDirective,
     NgStyle,
     HttpClientModule,
-    DxPopupModule,
+    DxPopupModule,DxTextBoxModule,DxTemplateModule,
   ],
 })
 export class LoginComponent implements OnInit {

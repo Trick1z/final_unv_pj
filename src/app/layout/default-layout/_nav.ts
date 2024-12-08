@@ -172,7 +172,7 @@ export const navItems: INavData[] = [
   // },
 
   {
-    name: 'เพิ่มรายการ',
+    name: 'เมนู เพิ่มรายการ',
     iconComponent: { name: 'cil-star' },
     url: '/icons',
     children: [
@@ -191,17 +191,17 @@ export const navItems: INavData[] = [
     ]
   },
   {
-    name: 'รายการกู้ยืม',
+    name: 'เมนู ผู้ยืม',
     iconComponent: { name: 'cil-star' },
     url: '/icons',
     children: [
       {
-        name: 'กู้ยืม ครุภัณฑ์',
+        name: 'รายการผู้ยืม ครุภัณฑ์',
         url: '/forms/form-control',
         icon: 'nav-icon-bullet'
       },  
       {
-        name: 'ประวัติการกู้ยืม',
+        name: 'ประวัติการยืม ครุภัณฑ์',
         url: '/forms/range',
         icon: 'nav-icon-bullet'
       },

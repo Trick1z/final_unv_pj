@@ -41,33 +41,33 @@
   </c-container>
 </div> -->
 
-
- <div class="login-container">
+<div class="login-container">
   <div class="card">
-    <div style="text-align: center; margin-bottom: 50px;">
+    <div style="text-align: center; margin-bottom: 50px">
       <h4>เข้าสู่ระบบ</h4>
     </div>
-
 
     <dx-form [formData]="loginForm" [colCount]="1">
       <dxi-item [colSpan]="1" dataField="username">
         <dxo-label template="Username"></dxo-label>
       </dxi-item>
 
-      <dxi-item [colSpan]="1" dataField="password">
+      <!-- <dxi-item [colSpan]="1" dataField="password">
         <dxo-label template="Password"></dxo-label>
+        
+      </dxi-item> -->
+
+      <dxi-item [colSpan]="1" dataField="password">
+        <dxo-label text="Password"></dxo-label>
+        <dx-text-box [mode]="'password'" [(value)]="loginForm.password">
+        </dx-text-box>
       </dxi-item>
     </dx-form>
 
-
     <div class="btn-group">
-      <div class="btn" style="margin-top: 20px;" (click)="onTest()">
-        <button cButton class="text" color="info"
-          >Login</button>
+      <div class="btn" style="margin-top: 20px" (click)="onTest()">
+        <button cButton class="text" color="info">Login</button>
       </div>
     </div>
-  
-
   </div>
-</div> 
-
+</div>
